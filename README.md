@@ -4,8 +4,8 @@
 
 ## Example
 python baselinemodel.py 
-    -td ./Dataset/Davis_test_origin.csv # Dataset for Training
-    -vd ./Dataset/Davis_val_origin.csv # Dataset for Validation
-    -m SVM # Choose model to train and see the result, (SVM, XGBoost, RandomForest)
+    -td ./Dataset/Davis_test_origin.csv # Dataset for Training <br>
+    -vd ./Dataset/Davis_val_origin.csv # Dataset for Validation <br>
+    -m SVM # Choose model to train and see the result, (SVM, XGBoost, RandomForest) <br>
 
 ```
