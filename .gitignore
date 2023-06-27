@@ -1,3 +1,9 @@
+# exclude sugbraphs
+*/*/subgraphs_en_True_neg_0_hop_1/
+*/*/subgraphs_en_True_neg_0_hop_2/
+*/*/subgraphs_en_True_neg_0_hop_3/
+*/*/subgraphs_en_True_neg_0_hop_4/
+
 *.ipynb_checkpoints
 *.pyc
 

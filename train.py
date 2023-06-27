@@ -126,9 +126,9 @@ def main(params):
     graph_classifier.pro_feat(torch.FloatTensor(np.array(pfeat)).to(params.device))
     # graph_classifier.pro_ind(torch.LongTensor(np.array(pind)).to(params.device))
 
-    valid_evaluator = Evaluator(params, graph_classifier, valid) if params.dataset == 'drugbank' else Evaluator_ddi2(params, graph_classifier, valid)
-    test_evaluator = Evaluator(params, graph_classifier, test) if params.dataset == 'drugbank' else Evaluator_ddi2(params, graph_classifier, test)
-    train_evaluator = Evaluator(params, graph_classifier, train) if params.dataset == 'drugbank' else Evaluator_ddi2(params, graph_classifier, valid)
+    valid_evaluator = Evaluator(params, graph_classifier, valid) if params.dataset == 'drugbank' or params.dataset == 'davis' else Evaluator_ddi2(params, graph_classifier, valid)
+    test_evaluator = Evaluator(params, graph_classifier, test) if params.dataset == 'drugbank' or params.dataset == 'davis' else Evaluator_ddi2(params, graph_classifier, test)
+    train_evaluator = Evaluator(params, graph_classifier, train) if params.dataset == 'drugbank' or params.dataset == 'davis' else Evaluator_ddi2(params, graph_classifier, valid)
 
     trainer = Trainer(params, graph_classifier, train, train_evaluator, valid_evaluator,test_evaluator)
 
