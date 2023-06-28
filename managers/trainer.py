@@ -35,7 +35,7 @@ class Trainer():
         if params.optimizer == "Adam":
             self.optimizer = optim.Adam(model_params, lr=params.lr, weight_decay=self.params.l2)
 
-        if params.dataset == 'drugbank':
+        if params.dataset == 'drugbank' or params.dataset == 'davis':
             self.criterion = nn.CrossEntropyLoss()
             #self.criterion = nn.BCELoss(reduce=False)
         elif params.dataset == 'BioSNAP':
@@ -68,7 +68,9 @@ class Trainer():
 #            print(targets_pos)
             self.optimizer.zero_grad()
             score_pos = self.graph_classifier(data_pos)
-            if self.params.dataset == 'drugbank':
+            if self.params.dataset == 'drugbank' :
+                loss = self.criterion(score_pos, r_labels_pos)
+            elif self.params.dataset == 'davis' :
                 loss = self.criterion(score_pos, r_labels_pos)
             elif self.params.dataset == 'BioSNAP':
                 m = nn.Sigmoid()
