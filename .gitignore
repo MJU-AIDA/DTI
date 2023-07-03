@@ -3,6 +3,8 @@
 */*/subgraphs_en_True_neg_0_hop_2/
 */*/subgraphs_en_True_neg_0_hop_3/
 */*/subgraphs_en_True_neg_0_hop_4/
+experiments/ddi_hop2/log_train.txt
+
 
 *.ipynb_checkpoints
 *.pyc
