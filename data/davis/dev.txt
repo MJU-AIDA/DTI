@@ -1,3 +1,4 @@
+gene_enco drug_enco rel
 3179 437 0
 2439 637 0
 2032 206 0
