@@ -15,25 +15,33 @@ SumGNN provided
 ### Original
 > data/davis/Davis_train_origin.csv  
 > data/davis/Davis_val_origin.csv  
-> data/davis/Davis_test_origin.csv  
+> data/davis/Davis_test_origin.csv
+> data/davis/davis : 위의 세 파일을 단순 copy&paste 
 
 ### Only data that can be used with subgraph 
+data/davis/Davis_train_test_val.ipynb : network filtering
 > data/davis/train.txt  
 > data/davis/dev.txt  
 > data/davis/test.txt 
 
 ### Drug/Target embedding
-FeatureExtract.generating_feature Module을 사용  
-data/davis/get_dt_pkl.ipynb
+data/davis/get_dt_pkl.ipynb (코드 리팩토링 중)
 > data/davis/DAVIS_drug_feats.pkl  
 > data/davis/DAVIS_target_feats.pkl
+
+## KIBA
+### Original
+> data/kiba/kiba.pkl
+
+### Only data that can be used with subgraph 
+> data/kiba/kiba.txt
+
 
 ## Hetionet
 
 
 ## Baseline models
 ### ML Baseline - SVM, XGBoost, Randomforest
-BaseLineModel.baselinemodel Module  
 BaselineModel/train_baseline_model.ipynb  
 
 ```
