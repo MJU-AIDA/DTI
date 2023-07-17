@@ -16,7 +16,8 @@ SumGNN provided
 > data/drugbank/DB_molecular_feats.pkl
 
 ## Hetionet
-
+> 
+> data/hetio/metaedge_encoding.json : Only the encoding value included in the original relations_2hop.txt exists
 
 ## DAVIS
 ### Original
