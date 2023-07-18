@@ -1,0 +1,658 @@
+query,entrezgene,name,symbol,alias,taxid,HGNC
+Q16613,15,aralkylamine N-acetyltransferase,AANAT,"DSPS, SNAT",9606,HGNC:19
+P08183,5243,ATP binding cassette subfamily B member 1,ABCB1,"ABC20, CD243, CLCS, GP170, MDR1",9606,HGNC:40
+P33527,4363,ATP binding cassette subfamily C member 1,ABCC1,"ABC29, ABCC, DFNA77, GS-X, MRP",9606,HGNC:51
+O15439,10257,ATP binding cassette subfamily C member 4,ABCC4,"MOAT-B, MOATB, MRP4",9606,HGNC:55
+O15440,10057,ATP binding cassette subfamily C member 5,ABCC5,"ABC33, EST277145, MOAT-C, MOATC, MRP5",9606,HGNC:56
+Q9UNQ0,9429,ATP binding cassette subfamily G member 2 (Junior blood group),ABCG2,"ABC15, ABCP, BCRP, BCRP1, BMDP",9606,HGNC:74
+P00519,25,"ABL proto-oncogene 1, non-receptor tyrosine kinase",ABL1,"ABL, BCR-ABL, CHDSKM, JTK7, bcr/abl",9606,HGNC:76
+P42684,27,"ABL proto-oncogene 2, non-receptor tyrosine kinase",ABL2,"ABLL, ARG",9606,HGNC:77
+Q13085,31,acetyl-CoA carboxylase alpha,ACACA,"ACAC, ACACAD, ACACalpha, ACC, ACC1",9606,HGNC:84
+O00763,32,acetyl-CoA carboxylase beta,ACACB,"ACACbeta, ACC-beta, ACC2, ACCB, ACCbeta",9606,HGNC:85
+P12821,1636,angiotensin I converting enzyme,ACE,"ACE1, CD143, DCP, DCP1",9606,HGNC:2707
+Q9BYF1,59272,angiotensin converting enzyme 2,ACE2,ACEH,9606,HGNC:13557
+P22303,43,acetylcholinesterase (Cartwright blood group),ACHE,"ACEE, ARACHE, N-ACHE, YT",9606,HGNC:108
+P24666,52,acid phosphatase 1,ACP1,"HAAP, LMW-PTP, LMWPTP",9606,HGNC:122
+P36896,91,activin A receptor type 1B,ACVR1B,"ACTRIB, ACVRLK4, ALK4, SKR2",9606,HGNC:172
+Q13443,8754,ADAM metallopeptidase domain 9,ADAM9,"CORD9, MCMP, MDC9, Mltng",9606,HGNC:216
+O75173,9507,ADAM metallopeptidase with thrombospondin type 1 motif 4,ADAMTS4,"ADAMTS-2, ADAMTS-4, ADMP-1",9606,HGNC:220
+P55263,132,adenosine kinase,ADK,AK,9606,HGNC:257
+P30542,134,adenosine A1 receptor,ADORA1,RDC7,9606,HGNC:262
+P35348,148,adrenoceptor alpha 1A,ADRA1A,"ADRA1C, ADRA1L1, ALPHA1AAR",9606,HGNC:277
+Q15109,177,advanced glycosylation end-product specific receptor,AGER,"RAGE, SCARJ1, sRAGE",9606,HGNC:320
+O15120,10555,1-acylglycerol-3-phosphate O-acyltransferase 2,AGPAT2,"1-AGPAT2, BSCL, BSCL1, LPAAB, LPAAT-beta",9606,HGNC:325
+P23526,191,adenosylhomocysteinase,AHCY,"SAHH, adoHcyase",9606,HGNC:343
+P42330,8644,aldo-keto reductase family 1 member C3,AKR1C3,"DD3, DDX, HA1753, HAKRB, HAKRe",9606,HGNC:386
+P31749,207,AKT serine/threonine kinase 1,AKT1,"AKT, PKB, PKB-ALPHA, PRKBA, RAC",9606,HGNC:391
+P31751,208,AKT serine/threonine kinase 2,AKT2,"HIHGHH, PKBB, PKBBETA, PRKBB, RAC-BETA",9606,HGNC:392
+Q9Y243,10000,AKT serine/threonine kinase 3,AKT3,"MPPH, MPPH2, PKB-GAMMA, PKBG, PRKBG",9606,HGNC:393
+P13716,210,aminolevulinate dehydratase,ALAD,"ALADH, PBGS",9606,HGNC:395
+P05091,217,aldehyde dehydrogenase 2 family member,ALDH2,"ALDH-E2, ALDHI, ALDM",9606,HGNC:404
+P51649,7915,aldehyde dehydrogenase 5 family member A1,ALDH5A1,"SSADH, SSDH",9606,HGNC:408
+P16050,246,arachidonate 15-lipoxygenase,ALOX15,"12-LOX, 15-LOX, 15-LOX-1, LOG15",9606,HGNC:433
+O15296,247,arachidonate 15-lipoxygenase type B,ALOX15B,15-LOX-2,9606,HGNC:434
+P09917,240,arachidonate 5-lipoxygenase,ALOX5,"5-LO, 5-LOX, 5LPG, LOG5",9606,HGNC:435
+P05186,249,"alkaline phosphatase, biomineralization associated",ALPL,"AP-TNAP, APTNAP, HOPS, HPPA, HPPC",9606,HGNC:438
+P17707,262,adenosylmethionine decarboxylase 1,AMD1,"ADOMETDC, AMD, SAMDC",9606,HGNC:457
+P19801,26,amine oxidase copper containing 1,AOC1,"ABP, ABP1, DAO, DAO1, KAO",9606,HGNC:80
+Q16853,8639,amine oxidase copper containing 3,AOC3,"HPAO, SSAO, VAP-1, VAP1",9606,HGNC:550
+O14727,317,apoptotic peptidase activating factor 1,APAF1,"APAF-1, CED4",9606,HGNC:576
+P31941,100913187,APOBEC3A and APOBEC3B deletion hybrid,APOBEC3A_B,"A3A, APOBEC3A",9606,HGNC:44196
+Q9HC16,60489,apolipoprotein B mRNA editing enzyme catalytic subunit 3G,APOBEC3G,"A3G, ARCD, ARP-9, ARP9, CEM-15",9606,HGNC:17357
+P05067,351,amyloid beta precursor protein,APP,"AAA, ABETA, ABPP, AD1, APPI",9606,HGNC:620
+P29972,358,aquaporin 1 (Colton blood group),AQP1,"AQP-CHIP, CHIP28, CO",9606,HGNC:633
+P10275,367,androgen receptor,AR,"AIS, AR8, DHTR, HUMARA, HYSP1",9606,HGNC:644
+Q9ULH1,50807,"ArfGAP with SH3 domain, ankyrin repeat and PH domain 1",ASAP1,"AMAP1, CENTB4, DDEF1, PAG2, PAP",9606,HGNC:2720
+P18846,466,activating transcription factor 1,ATF1,"EWS-ATF1, FUS/ATF-1, TREB36",9606,HGNC:783
+Q9Y4P1,23192,autophagy related 4B cysteine peptidase,ATG4B,"APG4B, AUTL1, HsAPG4B",9606,HGNC:20790
+P31939,471,5-aminoimidazole-4-carboxamide ribonucleotide formyltransferase/IMP cyclohydrolase,ATIC,"AICAR, AICARFT, HEL-S-70p, IMPCHASE, PURH",9606,HGNC:794
+Q13535,545,ATR serine/threonine kinase,ATR,"FCTCS, FRP1, MEC1, SCKL, SCKL1",9606,HGNC:882
+Q96GD4,9212,aurora kinase B,AURKB,"AIK2, AIM-1, AIM1, ARK-2, ARK2",9606,HGNC:11390
+P30530,558,AXL receptor tyrosine kinase,AXL,"ARK, JTK11, Tyro7, UFO",9606,HGNC:905
+P56817,23621,beta-secretase 1,BACE1,"ASP2, BACE, HSPC104",9606,HGNC:933
+Q9Y5Z0,25825,beta-secretase 2,BACE2,"AEPLC, ALP56, ASP1, ASP21, BAE2",9606,HGNC:934
+Q99728,580,BRCA1 associated RING domain 1,BARD1,,9606,HGNC:952
+P10415,596,BCL2 apoptosis regulator,BCL2,"Bcl-2, PPP1R50",9606,HGNC:990
+Q16548,597,BCL2 related protein A1,BCL2A1,"ACC-1, ACC-2, ACC1, ACC2, BCL2L5",9606,HGNC:991
+Q07817,598,BCL2 like 1,BCL2L1,"BCL-XL/S, BCL2L, BCLX, Bcl-X, PPP1R52",9606,HGNC:992
+P30411,624,bradykinin receptor B2,BDKRB2,"B2R, BK-2, BK2, BKR2, BRB2",9606,HGNC:1030
+Q13490,329,baculoviral IAP repeat containing 2,BIRC2,"API1, HIAP2, Hiap-2, MIHB, RNF48",9606,HGNC:590
+P13497,649,bone morphogenetic protein 1,BMP1,"OI13, PCOLC, PCP, PCP2, TLD",9606,HGNC:1067
+O00238,658,bone morphogenetic protein receptor type 1B,BMPR1B,"ALK-6, ALK6, AMD3, AMDD, BDA1D",9606,HGNC:1077
+P25440,6046,bromodomain containing 2,BRD2,"BRD2-IT1, D6S113E, FSH, FSHRG1, FSRG1",9606,HGNC:1103
+Q15059,8019,bromodomain containing 3,BRD3,"FSHRG2, ORFX, RING3L",9606,HGNC:1104
+O60885,23476,bromodomain containing 4,BRD4,"CAP, FSHRG4, HUNK1, HUNKI, MCAP",9606,HGNC:13575
+Q8TDC3,84446,BR serine/threonine kinase 1,BRSK1,"SAD-B, hSAD1",9606,HGNC:18994
+Q06187,695,Bruton tyrosine kinase,BTK,"AGMX1, AT, ATK, BPK, IGHD3",9606,HGNC:1133
+O43683,699,BUB1 mitotic checkpoint serine/threonine kinase,BUB1,"BUB1A, BUB1L, MCPH30, hBUB1",9606,HGNC:1148
+Q9NQU5,106821730,BUB1B-PAK6 readthrough,BUB1B-PAK6,"PAK-5, PAK-6, PAK5, PAK6",9606,HGNC:52276
+Q96BR1,100533105,C8orf44-SGK3 readthrough,C8orf44-SGK3,,9606,HGNC:48354
+O43570,771,carbonic anhydrase 12,CA12,"CA-XII, CAXII, HsT18816, T18816",9606,HGNC:1371
+Q00975,774,calcium voltage-gated channel subunit alpha1 B,CACNA1B,"BIII, CACNL1A5, CACNN, Cav2.2, DYT23",9606,HGNC:1389
+Q01668,776,calcium voltage-gated channel subunit alpha1 D,CACNA1D,"CACH3, CACN4, CACNL1A2, CCHL1A2, Cav1.3",9606,HGNC:1391
+O43497,8913,calcium voltage-gated channel subunit alpha1 G,CACNA1G,"Ca(V)T.1, Cav3.1, NBR13, SCA42, SCA42ND",9606,HGNC:1394
+Q8IU85,57118,calcium/calmodulin dependent protein kinase ID,CAMK1D,"CKLiK, CaM-K1, CaMKID",9606,HGNC:19341
+Q9UQM7,815,calcium/calmodulin dependent protein kinase II alpha,CAMK2A,"CAMKA, CaMKIINalpha, CaMKIIalpha, MRD53, MRT63",9606,HGNC:1460
+Q13554,816,calcium/calmodulin dependent protein kinase II beta,CAMK2B,"CAM2, CAMK2, CAMKB, CaMKIIbeta, MRD54",9606,HGNC:1461
+Q13557,817,calcium/calmodulin dependent protein kinase II delta,CAMK2D,CAMKD,9606,HGNC:1462
+Q13555,818,calcium/calmodulin dependent protein kinase II gamma,CAMK2G,"CAMK, CAMK-II, CAMKG, MRD59",9606,HGNC:1463
+P17655,824,calpain 2,CAPN2,"CANP2, CANPL2, CANPml, mCANP",9606,HGNC:1479
+Q86X55,10498,coactivator associated arginine methyltransferase 1,CARM1,PRMT4,9606,HGNC:23393
+P29466,834,caspase 1,CASP1,"ICE, IL1BC, P45",9606,HGNC:1499
+P51878,838,caspase 5,CASP5,"ICE(rel)III, ICEREL-III, ICH-3",9606,HGNC:1506
+P55212,839,caspase 6,CASP6,"CSP-6, MCH2, caspase-6",9606,HGNC:1507
+P55210,840,caspase 7,CASP7,"CASP-7, CMH-1, ICE-LAP3, LICE2, MCH3",9606,HGNC:1508
+Q14790,841,caspase 8,CASP8,"ALPS2B, CAP4, Casp-8, FLICE, MACH",9606,HGNC:1509
+P55211,842,caspase 9,CASP9,"APAF-3, APAF3, ICE-LAP6, MCH6, PPP1R56",9606,HGNC:1511
+P41180,846,calcium sensing receptor,CASR,"CAR, EIG8, FHH, FIH, GPRC2A",9606,HGNC:1514
+Q13951,865,core-binding factor subunit beta,CBFB,"CLCD2, PEBP2B",9606,HGNC:1539
+P16152,873,carbonyl reductase 1,CBR1,"CBR, PG-9-KR, SDR21C1, hCBR1",9606,HGNC:1548
+P32239,887,cholecystokinin B receptor,CCKBR,"CCK-B, CCK2R, GASR",9606,HGNC:1571
+O60563,904,cyclin T1,CCNT1,"CCNT, CYCT1, HIVE1",9606,HGNC:1599
+P41597,729230,C-C motif chemokine receptor 2,CCR2,"CC-CKR-2, CCR-2, CCR2A, CCR2B, CD192",9606,HGNC:1603
+P51677,1232,C-C motif chemokine receptor 3,CCR3,"C C CKR3, CC-CKR-3, CD193, CKR 3, CKR3",9606,HGNC:1604
+O00421,9034,C-C motif chemokine receptor like 2,CCRL2,"ACKR5, CKRX, CRAM, CRAM-A, CRAM-B",9606,HGNC:1612
+P28907,952,CD38 molecule,CD38,"ADPRC 1, ADPRC1, cADPR1",9606,HGNC:1667
+P16070,960,CD44 molecule (Indian blood group),CD44,"CDW44, CSPG8, ECM-III, ECMR-III, H-CAM",9606,HGNC:1681
+P30304,993,cell division cycle 25A,CDC25A,CDC25A2,9606,HGNC:1725
+P30305,994,cell division cycle 25B,CDC25B,,9606,HGNC:1726
+P30307,995,cell division cycle 25C,CDC25C,"CDC25, PPP1R60",9606,HGNC:1727
+P60953,998,cell division cycle 42,CDC42,"CDC42Hs, G25K, TKS",9606,HGNC:1736
+P06493,983,cyclin dependent kinase 1,CDK1,"CDC2, CDC28A, P34CDC2",9606,HGNC:1722
+P24941,1017,cyclin dependent kinase 2,CDK2,"CDKN2, p33(CDK2)",9606,HGNC:1771
+P11802,1019,cyclin dependent kinase 4,CDK4,"CMM3, PSK-J3",9606,HGNC:1773
+Q00535,1020,cyclin dependent kinase 5,CDK5,"LIS7, PSSALRE",9606,HGNC:1774
+P50750,1025,cyclin dependent kinase 9,CDK9,"C-2k, CDC2L4, CTK1, PITALRE, TAK",9606,HGNC:1780
+P11597,1071,cholesteryl ester transfer protein,CETP,"BPIFF, HDLCQ10",9606,HGNC:1869
+P08603,3075,complement factor H,CFH,"AHUS1, AMBP1, ARMD4, ARMS1, CFHL3",9606,HGNC:4883
+P13569,1080,CF transmembrane conductance regulator,CFTR,"ABC35, ABCC7, CF, CFTR/MRP, MRP7",9606,HGNC:1884
+P28329,1103,choline O-acetyltransferase,CHAT,"CHOACTASE, CMS1A, CMS1A2, CMS6",9606,HGNC:1912
+O14757,1111,checkpoint kinase 1,CHEK1,CHK1,9606,HGNC:1925
+O96017,11200,checkpoint kinase 2,CHEK2,"CDS1, CHK2, HuCds1, LFS2, PP1425",9606,HGNC:16627
+Q9BZP6,27159,chitinase acidic,CHIA,"AMCASE, CHIT2, TSA1902",9606,HGNC:17432
+Q13231,1118,chitinase 1,CHIT1,"CHI3, CHIT, CHITD",9606,HGNC:1936
+P11229,1128,cholinergic receptor muscarinic 1,CHRM1,"HM1, M1, M1R",9606,HGNC:1950
+P02708,1134,cholinergic receptor nicotinic alpha 1 subunit,CHRNA1,"ACHRA, ACHRD, CHRNA, CMS1A, CMS1B",9606,HGNC:1955
+P43681,1137,cholinergic receptor nicotinic alpha 4 subunit,CHRNA4,"BFNC, EBN, EBN1, NACHR, NACHRA4",9606,HGNC:1958
+P36544,1139,cholinergic receptor nicotinic alpha 7 subunit,CHRNA7,"CHRNA7-2, NACHRA7",9606,HGNC:1960
+P30926,1143,cholinergic receptor nicotinic beta 4 subunit,CHRNB4,,9606,HGNC:1964
+P49356,100529261,CHURC1-FNTB readthrough,CHURC1-FNTB,"FNTB, FTase-beta",9606,HGNC:42960
+P49759,1195,CDC like kinase 1,CLK1,"CLK, CLK/STY, STY",9606,HGNC:2068
+P49760,1196,CDC like kinase 2,CLK2,,9606,HGNC:2069
+P23946,1215,chymase 1,CMA1,"CYH, MCT1, chymase",9606,HGNC:2097
+P21554,1268,cannabinoid receptor 1,CNR1,"CANN6, CB-R, CB1, CB1A, CB1K5",9606,HGNC:2159
+Q96IY4,1361,carboxypeptidase B2,CPB2,"CPU, PCPB, TAFI",9606,HGNC:2300
+Q92523,1375,carnitine palmitoyltransferase 1B,CPT1B,"CPT1-M, CPT1M, CPTI, CPTI-M, M-CPT1",9606,HGNC:2329
+Q92793,1387,CREB binding protein,CREBBP,"CBP, KAT3A, MKHK1, RSTS, RSTS1",9606,HGNC:2348
+P07333,1436,colony stimulating factor 1 receptor,CSF1R,"BANDDOS, C-FMS, CD115, CSF-1R, CSFR",9606,HGNC:2433
+P48729,1452,casein kinase 1 alpha 1,CSNK1A1,"CK1, CK1a, CKIa, HEL-S-77p, HLCDGP1",9606,HGNC:2451
+P48730,1453,casein kinase 1 delta,CSNK1D,"ASPS, CKI-delta, CKId, CKIdelta, FASPS2",9606,HGNC:2452
+Q9HCP0,53944,casein kinase 1 gamma 1,CSNK1G1,CK1gamma1,9606,HGNC:2454
+P68400,1457,casein kinase 2 alpha 1,CSNK2A1,"CK2A1, CKII, Cka1, Cka2, OCNDS",9606,HGNC:2457
+P56545,1488,C-terminal binding protein 2,CTBP2,,9606,HGNC:2495
+Q9GZU7,58190,CTD small phosphatase 1,CTDSP1,"NIF3, NLI-IF, NLIIF, SCP1",9606,HGNC:21614
+P32929,1491,cystathionine gamma-lyase,CTH,"CGL, CSE",9606,HGNC:2501
+P10619,5476,cathepsin A,CTSA,"GLB2, GSL, NGBE, PPCA, PPGB",9606,HGNC:9251
+P53634,1075,cathepsin C,CTSC,"CPPI, DPP-I, DPP1, DPPI, HMS",9606,HGNC:2528
+P14091,1510,cathepsin E,CTSE,CATE,9606,HGNC:2530
+P25774,1520,cathepsin S,CTSS,,9606,HGNC:2545
+P48061,6387,C-X-C motif chemokine ligand 12,CXCL12,"IRH, PBSF, SCYB12, SDF1, TLSF",9606,HGNC:10672
+P32302,643,C-X-C motif chemokine receptor 5,CXCR5,"BLR1, CD185, MDR15",9606,HGNC:1060
+P05108,1583,cytochrome P450 family 11 subfamily A member 1,CYP11A1,"CYP11A, CYPXIA1, P450SCC",9606,HGNC:2590
+P15538,1584,cytochrome P450 family 11 subfamily B member 1,CYP11B1,"CPN1, CYP11B, FHI, P450C11",9606,HGNC:2591
+P11511,1588,cytochrome P450 family 19 subfamily A member 1,CYP19A1,"ARO, ARO1, CPV1, CYAR, CYP19",9606,HGNC:2594
+P04798,1543,cytochrome P450 family 1 subfamily A member 1,CYP1A1,"AHH, AHRR, CP11, CYP1, CYPIA1",9606,HGNC:2595
+P05177,1544,cytochrome P450 family 1 subfamily A member 2,CYP1A2,"CP12, CYPIA2, P3-450, P450(PA)",9606,HGNC:2596
+P20813,1555,cytochrome P450 family 2 subfamily B member 6,CYP2B6,"CPB6, CYP2B, CYP2B7, CYP2B7P, CYPIIB6",9606,HGNC:2615
+P33260,1562,cytochrome P450 family 2 subfamily C member 18,CYP2C18,"CPCI, CYP2C, CYP2C17, P450-6B/29C, P450IIC17",9606,HGNC:2620
+P10632,1558,cytochrome P450 family 2 subfamily C member 8,CYP2C8,"CPC8, CYP2C8DM, CYPIIC8, MP-12/MP-20",9606,HGNC:2622
+P20815,1577,cytochrome P450 family 3 subfamily A member 5,CYP3A5,"CP35, CYPIIIA5, P450PCN3, PCN3",9606,HGNC:2638
+O43739,9265,cytohesin 3,CYTH3,"ARNO3, GRP1, PSCD3, cytohesin-3",9606,HGNC:9504
+P53355,1612,death associated protein kinase 1,DAPK1,"DAPK, ROCO3",9606,HGNC:2674
+O43293,1613,death associated protein kinase 3,DAPK3,"DLK, ZIP, ZIPK",9606,HGNC:2676
+Q9UBU7,10926,DBF4 zinc finger,DBF4,"ASK, CHIF, DBF4A, ZDBF1",9606,HGNC:17364
+Q96SD1,64421,DNA cross-link repair 1C,DCLRE1C,"A-SCID, DCLREC1C, RS-SCID, SCIDA, SNM1C",9606,HGNC:17642
+O94760,23576,dimethylarginine dimethylaminohydrolase 1,DDAH1,"DDAH, DDAH-1, DDAHI, HEL-S-16",9606,HGNC:2715
+P20711,1644,dopa decarboxylase,DDC,AADC,9606,HGNC:2719
+Q99489,8528,D-aspartate oxidase,DDO,"DASOX, DASPO, DDO-1, DDO-2",9606,HGNC:2727
+Q92499,1653,DEAD-box helicase 1,DDX1,"DBP-RB, UKVH5d",9606,HGNC:2734
+Q96PD7,84649,diacylglycerol O-acyltransferase 2,DGAT2,"ARAT, GS1999FULL, HMFN1045",9606,HGNC:16940
+P00374,1719,dihydrofolate reductase,DHFR,"DHFR1, DHFRP1, DYR",9606,HGNC:2861
+Q09013,1760,DM1 protein kinase,DMPK,"DM, DM1, DM1PK, DMK, MDPK",9606,HGNC:2933
+P24855,1773,deoxyribonuclease 1,DNASE1,"DNL1, DRNI",9606,HGNC:2956
+Q05193,1759,dynamin 1,DNM1,"DEE31, DEE31A, DEE31B, DNM, EIEE31",9606,HGNC:2972
+P26358,1786,DNA methyltransferase 1,DNMT1,"ADCADN, AIM, CXXC9, DNMT, HSN1E",9606,HGNC:2976
+Q9Y6K1,1788,DNA methyltransferase 3 alpha,DNMT3A,"DNMT3A2, HESJAS, M.HsaIIIA, TBRS",9606,HGNC:2978
+Q9UBC3,1789,DNA methyltransferase 3 beta,DNMT3B,"FSHD4, ICF, ICF1, M.HsaIIIB",9606,HGNC:2979
+Q9NY33,10072,dipeptidyl peptidase 3,DPP3,DPPIII,9606,HGNC:3008
+Q6V1X1,54878,dipeptidyl peptidase 8,DPP8,"DP8, DPRP-1, DPRP1, MST097, MSTP097",9606,HGNC:16490
+Q86TI2,91039,dipeptidyl peptidase 9,DPP9,"DP9, DPLP9, DPP IX, DPRP-2, DPRP2",9606,HGNC:18648
+P14416,1813,dopamine receptor D2,DRD2,"D2DR, D2R",9606,HGNC:3023
+P35462,1814,dopamine receptor D3,DRD3,"D3DR, ETM1, FET1",9606,HGNC:3024
+Q9NRW4,56940,dual specificity phosphatase 22,DUSP22,"JKAP, JSP-1, JSP1, LMW-DSP2, LMWDSP2",9606,HGNC:16077
+P51452,1845,dual specificity phosphatase 3,DUSP3,VHR,9606,HGNC:3069
+Q16828,1848,dual specificity phosphatase 6,DUSP6,"HH19, MKP3, PYST1",9606,HGNC:3072
+P33316,1854,deoxyuridine triphosphatase,DUT,"BMFDMS, dUTPase",9606,HGNC:3078
+Q13627,1859,dual specificity tyrosine phosphorylation regulated kinase 1A,DYRK1A,"DYRK, DYRK1, HP86, MNB, MNBH",9606,HGNC:3091
+Q92630,8445,dual specificity tyrosine phosphorylation regulated kinase 2,DYRK2,,9606,HGNC:3093
+P42892,1889,endothelin converting enzyme 1,ECE1,ECE,9606,HGNC:3146
+P25101,1909,endothelin receptor type A,EDNRA,"ET-A, ETA, ETA-R, ETAR, ETRA",9606,HGNC:3179
+P24530,1910,endothelin receptor type B,EDNRB,"ABCDS, ET-B, ET-BR, ETB, ETB1",9606,HGNC:3180
+O75530,8726,embryonic ectoderm development,EED,"COGIS, HEED, WAIT1",9606,HGNC:3188
+P00533,1956,epidermal growth factor receptor,EGFR,"ERBB, ERBB1, ERRP, HER1, NISBD2",9606,HGNC:3236
+Q9GZT9,54583,egl-9 family hypoxia inducible factor 1,EGLN1,"C1orf12, ECYT3, HALAH, HIF-PH2, HIFPH2",9606,HGNC:1232
+Q9H9B1,79813,euchromatic histone lysine methyltransferase 1,EHMT1,"EHMT1-IT1, EUHMTASE1, Eu-HMTase1, FP13812, GLP",9606,HGNC:24650
+Q96KQ7,10919,euchromatic histone lysine methyltransferase 2,EHMT2,"BAT8, C6orf30, G9A, GAT8, KMT1C",9606,HGNC:14129
+P19525,5610,eukaryotic translation initiation factor 2 alpha kinase 2,EIF2AK2,"DYT33, EIF2AK1, LEUDEN, PKR, PPP1R83",9606,HGNC:9437
+P06730,1977,eukaryotic translation initiation factor 4E,EIF4E,"AUTS19, CBP, EIF4E1, EIF4EL1, EIF4F",9606,HGNC:3287
+Q04637,1981,eukaryotic translation initiation factor 4 gamma 1,EIF4G1,"EIF-4G1, EIF4F, EIF4G, EIF4GI, P220",9606,HGNC:3296
+Q15056,7458,eukaryotic translation initiation factor 4H,EIF4H,"WBSCR1, WSCR1, eIF-4H",9606,HGNC:12741
+P29317,1969,EPH receptor A2,EPHA2,"ARCC2, CTPA, CTPP1, CTRCT6, ECK",9606,HGNC:3386
+P54762,2047,EPH receptor B1,EPHB1,"ELK, EPHT2, Hek6, NET",9606,HGNC:3392
+P29323,2048,EPH receptor B2,EPHB2,"BDPLT22, CAPB, DRT, EK5, EPHT3",9606,HGNC:3393
+P54760,2050,EPH receptor B4,EPHB4,"CMAVM2, HFASD, HTK, LMPHM7, MYK1",9606,HGNC:3395
+P34913,2053,epoxide hydrolase 2,EPHX2,"ABHD20, CEH, SEH",9606,HGNC:3402
+Q15303,2066,erb-b2 receptor tyrosine kinase 4,ERBB4,"ALS19, HER4, p180erbB4",9606,HGNC:3432
+P28715,2073,"ERCC excision repair 5, endonuclease",ERCC5,"COFS3, ERCC5-201, ERCM2, UVDR, XPG",9606,HGNC:3437
+P11308,2078,ETS transcription factor ERG,ERG,"erg-3, p55",9606,HGNC:3446
+O75460,2081,endoplasmic reticulum to nucleus signaling 1,ERN1,"IRE1, IRE1P, IRE1a, hIRE1p",9606,HGNC:3449
+Q92731,2100,estrogen receptor 2,ESR2,"ER-BETA, ESR-BETA, ESRB, ESTRB, Erb",9606,HGNC:3468
+P62508,2104,estrogen related receptor gamma,ESRRG,"ERR-gamma, ERR3, ERRg, ERRgamma, NR3B3",9606,HGNC:3474
+Q15910,2146,enhancer of zeste 2 polycomb repressive complex 2 subunit,EZH2,"ENX-1, ENX1, EZH2b, KMT6, KMT6A",9606,HGNC:3527
+P03951,2160,coagulation factor XI,F11,"FXI, PTA",9606,HGNC:3529
+P13726,2152,"coagulation factor III, tissue factor",F3,"CD142, TF, TFA",9606,HGNC:3541
+P08709,2155,coagulation factor VII,F7,SPCA,9606,HGNC:3544
+P00451,2157,coagulation factor VIII,F8,"AHF, DXS1253E, F8B, F8C, FVIII",9606,HGNC:3546
+P12314,2209,Fc gamma receptor Ia,FCGR1A,"CD64, CD64A, FCG1, FCGR1, FCRI",9606,HGNC:3613
+P37268,2222,farnesyl-diphosphate farnesyltransferase 1,FDFT1,"DGPT, ERG9, SQS, SQSD, SS",9606,HGNC:3629
+P14324,2224,farnesyl diphosphate synthase,FDPS,"FPPS, FPS, POROK9",9606,HGNC:3631
+P39748,2237,flap structure-specific endonuclease 1,FEN1,"FEN-1, MF1, RAD2",9606,HGNC:3650
+P16591,2241,FER tyrosine kinase,FER,"PPP1R74, TYK3, p94-Fer",9606,HGNC:3655
+P07332,2242,"FES proto-oncogene, tyrosine kinase",FES,FPS,9606,HGNC:3657
+P09038,2247,fibroblast growth factor 2,FGF2,"BFGF, FGF-2, FGFB, HBGF-2",9606,HGNC:3676
+P11362,2260,fibroblast growth factor receptor 1,FGFR1,"BFGFR, CD331, CEK, ECCL, FGFBR",9606,HGNC:3688
+P21802,2263,fibroblast growth factor receptor 2,FGFR2,"BBDS, BEK, BFR-1, CD332, CEK3",9606,HGNC:3689
+P22607,2261,fibroblast growth factor receptor 3,FGFR3,"ACH, CD333, CEK2, HSFGFR3EX, JTK4",9606,HGNC:3690
+Q13451,2289,FKBP prolyl isomerase 5,FKBP5,"AIG6, FKBP51, FKBP54, P54, PPIase",9606,HGNC:3721
+P17948,2321,fms related receptor tyrosine kinase 1,FLT1,"FLT, FLT-1, VEGFR-1, VEGFR1",9606,HGNC:3763
+P36888,2322,fms related receptor tyrosine kinase 3,FLT3,"CD135, FLK-2, FLK2, STK1",9606,HGNC:3765
+P35916,2324,fms related receptor tyrosine kinase 4,FLT4,"CHTD7, FLT-4, FLT41, LMPH1A, LMPHM1",9606,HGNC:3767
+P49354,2339,"farnesyltransferase, CAAX box, alpha",FNTA,"FPTA, PGGT1A, PTAR2",9606,HGNC:3782
+Q04609,2346,folate hydrolase 1,FOLH1,"FGCP, FOLH, GCP2, GCPII, NAALAD1",9606,HGNC:3788
+Q9C0B1,79068,FTO alpha-ketoglutarate dependent dioxygenase,FTO,"ALKBH9, BMIQ14, GDFD, IFEX9",9606,HGNC:24678
+P51993,2528,fucosyltransferase 6,FUT6,"FCT3A, FT1A, Fuc-TVI, FucT-VI",9606,HGNC:4017
+P06241,2534,"FYN proto-oncogene, Src family tyrosine kinase",FYN,"SLK, SYN, p59-FYN",9606,HGNC:4037
+P11413,2539,glucose-6-phosphate dehydrogenase,G6PD,G6PD1,9606,HGNC:4057
+Q9UBS5,2550,gamma-aminobutyric acid type B receptor subunit 1,GABBR1,"GABABR1, GABBR1-3, GB1, GPRC3A",9606,HGNC:4070
+P28472,2562,gamma-aminobutyric acid type A receptor subunit beta3,GABRB3,"DEE43, ECA5, EIEE43",9606,HGNC:4083
+Q14376,2582,UDP-galactose-4-epimerase,GALE,SDR1E1,9606,HGNC:4116
+P04406,2597,glyceraldehyde-3-phosphate dehydrogenase,GAPDH,"G3PD, GAPD, HEL-S-162eP",9606,HGNC:4141
+P22102,2618,"phosphoribosylglycinamide formyltransferase, phosphoribosylglycinamide synthetase, phosphoribosylaminoimidazole synthetase",GART,"AIRS, GARS, GARTF, PAIS, PGFT",9606,HGNC:4163
+P04062,2629,glucosylceramidase beta 1,GBA1,"GBA, GCB, GLUC",9606,HGNC:4177
+Q9HCG7,57704,glucosylceramidase beta 2,GBA2,"AD035, NLGase, SPG46",9606,HGNC:18986
+P35557,2645,glucokinase,GCK,"FGQTL3, GK, GLK, HHF3, HK4",9606,HGNC:4195
+Q14397,2646,glucokinase regulator,GCKR,"FGQTL5, GKRP",9606,HGNC:4196
+O95749,9453,geranylgeranyl diphosphate synthase 1,GGPS1,"GGPPS, GGPPS1, MDHLO, MUDHLOV",9606,HGNC:4249
+P19440,2678,gamma-glutamyltransferase 1,GGT1,"CD224, D22S672, D22S732, GGT, GGT 1",9606,HGNC:4250
+P16278,2720,galactosidase beta 1,GLB1,"EBP, ELNR1, MPS4B",9606,HGNC:4298
+Q04760,2739,glyoxalase I,GLO1,"GLOD1, GLYI, HEL-S-74",9606,HGNC:4323
+Q9HC97,2859,G protein-coupled receptor 35,GPR35,,9606,HGNC:4492
+P62993,2885,growth factor receptor bound protein 2,GRB2,"ASH, EGFRBP-GRB2, Grb3-3, MST084, MSTP084",9606,HGNC:4566
+Q13003,2899,glutamate ionotropic receptor kainate type subunit 3,GRIK3,"EAA5, GLR7, GLUR7, GluK3, GluR7a",9606,HGNC:4581
+Q05586,2902,glutamate ionotropic receptor NMDA type subunit 1,GRIN1,"DEE101, GluN1, MRD8, NDHMSD, NDHMSR",9606,HGNC:4584
+Q12879,2903,glutamate ionotropic receptor NMDA type subunit 2A,GRIN2A,"EPND, FESD, GluN2A, LKS, NMDAR2A",9606,HGNC:4585
+P43250,2870,G protein-coupled receptor kinase 6,GRK6,GPRK6,9606,HGNC:4545
+Q13255,2911,glutamate metabotropic receptor 1,GRM1,"GPRC1A, MGLU1, MGLUR1, PPP1R85, SCA44",9606,HGNC:4593
+Q14832,2913,glutamate metabotropic receptor 3,GRM3,"GLUR3, GPRC1C, MGLUR3, mGlu3",9606,HGNC:4595
+Q14833,2914,glutamate metabotropic receptor 4,GRM4,"GPRC1D, MGLUR4, mGlu4",9606,HGNC:4596
+P41594,2915,glutamate metabotropic receptor 5,GRM5,"GPRC1E, MGLUR5, PPP1R86, mGlu5",9606,HGNC:4597
+Q14831,2917,glutamate metabotropic receptor 7,GRM7,"GLUR7, GPRC1G, MGLU7, MGLUR7, NEDSHBA",9606,HGNC:4599
+O00222,2918,glutamate metabotropic receptor 8,GRM8,"GLUR8, GPRC1H, MGLUR8, mGlu8",9606,HGNC:4600
+P49841,2932,glycogen synthase kinase 3 beta,GSK3B,,9606,HGNC:4617
+P00390,2936,glutathione-disulfide reductase,GSR,"GR, GSRD, HEL-75, HEL-S-122m",9606,HGNC:4623
+Q9Y2Q3,373156,glutathione S-transferase kappa 1,GSTK1,"GST, GST 13-13, GST13, GST13-13, GSTK1-1",9606,HGNC:16906
+P08236,2990,glucuronidase beta,GUSB,"BG, MPS7",9606,HGNC:4696
+Q8TF76,83903,histone H3 associated protein kinase,HASPIN,GSG2,9606,HGNC:19682
+P08631,3055,"HCK proto-oncogene, Src family tyrosine kinase",HCK,"AIPCV, JTK9, p59Hck, p61Hck",9606,HGNC:4840
+Q969S8,83933,histone deacetylase 10,HDAC10,HD10,9606,HGNC:18128
+Q96DB2,79885,histone deacetylase 11,HDAC11,HD11,9606,HGNC:19086
+Q92769,3066,histone deacetylase 2,HDAC2,"HD2, KDAC2, RPD3, YAF1",9606,HGNC:4853
+O15379,8841,histone deacetylase 3,HDAC3,"HD3, KDAC3, RPD3, RPD3-2",9606,HGNC:4854
+P56524,9759,histone deacetylase 4,HDAC4,"AHO3, BDMR, HA6116, HD4, HDAC-4",9606,HGNC:14063
+Q9UQL6,10014,histone deacetylase 5,HDAC5,"HD5, NY-CO-9",9606,HGNC:14068
+Q9UBN7,10013,histone deacetylase 6,HDAC6,"CPBHM, HD6, JM21, PPP1R90",9606,HGNC:14064
+Q8WUI4,51564,histone deacetylase 7,HDAC7,"HD7, HD7A, HDAC7A",9606,HGNC:14067
+Q9BY41,55869,histone deacetylase 8,HDAC8,"CDA07, CDLS5, HD8, HDACL1, KDAC8",9606,HGNC:13315
+Q9UKV0,9734,histone deacetylase 9,HDAC9,"HD7, HD7b, HD9, HDAC, HDAC7",9606,HGNC:14065
+P06865,3073,hexosaminidase subunit alpha,HEXA,TSD,9606,HGNC:4878
+Q16665,3091,hypoxia inducible factor 1 subunit alpha,HIF1A,"HIF-1-alpha, HIF-1A, HIF-1alpha, HIF1, HIF1-ALPHA",9606,HGNC:4910
+Q9H2X6,28996,homeodomain interacting protein kinase 2,HIPK2,PRO0593,9606,HGNC:14402
+Q9H422,10114,homeodomain interacting protein kinase 3,HIPK3,"DYRK6, FIST3, PKY, YAK1",9606,HGNC:4915
+P04035,3156,3-hydroxy-3-methylglutaryl-CoA reductase,HMGCR,"LDLCQ3, LGMDR28, MYPLG",9606,HGNC:5006
+P41235,3172,hepatocyte nuclear factor 4 alpha,HNF4A,"FRTS4, HNF4, HNF4a7, HNF4a8, HNF4a9",9606,HGNC:5024
+P15428,3248,15-hydroxyprostaglandin dehydrogenase,HPGD,"15-PGDH, PGDH, PGDH1, PHOAR1, SDR36C1",9606,HGNC:5154
+Q9Y251,10855,heparanase,HPSE,"HPA, HPA1, HPR1, HPSE1, HSE1",9606,HGNC:5164
+P01112,3265,"HRas proto-oncogene, GTPase",HRAS,"C-BAS/HAS, C-H-RAS, C-HA-RAS1, CTLO, H-RASIDX",9606,HGNC:5173
+P25021,3274,histamine receptor H2,HRH2,"H2R, HH2R",9606,HGNC:5183
+Q9H3N8,59340,histamine receptor H4,HRH4,"AXOR35, BG26, GPCR105, GPRv53, H4",9606,HGNC:17383
+P37058,3293,hydroxysteroid 17-beta dehydrogenase 3,HSD17B3,"EDH17B3, SDR12C2",9606,HGNC:5212
+P07900,3320,heat shock protein 90 alpha family class A member 1,HSP90AA1,"EL52, HEL-S-65p, HSP86, HSP89A, HSP90A",9606,HGNC:5253
+P11142,3312,heat shock protein family A (Hsp70) member 8,HSPA8,"HEL-33, HEL-S-72p, HSC54, HSC70, HSC71",9606,HGNC:5241
+P28223,3356,5-hydroxytryptamine receptor 2A,HTR2A,"5-HT2A, HTR2",9606,HGNC:5293
+P28335,3358,5-hydroxytryptamine receptor 2C,HTR2C,"5-HT1C, 5-HT2C, 5-HTR2C, 5HTR2C, HTR1C",9606,HGNC:5295
+P46098,3359,5-hydroxytryptamine receptor 3A,HTR3A,"5-HT-3, 5-HT3A, 5-HT3R, 5HT3R, HTR3",9606,HGNC:5297
+P34969,3363,5-hydroxytryptamine receptor 7,HTR7,5-HT7,9606,HGNC:5302
+Q12794,3373,hyaluronidase 1,HYAL1,"HYAL-1, LUCA1, MPS9, NAT6",9606,HGNC:5320
+P14735,3416,insulin degrading enzyme,IDE,INSULYSIN,9606,HGNC:5381
+P48735,3418,isocitrate dehydrogenase (NADP(+)) 2,IDH2,"D2HGA2, ICD-M, IDH, IDH-2, IDHM",9606,HGNC:5383
+Q9H665,79713,IGF like family receptor 1,IGFLR1,TMEM149,9606,HGNC:23620
+O14920,3551,inhibitor of nuclear factor kappa B kinase subunit beta,IKBKB,"IKK-beta, IKK2, IKKB, IMD15, IMD15A",9606,HGNC:5960
+P20839,3614,inosine monophosphate dehydrogenase 1,IMPDH1,"IMPD, IMPD1, IMPDH-I, LCA11, RP10",9606,HGNC:6052
+O95050,11185,indolethylamine N-methyltransferase,INMT,TEMT,9606,HGNC:6069
+P06213,3643,insulin receptor,INSR,"CD220, HHF5",9606,HGNC:6091
+P51617,3654,interleukin 1 receptor associated kinase 1,IRAK1,"IRAK, pelle",9606,HGNC:6112
+Q9NWZ3,51135,interleukin 1 receptor associated kinase 4,IRAK4,"IMD67, IPD1, IRAK-4, NY-REN-64, REN64",9606,HGNC:17967
+P08514,3674,integrin subunit alpha 2b,ITGA2B,"BDPLT16, BDPLT2, CD41, CD41B, GP2B",9606,HGNC:6138
+P20701,3683,integrin subunit alpha L,ITGAL,"CD11A, LFA-1, LFA1A",9606,HGNC:6148
+P05556,3688,integrin subunit beta 1,ITGB1,"CD29, FNRB, GPIIA, MDF2, MSK12",9606,HGNC:6153
+P05106,3690,integrin subunit beta 3,ITGB3,"BDPLT16, BDPLT2, BDPLT24, CD61, GP3A",9606,HGNC:6156
+P26010,3695,integrin subunit beta 7,ITGB7,,9606,HGNC:6162
+P52333,3718,Janus kinase 3,JAK3,"JAK-3, JAK3_HUMAN, JAKL, L-JAK, LJAK",9606,HGNC:6193
+Q15046,3735,lysyl-tRNA synthetase 1,KARS1,"CMTRIB, DEAPLE, DFNB89, KARS, KARS2",9606,HGNC:6215
+Q92993,10524,lysine acetyltransferase 5,KAT5,"ESA1, HTATIP, HTATIP1, NEDFASB, PLIP",9606,HGNC:5275
+Q9H7Z6,84148,lysine acetyltransferase 8,KAT8,"LIGOWS, MOF, MYST1, ZC2HC8, hMOF",9606,HGNC:17933
+P22460,3741,potassium voltage-gated channel subfamily A member 5,KCNA5,"ATFB7, HCK1, HK2, HPCN1, KV1.5",9606,HGNC:6224
+Q9UK17,3752,potassium voltage-gated channel subfamily D member 3,KCND3,"BRGDA9, KCND3L, KCND3S, KSHIVB, KV4.3",9606,HGNC:6239
+Q12809,3757,potassium voltage-gated channel subfamily H member 2,KCNH2,"ERG-1, ERG1, H-ERG, HERG, HERG1",9606,HGNC:6251
+O60928,3769,potassium inwardly rectifying channel subfamily J member 13,KCNJ13,"KIR1.4, KIR7.1, LCA16, SVD",9606,HGNC:6259
+Q12791,3778,potassium calcium-activated channel subfamily M alpha 1,KCNMA1,"BKTM, CADEDS, IEG16, KCa1.1, LIWAS",9606,HGNC:6284
+O60341,23028,lysine demethylase 1A,KDM1A,"AOF2, BHC110, CPRF, KDM1, LSD1",9606,HGNC:29079
+Q9Y2K7,22992,lysine demethylase 2A,KDM2A,"CXXC8, FBL11, FBL7, FBXL11, JHDM1A",9606,HGNC:13606
+Q8NHM5,84678,lysine demethylase 2B,KDM2B,"CXXC2, FBXL10, Fbl10, JHDM1B, PCCX2",9606,HGNC:13610
+Q7LBC6,51780,lysine demethylase 3B,KDM3B,"5qNCA, C5orf7, DIJOS, JMJD1B, NET22",9606,HGNC:1337
+Q9H3R0,23081,lysine demethylase 4C,KDM4C,"GASC1, JHDM3C, JMJD2C, TDRD14C",9606,HGNC:17071
+P29375,5927,lysine demethylase 5A,KDM5A,"RBBP-2, RBBP2, RBP2",9606,HGNC:9886
+P41229,8242,lysine demethylase 5C,KDM5C,"DXS1272E, JARID1C, MRX13, MRXJ, MRXSCJ",9606,HGNC:11114
+O15054,23135,lysine demethylase 6B,KDM6B,"JMJD3, NEDCFSA",9606,HGNC:29012
+P35968,3791,kinase insert domain receptor,KDR,"CD309, FLK1, VEGFR, VEGFR2",9606,HGNC:6307
+O15066,9371,kinesin family member 3B,KIF3B,"FLA8, HH0048, KLP-11, RP89",9606,HGNC:6320
+P10721,3815,"KIT proto-oncogene, receptor tyrosine kinase",KIT,"C-Kit, CD117, MASTC, PBT, SCFR",9606,HGNC:6342
+P06870,3816,kallikrein 1,KLK1,"KLKR, Klk6, hK1",9606,HGNC:6357
+Q92876,5653,kallikrein related peptidase 6,KLK6,"Bssp, Klk7, PRSS18, PRSS9, SP59",9606,HGNC:6367
+Q16773,883,kynurenine aminotransferase 1,KYAT1,"CCBL1, GTK, KAT1, KATI",9606,HGNC:1564
+Q9Y468,26013,L3MBTL histone methyl-lysine binding protein 1,L3MBTL1,"H-L(3)MBT, L3MBTL, ZC2HC3, dJ138B7.3",9606,HGNC:15905
+Q96JM7,84456,L3MBTL histone methyl-lysine binding protein 3,L3MBTL3,"MBT-1, MBT1",9606,HGNC:23035
+P28838,51056,leucine aminopeptidase 3,LAP3,"HEL-S-106, LAP, LAPEP, PEPS",9606,HGNC:18449
+Q9P2J5,51520,leucyl-tRNA synthetase 1,LARS1,"HSPC192, ILFS1, LARS, LEURS, LEUS",9606,HGNC:6512
+P06239,3932,"LCK proto-oncogene, Src family tyrosine kinase",LCK,"IMD22, LSK, YT16, p56lck, pp58lck",9606,HGNC:6524
+P00338,3939,lactate dehydrogenase A,LDHA,"GSD11, HEL-S-133P, LDHM, PIG19",9606,HGNC:6535
+P18858,3978,DNA ligase 1,LIG1,"IMD96, LIGI, hLig1",9606,HGNC:6598
+Q92633,1902,lysophosphatidic acid receptor 1,LPAR1,"EDG2, Gpcr26, LPA1, Mrec1.3, VZG1",9606,HGNC:3166
+P48449,4047,lanosterol synthase,LSS,"APMR4, CTRCT44, HYPT14, OSC",9606,HGNC:6708
+P09960,4048,leukotriene A4 hydrolase,LTA4H,,9606,HGNC:6710
+P07948,4067,"LYN proto-oncogene, Src family tyrosine kinase",LYN,"JTK8, SAIDV, p53Lyn, p56Lyn",9606,HGNC:6735
+O75608,10434,lysophospholipase 1,LYPLA1,"APT-1, APT1, LPL-I, LPL1, hAPT1",9606,HGNC:6737
+Q5VWZ2,127018,lysophospholipase like 1,LYPLAL1,Q96AV0,9606,HGNC:20440
+Q9Y2E5,23324,mannosidase alpha class 2B member 2,MAN2B2,EpMAN,9606,HGNC:29623
+P21397,4128,monoamine oxidase A,MAOA,"BRNRS, MAO-A",9606,HGNC:6833
+P27338,4129,monoamine oxidase B,MAOB,,9606,HGNC:6834
+Q02750,5604,mitogen-activated protein kinase kinase 1,MAP2K1,"CFC3, MAPKK1, MEK1, MEL, MKK1",9606,HGNC:6840
+P45985,6416,mitogen-activated protein kinase kinase 4,MAP2K4,"JNKK, JNKK1, MAPKK4, MEK4, MKK4",9606,HGNC:6844
+P52564,5608,mitogen-activated protein kinase kinase 6,MAP2K6,"MAPKK6, MEK6, MKK6, PRKMK6, SAPKK-3",9606,HGNC:6846
+O14733,5609,mitogen-activated protein kinase kinase 7,MAP2K7,"JNKK2, MAPKK7, MEK, MEK 7, MKK7",9606,HGNC:6847
+Q16584,4296,mitogen-activated protein kinase kinase kinase 11,MAP3K11,"MEKK11, MLK-3, MLK3, PTK1, SPRK",9606,HGNC:6850
+Q99683,4217,mitogen-activated protein kinase kinase kinase 5,MAP3K5,"ASK1, MAPKKK5, MEKK5",9606,HGNC:6857
+O43318,6885,mitogen-activated protein kinase kinase kinase 7,MAP3K7,"CSCF, FMD2, MEKK7, TAK1, TGF1a",9606,HGNC:6859
+P41279,1326,mitogen-activated protein kinase kinase kinase 8,MAP3K8,"AURA2, COT, EST, ESTF, MEKK8",9606,HGNC:6860
+P80192,4293,mitogen-activated protein kinase kinase kinase 9,MAP3K9,"MEKK9, MLK1, PRKE1",9606,HGNC:6861
+Q12851,5871,mitogen-activated protein kinase kinase kinase kinase 2,MAP4K2,"BL44, GCK, RAB8IP",9606,HGNC:6864
+P28482,5594,mitogen-activated protein kinase 1,MAPK1,"ERK, ERK-2, ERK2, ERT1, MAPK2",9606,HGNC:6871
+P53779,5602,mitogen-activated protein kinase 10,MAPK10,"JNK3, JNK3A, PRKM10, SAPK1b, p493F12",9606,HGNC:6872
+Q15759,5600,mitogen-activated protein kinase 11,MAPK11,"P38B, P38BETA2, PRKM11, SAPK2, SAPK2B",9606,HGNC:6873
+P53778,6300,mitogen-activated protein kinase 12,MAPK12,"ERK-6, ERK3, ERK6, MAPK 12, P38GAMMA",9606,HGNC:6874
+O15264,5603,mitogen-activated protein kinase 13,MAPK13,"MAPK 13, MAPK-13, PRKM13, SAPK4, p38delta",9606,HGNC:6875
+Q16539,1432,mitogen-activated protein kinase 14,MAPK14,"CSBP, CSBP1, CSBP2, CSPB1, EXIP",9606,HGNC:6876
+P27361,5595,mitogen-activated protein kinase 3,MAPK3,"ERK-1, ERK1, ERT2, HS44KDAP, HUMKER1A",9606,HGNC:6877
+P45983,5599,mitogen-activated protein kinase 8,MAPK8,"JNK, JNK-46, JNK1, JNK1A2, JNK21B1/2",9606,HGNC:6881
+P45984,5601,mitogen-activated protein kinase 9,MAPK9,"JNK-55, JNK2, JNK2A, JNK2ALPHA, JNK2B",9606,HGNC:6886
+P49137,9261,MAPK activated protein kinase 2,MAPKAPK2,"MAPKAP-K2, MK-2, MK2",9606,HGNC:6887
+Q8IW41,8550,MAPK activated protein kinase 5,MAPKAPK5,"MAPKAP-K5, MK-5, MK5, NCFD, PRAK",9606,HGNC:6889
+P10636,4137,microtubule associated protein tau,MAPT,"DDPAC, FTDP-17, MAPTL, MSTD, MTBT1",9606,HGNC:6893
+Q7KZI7,2011,microtubule affinity regulating kinase 2,MARK2,"EMK-1, EMK1, PAR-1, Par-1b, Par1b",9606,HGNC:3332
+P27448,4140,microtubule affinity regulating kinase 3,MARK3,"CTAK1, KP78, PAR1A, Par-1a, VIPB",9606,HGNC:6897
+P61244,4149,MYC associated factor X,MAX,bHLHd4,9606,HGNC:6913
+Q9UBB5,8932,methyl-CpG binding domain protein 2,MBD2,"DMTase, NY-CO-41",9606,HGNC:6917
+Q96T53,619373,membrane bound O-acyltransferase domain containing 4,MBOAT4,"FKSG89, GOAT, OACT4",9606,HGNC:32311
+Q05BQ5,54799,mbt domain containing 1,MBTD1,SA49P01,9606,HGNC:19866
+Q07820,4170,"MCL1 apoptosis regulator, BCL2 family member",MCL1,"BCL2L3, EAT, MCL1-ES, MCL1L, MCL1S",9606,HGNC:6943
+P40925,4190,malate dehydrogenase 1,MDH1,"DEE88, EIEE88, HEL-S-32, KAR, MDH-s",9606,HGNC:6970
+P40926,4191,malate dehydrogenase 2,MDH2,"DEE51, EIEE51, M-MDH, MDH, MGC:3559",9606,HGNC:6971
+Q00987,4193,MDM2 proto-oncogene,MDM2,"ACTFS, HDMX, LSKB, hdm2",9606,HGNC:6973
+O15151,4194,MDM4 regulator of p53,MDM4,"BMFS6, HDMX, MDMX, MRP1",9606,HGNC:6974
+P51608,4204,methyl-CpG binding protein 2,MECP2,"AUTSX3, MRX16, MRX79, MRXS13, MRXSL",9606,HGNC:6990
+Q14680,9833,maternal embryonic leucine zipper kinase,MELK,HPK38,9606,HGNC:16870
+O00255,4221,menin 1,MEN1,"MEAI, SCG2",9606,HGNC:7010
+P08581,4233,"MET proto-oncogene, receptor tyrosine kinase",MET,"AUTS9, DA11, DFNB97, HGFR, RCCP2",9606,HGNC:7029
+P50579,10988,methionyl aminopeptidase 2,METAP2,"MAP2, MNPEP, p67eIF2",9606,HGNC:16672
+Q99685,11343,monoglyceride lipase,MGLL,"HU-K5, HUK5, MAGL, MGL",9606,HGNC:17038
+Q9BUB5,8569,MAPK interacting serine/threonine kinase 1,MKNK1,MNK1,9606,HGNC:7110
+Q9HBH9,2872,MAPK interacting serine/threonine kinase 2,MKNK2,"GPRK7, MNK2",9606,HGNC:7111
+P34949,4351,mannose phosphate isomerase,MPI,"CDG1B, PMI, PMI1",9606,HGNC:7216
+P05164,4353,myeloperoxidase,MPO,,9606,HGNC:7218
+Q04912,4486,macrophage stimulating 1 receptor,MST1R,"CD136, CDw136, NPCA3, PTK8, RON",9606,HGNC:7381
+P01106,4609,"MYC proto-oncogene, bHLH transcription factor",MYC,"MRTL, MYCC, bHLHe39, c-Myc",9606,HGNC:7553
+Q15746,4638,myosin light chain kinase,MYLK,"AAT7, KRP, MLCK, MLCK1, MLCK108",9606,HGNC:7590
+Q6IA69,55191,NAD synthetase 1,NADSYN1,VCRL3,9606,HGNC:29832
+Q6PIU2,57552,neutral cholesterol ester hydrolase 1,NCEH1,"AADACL1, NCEH",9606,HGNC:29260
+P14598,653361,neutrophil cytosolic factor 1,NCF1,"CGD1, NCF1A, NOXO2, SH3PXD1A, p47phox",9606,HGNC:7660
+Q15788,8648,nuclear receptor coactivator 1,NCOA1,"F-SRC-1, KAT13A, RIP160, SRC1, bHLHe42",9606,HGNC:7668
+Q9Y6Q9,8202,nuclear receptor coactivator 3,NCOA3,"ACTR, AIB-1, AIB1, CAGH16, CTG26",9606,HGNC:7670
+Q96PY6,4750,NIMA related kinase 1,NEK1,"ALS24, NY-REN-55, SRPS2, SRPS2A, SRTD6",9606,HGNC:7744
+P51955,4751,NIMA related kinase 2,NEK2,"HsPK21, NEK2A, NLK1, PPP1R111, RP67",9606,HGNC:7745
+P51956,4752,NIMA related kinase 3,NEK3,HSPK36,9606,HGNC:7746
+Q9HC98,10783,NIMA related kinase 6,NEK6,SID6-1512,9606,HGNC:7749
+Q9UQ49,10825,neuraminidase 3,NEU3,SIAL3,9606,HGNC:7760
+Q8WWR8,129807,neuraminidase 4,NEU4,,9606,HGNC:21328
+P19838,4790,nuclear factor kappa B subunit 1,NFKB1,"CVID12, EBP-1, KBF1, NF-kB, NF-kB1",9606,HGNC:7794
+Q9C000,22861,NLR family pyrin domain containing 1,NLRP1,"AIADK, CARD7, CIDED, CLR17.1, DEFCAP",9606,HGNC:14374
+Q96P20,114548,NLR family pyrin domain containing 3,NLRP3,"AGTAVPRL, AII, AVP, C1orf7, CIAS1",9606,HGNC:16400
+P30419,4836,N-myristoyltransferase 1,NMT1,"HsNMT1, NMT",9606,HGNC:7857
+Q9Y239,10392,nucleotide binding oligomerization domain containing 1,NOD1,"CARD4, CLR7.1, NLRC1",9606,HGNC:16390
+Q9HC29,64127,nucleotide binding oligomerization domain containing 2,NOD2,"ACUG, BLAU, BLAUS, CARD15, CD",9606,HGNC:5331
+P29475,4842,nitric oxide synthase 1,NOS1,"IHPS1, N-NOS, NC-NOS, NOS, bNOS",9606,HGNC:7872
+P29474,4846,nitric oxide synthase 3,NOS3,"ECNOS, eNOS",9606,HGNC:7876
+Q9Y5S8,27035,NADPH oxidase 1,NOX1,"GP91-2, MOX1, NOH-1, NOH-1L, NOH1",9606,HGNC:7889
+P15559,1728,NAD(P)H quinone dehydrogenase 1,NQO1,"DHQU, DIA4, DTD, NMOR1, NMORI",9606,HGNC:2874
+P51843,190,nuclear receptor subfamily 0 group B member 1,NR0B1,"AHC, AHCH, AHX, DAX-1, DAX1",9606,HGNC:7960
+P55055,7376,nuclear receptor subfamily 1 group H member 2,NR1H2,"LXR-b, LXRB, NER, NER-I, RIP15",9606,HGNC:7965
+Q13133,10062,nuclear receptor subfamily 1 group H member 3,NR1H3,"LXR-a, LXRA, RLD-1",9606,HGNC:7966
+Q96RI1,9971,nuclear receptor subfamily 1 group H member 4,NR1H4,"BAR, FXR, HRR-1, HRR1, PFIC5",9606,HGNC:7967
+Q9Y5X4,10002,nuclear receptor subfamily 2 group E member 3,NR2E3,"ESCS, PNR, RNR, RP37, rd7",9606,HGNC:7974
+P24468,7026,nuclear receptor subfamily 2 group F member 2,NR2F2,"ARP-1, ARP1, CHTD4, COUPTF2, COUPTFB",9606,HGNC:7976
+P04150,2908,nuclear receptor subfamily 3 group C member 1,NR3C1,"GCCR, GCR, GCRST, GR, GRL",9606,HGNC:7978
+P08235,4306,nuclear receptor subfamily 3 group C member 2,NR3C2,"MCR, MLR, MR, NR3C2VIT",9606,HGNC:7979
+P22736,3164,nuclear receptor subfamily 4 group A member 1,NR4A1,"GFRP1, HMR, N10, NAK-1, NGFIB",9606,HGNC:7980
+O00482,2494,nuclear receptor subfamily 5 group A member 2,NR5A2,"B1F, B1F2, CPF, FTF, FTZ-F1",9606,HGNC:7984
+O14786,8829,neuropilin 1,NRP1,"BDCA4, CD304, NP1, NRP, VEGF165R",9606,HGNC:8004
+P21589,4907,5'-nucleotidase ecto,NT5E,"CALJA, CD73, E5NT, NT, NT5",9606,HGNC:8021
+P04629,4914,neurotrophic receptor tyrosine kinase 1,NTRK1,"MTC, TRK, TRK1, TRKA, Trk-A",9606,HGNC:8031
+Q16620,4915,neurotrophic receptor tyrosine kinase 2,NTRK2,"DEE58, EIEE58, GP145-TrkB, OBHD, TRKB",9606,HGNC:8032
+O60285,9891,NUAK family kinase 1,NUAK1,ARK5,9606,HGNC:14311
+O15527,4968,8-oxoguanine DNA glycosylase,OGG1,"HMMH, HOGG1, MUTM, OGH1",9606,HGNC:8125
+P41145,4986,opioid receptor kappa 1,OPRK1,"K-OR-1, KOP, KOR, KOR-1, KOR1",9606,HGNC:8154
+P41146,4987,opioid related nociceptin receptor 1,OPRL1,"KOR-3, KOR3, NOCIR, NOP, NOPr",9606,HGNC:8155
+P35372,4988,opioid receptor mu 1,OPRM1,"LMOR, M-OR-1, MOP, MOR, MOR1",9606,HGNC:8156
+Q9UBL9,22953,purinergic receptor P2X 2,P2RX2,"DFNA41, P2X2",9606,HGNC:15459
+Q99571,5025,purinergic receptor P2X 4,P2RX4,"P2X4, P2X4R",9606,HGNC:8535
+Q99572,5027,purinergic receptor P2X 7,P2RX7,P2X7,9606,HGNC:8537
+Q9NXG6,54681,"prolyl 4-hydroxylase, transmembrane",P4HTM,"EGLN4, HIDEA, HIFPH4, P4H-TM, PH-4",9606,HGNC:28858
+P11940,26986,poly(A) binding protein cytoplasmic 1,PABPC1,"PAB1, PABP, PABP1, PABPC2, PABPL1",9606,HGNC:8554
+Q9Y2J8,11240,peptidyl arginine deiminase 2,PADI2,"PAD-H19, PAD2, PDI2",9606,HGNC:18341
+Q13153,5058,p21 (RAC1) activated kinase 1,PAK1,"IDDMSSD, PAKalpha, alpha-PAK, p65-PAK",9606,HGNC:8590
+O75914,5063,p21 (RAC1) activated kinase 3,PAK3,"ARA, MRX30, MRX47, OPHN3, PAK-3",9606,HGNC:8592
+O96013,10298,p21 (RAC1) activated kinase 4,PAK4,,9606,HGNC:16059
+Q9UGN5,10038,poly(ADP-ribose) polymerase 2,PARP2,"ADPRT2, ADPRTL2, ADPRTL3, ARTD2, PARP-2",9606,HGNC:272
+Q9Y6F1,10039,poly(ADP-ribose) polymerase family member 3,PARP3,"ADPRT3, ADPRTL2, ADPRTL3, ARTD3, IRT1",9606,HGNC:273
+Q2NL67,56965,poly(ADP-ribose) polymerase family member 6,PARP6,"ARTD17, PARP-6-B1, PARP-6-C, pART17",9606,HGNC:26921
+Q96RG2,23178,PAS domain containing serine/threonine kinase,PASK,"PASKIN, STK37",9606,HGNC:17270
+Q8NBP7,255738,proprotein convertase subtilisin/kexin type 9,PCSK9,"FH3, FHCL3, HCHOLA3, LDLCQ1, NARC-1",9606,HGNC:20001
+Q9Y233,10846,phosphodiesterase 10A,PDE10A,"ADSD2, HSPDE10A, IOLOD, LINC00473, PDE10A19",9606,HGNC:8772
+Q9HCR9,50940,phosphodiesterase 11A,PDE11A,PPNAD2,9606,HGNC:8773
+P54750,5136,phosphodiesterase 1A,PDE1A,"CAM-PDE 1A, CAM-PDE-1A, HCAM-1, HCAM1, HSPDE1A",9606,HGNC:8774
+Q01064,5153,phosphodiesterase 1B,PDE1B,"HEL-S-79p, PDE1B1, PDES1B",9606,HGNC:8775
+Q14123,5137,phosphodiesterase 1C,PDE1C,"DFNA74, Hcam3, cam-PDE 1C, hCam-3",9606,HGNC:8776
+O00408,5138,phosphodiesterase 2A,PDE2A,"CGS-PDE, IDDPADS, PDE2A1, PED2A4, cGSPDE",9606,HGNC:8777
+Q13370,5140,phosphodiesterase 3B,PDE3B,"HcGIP1, cGIPDE1",9606,HGNC:8779
+P27815,5141,phosphodiesterase 4A,PDE4A,"DPDE2, PDE4, PDE46",9606,HGNC:8780
+Q07343,5142,phosphodiesterase 4B,PDE4B,"DPDE4, PDEIVB",9606,HGNC:8781
+Q08493,5143,phosphodiesterase 4C,PDE4C,"DPDE1, PDE21",9606,HGNC:8782
+Q08499,5144,phosphodiesterase 4D,PDE4D,"ACRDYS2, DPDE3, HSPDE4D, PDE43, PDE4DN2",9606,HGNC:8783
+O76074,8654,phosphodiesterase 5A,PDE5A,"CGB-PDE, CN5A, PDE5",9606,HGNC:8784
+Q13946,5150,phosphodiesterase 7A,PDE7A,"HCP1, PDE7",9606,HGNC:8791
+O60658,5151,phosphodiesterase 8A,PDE8A,HsT19550,9606,HGNC:8793
+O95263,8622,phosphodiesterase 8B,PDE8B,"ADSD, PPNAD3",9606,HGNC:8794
+O76083,5152,phosphodiesterase 9A,PDE9A,HSPDE9A2,9606,HGNC:8795
+P16234,5156,platelet derived growth factor receptor alpha,PDGFRA,"CD140A, PDGFR-2, PDGFR2",9606,HGNC:8803
+P09619,5159,platelet derived growth factor receptor beta,PDGFRB,"CD140B, IBGC4, IMF1, JTK12, KOGS",9606,HGNC:8804
+Q15118,5163,pyruvate dehydrogenase kinase 1,PDK1,,9606,HGNC:8809
+Q15119,5164,pyruvate dehydrogenase kinase 2,PDK2,"PDHK2, PDKII",9606,HGNC:8810
+O15530,5170,3-phosphoinositide dependent protein kinase 1,PDPK1,"PDK1, PDPK2, PDPK2P, PRO0461",9606,HGNC:8816
+P12955,5184,peptidase D,PEPD,PROLIDASE,9606,HGNC:8840
+P20142,5225,progastricsin,PGC,"PEPC, PGII",9606,HGNC:8890
+P52209,5226,phosphogluconate dehydrogenase,PGD,6PGD,9606,HGNC:8891
+O43189,5252,PHD finger protein 1,PHF1,"MTF2L2, PCL1, PHF2, TDRD19C, hPHF1",9606,HGNC:8919
+Q5T6S3,26147,PHD finger protein 19,PHF19,"MTF2L1, PCL3, TDRD19B",9606,HGNC:24566
+Q9BUL5,79142,PHD finger protein 23,PHF23,hJUNE-1b,9606,HGNC:28428
+Q9UPP1,23133,PHD finger protein 8,PHF8,"JHDM1F, KDM7B, MRXSSD, ZNF422",9606,HGNC:20672
+P15735,5261,phosphorylase kinase catalytic subunit gamma 2,PHKG2,GSD9C,9606,HGNC:8931
+Q8TCT1,162466,phosphoethanolamine/phosphocholine phosphatase 1,PHOSPHO1,,9606,HGNC:16815
+P42356,5297,phosphatidylinositol 4-kinase alpha,PI4KA,"GIDID2, PI4K-ALPHA, PIK4CA, PMGYCHA, SPG84",9606,HGNC:8983
+O00443,5286,phosphatidylinositol-4-phosphate 3-kinase catalytic subunit type 2 alpha,PIK3C2A,"CPK, OCSKD, PI3-K-C2(ALPHA), PI3-K-C2A, PI3K-C2-alpha",9606,HGNC:8971
+O00329,5293,"phosphatidylinositol-4,5-bisphosphate 3-kinase catalytic subunit delta",PIK3CD,"APDS, IMD14, IMD14A, IMD14B, P110DELTA",9606,HGNC:8977
+P27986,5295,phosphoinositide-3-kinase regulatory subunit 1,PIK3R1,"AGM7, GRB1, IMD36, p85, p85-ALPHA",9606,HGNC:8979
+P11309,5292,"Pim-1 proto-oncogene, serine/threonine kinase",PIM1,PIM,9606,HGNC:8986
+Q13563,5311,"polycystin 2, transient receptor potential cation channel",PKD2,"APKD2, PC2, PKD4, Pc-2, TRPP2",9606,HGNC:9009
+Q16513,5586,protein kinase N2,PKN2,"PAK2, PRK2, PRKCL2, PRO2042, Pak-2",9606,HGNC:9406
+Q9UP65,8605,phospholipase A2 group IVC,PLA2G4C,CPLA2-gamma,9606,HGNC:9037
+P00750,5327,"plasminogen activator, tissue type",PLAT,"T-PA, TPA",9606,HGNC:9051
+P00749,5328,"plasminogen activator, urokinase",PLAU,"ATF, BDPLT5, QPD, UPA, URK",9606,HGNC:9052
+Q9NQ66,23236,phospholipase C beta 1,PLCB1,"DEE12, EIEE12, PI-PLC, PLC-154, PLC-I",9606,HGNC:15917
+Q01970,5331,phospholipase C beta 3,PLCB3,SMDCD,9606,HGNC:9056
+Q13393,5337,phospholipase D1,PLD1,"CVDD, CVDP1",9606,HGNC:9067
+O14939,5338,phospholipase D2,PLD2,PLD1C,9606,HGNC:9068
+Q15149,5339,plectin,PLEC,"EBS1, EBS5A, EBS5B, EBS5C, EBS5D",9606,HGNC:9069
+O15305,5373,phosphomannomutase 2,PMM2,"CDG1, CDG1a, CDGS, PMI, PMI1",9606,HGNC:9115
+Q9UGP5,27343,DNA polymerase lambda,POLL,"BETAN, POLKAPPA",9606,HGNC:9184
+Q07869,5465,peroxisome proliferator activated receptor alpha,PPARA,"NR1C1, PPAR, PPAR-alpha, PPARalpha, hPPAR",9606,HGNC:9232
+Q03181,5467,peroxisome proliferator activated receptor delta,PPARD,"FAAR, NR1C2, NUC1, NUCI, NUCII",9606,HGNC:9235
+P37231,5468,peroxisome proliferator activated receptor gamma,PPARG,"CIMT1, GLM1, NR1C3, PPARG1, PPARG2",9606,HGNC:9236
+P62136,5499,protein phosphatase 1 catalytic subunit alpha,PPP1CA,"PP-1A, PP1A, PP1alpha, PPP1A",9606,HGNC:9281
+P42785,5547,prolylcarboxypeptidase,PRCP,"HUMPCP, PCP",9606,HGNC:9344
+Q13131,5562,protein kinase AMP-activated catalytic subunit alpha 1,PRKAA1,"AMPK, AMPK alpha 1, AMPKa1",9606,HGNC:9376
+P17612,5566,protein kinase cAMP-activated catalytic subunit alpha,PRKACA,"CAFD1, PKACA, PPNAD4",9606,HGNC:9380
+P05771,5579,protein kinase C beta,PRKCB,"PKC-beta, PKCB, PKCI(2), PKCbeta, PRKCB1",9606,HGNC:9395
+Q05655,5580,protein kinase C delta,PRKCD,"ALPS3, CVID9, MAY1, PKCD, nPKC-delta",9606,HGNC:9399
+P05129,5582,protein kinase C gamma,PRKCG,"PKC-gamma, PKCC, PKCG, PKCI(3), PKCgamma",9606,HGNC:9402
+P24723,5583,protein kinase C eta,PRKCH,"PKC-L, PKCL, PRKCL, nPKC-eta, uORF2",9606,HGNC:9403
+Q04759,5588,protein kinase C theta,PRKCQ,"PRKCT, nPKC-theta",9606,HGNC:9410
+Q05513,5590,protein kinase C zeta,PRKCZ,"PKC-ZETA, PKC2",9606,HGNC:9412
+P78527,5591,"protein kinase, DNA-activated, catalytic subunit",PRKDC,"DNA-PKC, DNA-PKcs, DNAPK, DNAPKc, DNPK1",9606,HGNC:9413
+Q99873,3276,protein arginine methyltransferase 1,PRMT1,"ANM1, HCP1, HRMT1L2, IR1B4",9606,HGNC:5187
+O60678,10196,protein arginine methyltransferase 3,PRMT3,HRMT1L3,9606,HGNC:30163
+O14744,10419,protein arginine methyltransferase 5,PRMT5,"HRMT1L5, HSL7, IBP72, JBP1, SKB1",9606,HGNC:10894
+Q96LA8,55170,protein arginine methyltransferase 6,PRMT6,HRMT1L6,9606,HGNC:18241
+P04156,5621,prion protein,PRNP,"ASCR, AltPrP, CD230, CJD, GSS",9606,HGNC:9449
+P04070,5624,"protein C, inactivator of coagulation factors Va and VIIIa",PROC,"APC, PC, PROC1, THPH3, THPH4",9606,HGNC:9451
+Q13258,5729,prostaglandin D2 receptor,PTGDR,"AS1, ASRT1, DP, DP1, PTGDR1",9606,HGNC:9591
+P43115,5733,prostaglandin E receptor 3,PTGER3,"EP3, EP3-I, EP3-II, EP3-III, EP3-IV",9606,HGNC:9595
+P23219,5742,prostaglandin-endoperoxide synthase 1,PTGS1,"COX1, COX3, PCOX1, PES-1, PGG/HS",9606,HGNC:9604
+Q05397,5747,protein tyrosine kinase 2,PTK2,"FADK, FADK 1, FAK, FAK1, FRNK",9606,HGNC:9611
+Q14289,2185,protein tyrosine kinase 2 beta,PTK2B,"CADTK, CAKB, FADK2, FAK2, PKB",9606,HGNC:9612
+Q13882,5753,protein tyrosine kinase 6,PTK6,BRK,9606,HGNC:9617
+O75365,11156,protein tyrosine phosphatase 4A3,PTP4A3,"PRL-3, PRL-R, PRL3",9606,HGNC:9636
+Q06124,5781,protein tyrosine phosphatase non-receptor type 11,PTPN11,"BPTP3, CFC, JMML, METCDS, NS1",9606,HGNC:9644
+Q05209,5782,protein tyrosine phosphatase non-receptor type 12,PTPN12,"PTP-PEST, PTPG1",9606,HGNC:9645
+P54829,84867,protein tyrosine phosphatase non-receptor type 5,PTPN5,"PTPSTEP, STEP, STEP61",9606,HGNC:9657
+P29350,5777,protein tyrosine phosphatase non-receptor type 6,PTPN6,"HCP, HCPH, HPTP1C, PTP-1C, SH-PTP1",9606,HGNC:9658
+P35236,5778,protein tyrosine phosphatase non-receptor type 7,PTPN7,"BPTP-4, HEPTP, LC-PTP, LPTP, PTPNI",9606,HGNC:9659
+P18433,5786,protein tyrosine phosphatase receptor type A,PTPRA,"HEPTP, HLPR, HPTPA, HPTPalpha, LRP",9606,HGNC:9664
+P08575,5788,protein tyrosine phosphatase receptor type C,PTPRC,"B220, CD45, CD45R, GP180, IMD105",9606,HGNC:9666
+P23469,5791,protein tyrosine phosphatase receptor type E,PTPRE,"HPTPE, PTPE, R-PTP-EPSILON",9606,HGNC:9669
+P10586,5792,protein tyrosine phosphatase receptor type F,PTPRF,"BNAH2, LAR",9606,HGNC:9670
+Q12913,5795,protein tyrosine phosphatase receptor type J,PTPRJ,"CD148, DEP1, HPTP eta, HPTPeta, R-PTP-ETA",9606,HGNC:9673
+Q15256,5801,protein tyrosine phosphatase receptor type R,PTPRR,"EC-PTP, PCPTP1, PTP-SL, PTPBR7, PTPRQ",9606,HGNC:9680
+P06737,5836,glycogen phosphorylase L,PYGL,GSD6,9606,HGNC:9725
+P11217,5837,"glycogen phosphorylase, muscle associated",PYGM,GSD5,9606,HGNC:9726
+P09417,5860,quinoid dihydropteridine reductase,QDPR,"DHPR, HDHPR, PKU2, SDR33C1",9606,HGNC:9752
+Q16769,25797,glutaminyl-peptide cyclotransferase,QPCT,"GCT, QC, sQC",9606,HGNC:9753
+Q9NXS2,54814,glutaminyl-peptide cyclotransferase like,QPCTL,gQC,9606,HGNC:25952
+P63000,5879,Rac family small GTPase 1,RAC1,"MIG5, MRD48, Rac-1, TC-25, p21-Rac1",9606,HGNC:9801
+Q06609,5888,RAD51 recombinase,RAD51,"BRCC5, FANCR, HRAD51, HsRad51, HsT16930",9606,HGNC:9817
+P04049,5894,"Raf-1 proto-oncogene, serine/threonine kinase",RAF1,"CMD1NN, CRAF, NS5, Raf-1, c-Raf",9606,HGNC:9829
+Q04206,5970,"RELA proto-oncogene, NF-kB subunit",RELA,"AIF3BL3, CMCU, NFKB3, p65",9606,HGNC:9955
+P00797,5972,renin,REN,"ADTKD4, HNFJ2, RTD",9606,HGNC:9958
+P07949,5979,ret proto-oncogene,RET,"CDHF12, CDHR16, HSCR1, MEN2A, MEN2B",9606,HGNC:9967
+P49798,5999,regulator of G protein signaling 4,RGS4,"RGP4, SCZD9",9606,HGNC:10000
+P57771,85397,regulator of G protein signaling 8,RGS8,,9606,HGNC:16810
+Q9H6W3,79697,ribosomal oxygenase 1,RIOX1,"C14orf169, JMJD9, MAPJD, NO66, ROX",9606,HGNC:20968
+O43353,8767,receptor interacting serine/threonine kinase 2,RIPK2,"CARD3, CARDIAK, CCK, GIG30, RICK",9606,HGNC:10020
+P35398,6095,RAR related orphan receptor A,RORA,"IDDECA, NR1F1, ROR1, ROR2, ROR3",9606,HGNC:10258
+P51449,6097,RAR related orphan receptor C,RORC,"IMD42, NR1F3, RORG, RZR-GAMMA, RZRG",9606,HGNC:10260
+Q15418,6195,ribosomal protein S6 kinase A1,RPS6KA1,"HU-1, MAPKAPK1, MAPKAPK1A, RSK, RSK1",9606,HGNC:10430
+O75676,8986,ribosomal protein S6 kinase A4,RPS6KA4,"MSK2, RSK-B, S6K-alpha-4",9606,HGNC:10433
+O75582,9252,ribosomal protein S6 kinase A5,RPS6KA5,"MSK1, MSPK1, RLPK",9606,HGNC:10434
+P23443,6198,ribosomal protein S6 kinase B1,RPS6KB1,"PS6K, S6K, S6K-beta-1, S6K1, STK14A",9606,HGNC:10436
+P31350,6241,ribonucleotide reductase regulatory subunit M2,RRM2,"C2orf48, R2, RR2, RR2M",9606,HGNC:10452
+Q01196,861,RUNX family transcription factor 1,RUNX1,"AML1, AML1-EVI-1, AMLCR1, CBF2alpha, CBFA2",9606,HGNC:10471
+P19793,6256,retinoid X receptor alpha,RXRA,"NR2B1, RXR-alpha, RXRalpha",9606,HGNC:10477
+Q9H228,53637,sphingosine-1-phosphate receptor 5,S1PR5,"EDG8, Edg-8, S1P5, SPPR-1, SPPR-2",9606,HGNC:14299
+Q9UBE0,10055,SUMO1 activating enzyme subunit 1,SAE1,"AOS1, HSPC140, SUA1, UBLE1A",9606,HGNC:30660
+Q99250,6326,sodium voltage-gated channel alpha subunit 2,SCN2A,"BFIC3, BFIS3, BFNIS, DEE11, EA9",9606,HGNC:10588
+Q14524,6331,sodium voltage-gated channel alpha subunit 5,SCN5A,"CDCD2, CMD1E, CMPD2, HB1, HB2",9606,HGNC:10593
+Q15858,6335,sodium voltage-gated channel alpha subunit 9,SCN9A,"ETHA, FEB3B, GEFSP7, HSAN2D, NE-NA",9606,HGNC:10597
+P14151,6402,selectin L,SELL,"CD62L, LAM1, LECAM1, LEU8, LNHR",9606,HGNC:10720
+Q9P0U3,29843,SUMO specific peptidase 1,SENP1,SuPr-2,9606,HGNC:17927
+Q9GZR1,26054,SUMO specific peptidase 6,SENP6,"SSP1, SUSP1",9606,HGNC:20944
+Q9BQF6,57337,SUMO specific peptidase 7,SENP7,,9606,HGNC:30402
+P05121,5054,serpin family E member 1,SERPINE1,"PAI, PAI-1, PAI1, PLANH1",9606,HGNC:8583
+O00141,6446,serum/glucocorticoid regulated kinase 1,SGK1,SGK,9606,HGNC:10810
+Q99720,10280,sigma non-opioid intracellular receptor 1,SIGMAR1,"ALS16, DSMA2, OPRS1, SIG-1R, SR-BP",9606,HGNC:8157
+Q96EB6,23411,sirtuin 1,SIRT1,"SIR2, SIR2L1, SIR2alpha",9606,HGNC:14929
+Q8IXJ6,22933,sirtuin 2,SIRT2,"SIR2, SIR2L, SIR2L2",9606,HGNC:10886
+Q9NTG7,23410,sirtuin 3,SIRT3,SIR2L3,9606,HGNC:14931
+Q9NXA8,23408,sirtuin 5,SIRT5,SIR2L5,9606,HGNC:14933
+Q8N6T7,51548,sirtuin 6,SIRT6,"SIR2L6, hSIRT6",9606,HGNC:14934
+P55011,6558,solute carrier family 12 member 2,SLC12A2,"BSC, BSC-2, BSC2, CCC1, KILQS",9606,HGNC:10911
+Q9H2X9,57468,solute carrier family 12 member 5,SLC12A5,"DEE34, EIEE34, EIG14, KCC2, hKCC2",9606,HGNC:13818
+P43004,6506,solute carrier family 1 member 2,SLC1A2,"DEE41, EAAT2, EIEE41, GLT-1, GLT1",9606,HGNC:10940
+P43003,6507,solute carrier family 1 member 3,SLC1A3,"EA6, EAAT1, GLAST, GLAST1",9606,HGNC:10941
+O15245,6580,solute carrier family 22 member 1,SLC22A1,"HOCT1, OCT1, oct1_cds",9606,HGNC:10963
+Q9NSA0,55867,solute carrier family 22 member 11,SLC22A11,"OAT4, hOAT4",9606,HGNC:18120
+Q96S37,116085,solute carrier family 22 member 12,SLC22A12,"OAT4L, RST, UAT, URAT1, hURAT1",9606,HGNC:17989
+O15244,6582,solute carrier family 22 member 2,SLC22A2,OCT2,9606,HGNC:10966
+Q4U2R8,9356,solute carrier family 22 member 6,SLC22A6,"HOAT1, OAT1, PAHT, ROAT1",9606,HGNC:10970
+Q9Y694,10864,solute carrier family 22 member 7,SLC22A7,"NLT, OAT2, hOAT11",9606,HGNC:10971
+Q8TCC7,9376,solute carrier family 22 member 8,SLC22A8,OAT3,9606,HGNC:10972
+Q99808,2030,solute carrier family 29 member 1 (Augustine blood group),SLC29A1,"AUG, ENT1, hENT1",9606,HGNC:11003
+Q14542,3177,solute carrier family 29 member 2,SLC29A2,"DER12, ENT2, HNP36",9606,HGNC:11004
+Q96FL8,55244,solute carrier family 47 member 1,SLC47A1,MATE1,9606,HGNC:25588
+Q86VL8,146802,solute carrier family 47 member 2,SLC47A2,"MATE2, MATE2-B, MATE2-K, MATE2K",9606,HGNC:26439
+P13866,6523,solute carrier family 5 member 1,SLC5A1,"D22S675, NAGT, SGLT-1, SGLT1",9606,HGNC:11036
+P31639,6524,solute carrier family 5 member 2,SLC5A2,SGLT2,9606,HGNC:11037
+P48066,6538,solute carrier family 6 member 11,SLC6A11,"GAT-3, GAT3, GAT4",9606,HGNC:11044
+Q9NSD5,6540,solute carrier family 6 member 13,SLC6A13,"GAT-2, GAT2, GAT3",9606,HGNC:11046
+Q9H2J7,55117,solute carrier family 6 member 15,SLC6A15,"NTT73, SBAT1, V7-3, hv7-3",9606,HGNC:13621
+P23975,6530,solute carrier family 6 member 2,SLC6A2,"NAT1, NET, NET1, SLC6A5",9606,HGNC:11048
+P31645,6532,solute carrier family 6 member 4,SLC6A4,"5-HTT, 5-HTTLPR, 5HTT, HTT, OCD1",9606,HGNC:11050
+P48067,6536,solute carrier family 6 member 9,SLC6A9,"GCENSG, GLYT1",9606,HGNC:11056
+P32418,6546,solute carrier family 8 member A1,SLC8A1,NCX1,9606,HGNC:11068
+P19634,6548,solute carrier family 9 member A1,SLC9A1,"APNH, LIKNS, NHE-1, NHE1, PPP1R143",9606,HGNC:11071
+Q9NPD5,28234,solute carrier organic anion transporter family member 1B3,SLCO1B3,"HBLRR, LST-2, LST-3TM13, LST3, OATP-8",9606,HGNC:10961
+O94956,11309,solute carrier organic anion transporter family member 2B1,SLCO2B1,"OATP-B, OATP2B1, OATPB, SLC21A9",9606,HGNC:10962
+Q9H2G2,9748,STE20 like kinase,SLK,"LOSK, STK2, bA16H23.1, se20-9",9606,HGNC:11088
+P84022,4088,SMAD family member 3,SMAD3,"HSPC193, HsT17436, JV15-2, LDS1C, LDS3",9606,HGNC:6769
+P17405,6609,sphingomyelin phosphodiesterase 1,SMPD1,"ASM, ASMASE, NPD",9606,HGNC:11120
+P37840,6622,synuclein alpha,SNCA,"NACP, PARK1, PARK4, PD1",9606,HGNC:11138
+P35610,6646,sterol O-acyltransferase 1,SOAT1,"ACACT, ACAT, ACAT-1, ACAT1, SOAT",9606,HGNC:11177
+O75908,8435,sterol O-acyltransferase 2,SOAT2,"ACACT2, ACAT2, ARGP2",9606,HGNC:11178
+Q00796,6652,sorbitol dehydrogenase,SORD,"HEL-S-95n, RDH, SDH, SORD1, SORDD",9606,HGNC:11184
+P12931,6714,"SRC proto-oncogene, non-receptor tyrosine kinase",SRC,"ASV, SRC1, THC6, c-SRC, p60-Src",9606,HGNC:11283
+Q12772,6721,sterol regulatory element binding transcription factor 2,SREBF2,"SREBP-2, SREBP2, bHLHd2",9606,HGNC:11290
+Q96SB4,6732,SRSF protein kinase 1,SRPK1,SFRSK1,9606,HGNC:11305
+P42224,6772,signal transducer and activator of transcription 1,STAT1,"CANDF7, IMD31A, IMD31B, IMD31C, ISGF-3",9606,HGNC:11362
+P40763,6774,signal transducer and activator of transcription 3,STAT3,"ADMIO, ADMIO1, APRF, HIES",9606,HGNC:11364
+Q15831,6794,serine/threonine kinase 11,STK11,"LKB1, PJS, hLKB1",9606,HGNC:11389
+Q9Y6E0,8428,serine/threonine kinase 24,STK24,"HEL-S-95, MST3, MST3B, STE20, STK3",9606,HGNC:11403
+Q9P289,51765,serine/threonine kinase 26,STK26,"MASK, MST4",9606,HGNC:18174
+Q13188,6788,serine/threonine kinase 3,STK3,"KRS1, MST2",9606,HGNC:11406
+Q9BYT3,65975,serine/threonine kinase 33,STK33,,9606,HGNC:14568
+Q9H5I1,79723,SUV39H2 histone lysine methyltransferase,SUV39H2,KMT1B,9606,HGNC:17287
+P21731,6915,thromboxane A2 receptor,TBXA2R,"BDPLT13, TXA2-R",9606,HGNC:11608
+P24557,6916,thromboxane A synthase 1,TBXAS1,"BDPLT14, CYP5, CYP5A1, GHOSAL, THAS",9606,HGNC:11609
+Q9NUW8,55775,tyrosyl-DNA phosphodiesterase 1,TDP1,,9606,HGNC:18884
+O95551,51567,tyrosyl-DNA phosphodiesterase 2,TDP2,"AD022, EAP2, EAPII, TTRAP, dJ30M3.3",9606,HGNC:17768
+Q02763,7010,TEK receptor tyrosine kinase,TEK,"CD202B, GLC3E, TIE-2, TIE2, VMCM",9606,HGNC:11724
+O14746,7015,telomerase reverse transcriptase,TERT,"CMM9, DKCA2, DKCB4, EST2, PFBMFT1",9606,HGNC:11730
+P36897,7046,transforming growth factor beta receptor 1,TGFBR1,"AAT5, ACVRLK4, ALK-5, ALK5, ESS1",9606,HGNC:11772
+P22735,7051,transglutaminase 1,TGM1,"ARCI1, ICR2, KTG, LI, LI1",9606,HGNC:11777
+P21980,7052,transglutaminase 2,TGM2,"G(h), TG(C), TGC, hTG2, tTG",9606,HGNC:11778
+P07101,7054,tyrosine hydroxylase,TH,"DYT14, DYT5b, TYH",9606,HGNC:11782
+P10827,7067,thyroid hormone receptor alpha,THRA,"AR7, CHNG6, EAR7, ERB-T-1, ERBA",9606,HGNC:11796
+P10828,7068,thyroid hormone receptor beta,THRB,"C-ERBA-2, C-ERBA-BETA, ERBA2, GRTH, NR1A2",9606,HGNC:11799
+O00142,7084,thymidine kinase 2,TK2,"MTDPS2, MTTK, PEOB3, SCA31, TK2-EXT",9606,HGNC:11831
+Q86UE8,11011,tousled like kinase 2,TLK2,"HsHPK, MRD57, PKU-ALPHA",9606,HGNC:11842
+O00206,7099,toll like receptor 4,TLR4,"ARMD10, CD284, TLR-4, TOLL",9606,HGNC:11850
+Q9NR96,54106,toll like receptor 9,TLR9,CD289,9606,HGNC:15633
+P19438,7132,TNF receptor superfamily member 1A,TNFRSF1A,"CD120a, FPF, TBP1, TNF-R, TNF-R-I",9606,HGNC:11916
+Q9UKE5,23043,TRAF2 and NCK interacting kinase,TNIK,MRT54,9606,HGNC:30765
+Q07912,10188,tyrosine kinase non receptor 2,TNK2,"ACK, ACK-1, ACK1, p21cdc42Hs",9606,HGNC:19297
+O95271,8658,tankyrase,TNKS,"ARTD5, PARP-5a, PARP5A, PARPL, TIN1",9606,HGNC:11941
+P11388,7153,DNA topoisomerase II alpha,TOP2A,"TOP2, TOP2alpha, TOPIIA, TP2A",9606,HGNC:11989
+Q12888,7158,tumor protein p53 binding protein 1,TP53BP1,"53BP1, TDRD30, p202, p53BP1",9606,HGNC:11999
+Q12931,10131,TNF receptor associated protein 1,TRAP1,"HSP 75, HSP75, HSP90L, TRAP-1",9606,HGNC:16264
+Q7Z2W7,79054,transient receptor potential cation channel subfamily M member 8,TRPM8,"LTRPC6, LTrpC-6, TRPP8, trp-p8",9606,HGNC:17961
+Q8NER1,7442,transient receptor potential cation channel subfamily V member 1,TRPV1,VR1,9606,HGNC:12716
+Q8NET8,162514,transient receptor potential cation channel subfamily V member 3,TRPV3,"FNEPPK2, OLMS, OLMS1, VRL3",9606,HGNC:18084
+Q9HBA0,59341,transient receptor potential cation channel subfamily V member 4,TRPV4,"BCYM3, CMT2C, HMSN2C, OTRPC4, SMAL",9606,HGNC:18083
+P33981,7272,TTK protein kinase,TTK,"CT96, ESK, MPH1, MPS1, MPS1L1",9606,HGNC:12401
+Q16881,7296,thioredoxin reductase 1,TXNRD1,"GRIM-12, TR, TR1, TRXR1, TXNR",9606,HGNC:12437
+P19971,1890,thymidine phosphorylase,TYMP,"ECGF, ECGF1, MEDPS1, MNGIE, MTDPS1",9606,HGNC:3148
+P04818,7298,thymidylate synthetase,TYMS,"DKCD, HST422, TMS, TS",9606,HGNC:12441
+P14679,7299,tyrosinase,TYR,"ATN, CMM8, OCA1, OCA1A, OCAIA",9606,HGNC:12442
+P22314,7317,ubiquitin like modifier activating enzyme 1,UBA1,"A1S9, A1S9T, A1ST, AMCX1, CFAP124",9606,HGNC:12469
+Q9UBT2,10054,ubiquitin like modifier activating enzyme 2,UBA2,"ACCES, ARX, HRIHFB2115, SAE2",9606,HGNC:30661
+Q96T88,29128,ubiquitin like with PHD and ring finger domains 1,UHRF1,"ICBP90, Np95, RNF106, TDRD22, hNP95",9606,HGNC:12556
+P13051,7374,uracil DNA glycosylase,UNG,"DGU, HIGM4, HIGM5, UDG, UNG1",9606,HGNC:12572
+Q16831,7378,uridine phosphorylase 1,UPP1,"UDRPASE, UP, UPASE, UPP",9606,HGNC:12576
+P14927,7381,ubiquinol-cytochrome c reductase binding protein,UQCRB,"MC3DN3, QCR7, QP-C, QPC, UQBC",9606,HGNC:12582
+Q9UK80,27005,ubiquitin specific peptidase 21,USP21,"USP16, USP23",9606,HGNC:12620
+P40818,9101,ubiquitin specific peptidase 8,USP8,"HumORF8, PITA4, SPG59, UBPY",9606,HGNC:12631
+P19320,7412,vascular cell adhesion molecule 1,VCAM1,"CD106, INCAM-100",9606,HGNC:12663
+P40337,7428,von Hippel-Lindau tumor suppressor,VHL,"HRCA1, RCA1, VHL1, pVHL",9606,HGNC:12687
+P30291,7465,WEE1 G2 checkpoint kinase,WEE1,"WEE1A, WEE1hu",9606,HGNC:12761
+Q9H4A3,65125,WNK lysine deficient protein kinase 1,WNK1,"HSAN2, HSN2, KDP, PPP1R167, PRKWNK1",9606,HGNC:14540
+Q9Y3S1,65268,WNK lysine deficient protein kinase 2,WNK2,"NY-CO-43, P/OKcl.13, PRKWNK2, SDCCAG43",9606,HGNC:14542
+P56704,89780,Wnt family member 3A,WNT3A,,9606,HGNC:15983
+P43403,7535,zeta chain of T cell receptor associated protein kinase 70,ZAP70,"ADMIO2, IMD48, SRK, STCD, STD",9606,HGNC:12858
+O60344,,,,,,
+Q92753,,,,,,
