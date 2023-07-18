@@ -60,17 +60,22 @@ def main(params):
     logging.info(f"Input dim : {params.inp_dim}, # Relations : {params.num_rels}, # Augmented relations : {params.aug_num_rels}")
 
     graph_classifier = initialize_model(params, dgl_model, params.load_model)
-    if params.dataset == 'davis':
+
+    def to_float(arr):
+        return [float(x) for x in arr]
+
+    if params.dataset == 'davis'or params.dataset == "vec":
         if params.feat =='morganprotbert': # using Drug Morgan feature made by rdkit.Chem and Protein feature by ProtBERT
             # drug feature
             dind = np.zeros(1710)
             pind = np.zeros(34123)
             import pickle
-            with open('data/{}/DAVIS_drug_feats.pkl'.format(params.dataset), 'rb') as f:
+            with open('data/{}/VEC_drug_feats.pkl'.format(params.dataset), 'rb') as f:
                 x = pickle.load(f, encoding='utf-8')
             mfeat =  []
             for y in x['Morgan_Features']:
-                mfeat.append(y)
+                row_feat = to_float(y)
+                mfeat.append(row_feat)
             params.feat_dim = 1024
             
             for idx, y in enumerate(x["Drug_enco"]) : 
@@ -79,7 +84,7 @@ def main(params):
 
 
             # target feature
-            with open('data/{}/DAVIS_target_feats.pkl'.format(params.dataset), 'rb') as f:
+            with open('data/{}/VEC_target_feats.pkl'.format(params.dataset), 'rb') as f:
                 x = pickle.load(f, encoding='utf-8')
             pfeat = []
 
@@ -87,7 +92,8 @@ def main(params):
                 pfeat.append(y)
 
             for idx, y in enumerate(x["Gene_enco"]) : 
-                pind[y] = idx
+                if 0 < y : 
+                    pind[int(y)] = idx
             
             params.pfeat_dim = 1024
             
@@ -144,9 +150,10 @@ def main(params):
     graph_classifier.pro_ind(torch.LongTensor(np.array(pind)).to(params.device))
     graph_classifier.drug_ind(torch.LongTensor(np.array(dind)).to(params.device))
 
-    valid_evaluator = Evaluator(params, graph_classifier, valid) if params.dataset == 'drugbank' or params.dataset == 'davis' else Evaluator_ddi2(params, graph_classifier, valid)
-    test_evaluator = Evaluator(params, graph_classifier, test) if params.dataset == 'drugbank' or params.dataset == 'davis' else Evaluator_ddi2(params, graph_classifier, test)
-    train_evaluator = Evaluator(params, graph_classifier, train) if params.dataset == 'drugbank' or params.dataset == 'davis' else Evaluator_ddi2(params, graph_classifier, valid)
+    valid_evaluator = Evaluator(params, graph_classifier, valid) if params.dataset == 'drugbank' or params.dataset == 'vec' or params.dataset == 'davis' else Evaluator_ddi2(params, graph_classifier, valid)
+    
+    test_evaluator = Evaluator(params, graph_classifier, test) if params.dataset == 'drugbank' or params.dataset == 'vec' or params.dataset == 'davis' else Evaluator_ddi2(params, graph_classifier, test)
+    train_evaluator = Evaluator(params, graph_classifier, train) if params.dataset == 'drugbank' or params.dataset == 'davis' or params.dataset == 'vec' else Evaluator_ddi2(params, graph_classifier, valid)
 
     trainer = Trainer(params, graph_classifier, train, train_evaluator, valid_evaluator,test_evaluator)
 
@@ -281,6 +288,6 @@ if __name__ == '__main__':
 
     params.collate_fn = collate_dgl
     #minsik
-    params.move_batch_to_device = move_batch_to_device_dgl if params.dataset == 'drugbank' or 'davis' else move_batch_to_device_dgl_ddi2
+    params.move_batch_to_device = move_batch_to_device_dgl if params.dataset == 'drugbank' or params.dataset == 'davis' or params.dataset == 'vec' else move_batch_to_device_dgl_ddi2
 
     main(params)

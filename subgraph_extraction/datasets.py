@@ -19,7 +19,7 @@ def generate_subgraph_datasets(params, splits=['train', 'valid', 'test'], saved_
     #adj_list, triplets, entity2id, relation2id, id2entity, id2relation, rel = process_files(params.file_paths, saved_relation2id)
 
     triple_file = 'data/{}/relations_2hop.txt'.format(params.dataset)
-    if params.dataset == 'drugbank' or 'drugbank2':
+    if params.dataset == 'drugbank' or 'drugbank2' or "vec":
         adj_list, triplets, entity2id, relation2id, id2entity, id2relation, rel = process_files_ddi(params.file_paths, triple_file, saved_relation2id)
     else:
         adj_list, triplets, entity2id, relation2id, id2entity, id2relation, rel, triplets_mr, polarity_mr = process_files_decagon(params.file_paths, triple_file, saved_relation2id)
@@ -33,7 +33,7 @@ def generate_subgraph_datasets(params, splits=['train', 'valid', 'test'], saved_
     graphs = {}
 
     for split_name in splits:
-        if params.dataset == 'drugbank' or params.dataset == 'davis':
+        if params.dataset == 'drugbank' or params.dataset == 'davis' or params.dataset == 'vec':
             graphs[split_name] = {'triplets': triplets[split_name], 'max_size': params.max_links}
         elif params.dataset == 'BioSNAP':
             graphs[split_name] = {'triplets': triplets_mr[split_name], 'max_size': params.max_links, "polarity_mr": polarity_mr[split_name]}
@@ -76,7 +76,7 @@ class SubgraphDataset(Dataset):
         self.entity_type = np.loadtxt('data/{}/entity.txt'.format(dataset))
 
         if not ssp_graph:
-            if dataset == 'drugbank' or dataset == 'davis':
+            if dataset == 'drugbank' or dataset == 'davis'or dataset == 'vec':
                 ssp_graph, triplets, entity2id, relation2id, id2entity, id2relation, rel = process_files_ddi(raw_data_paths, triple_file, included_relations)
             else:
                 ssp_graph, triplets, entity2id, relation2id, id2entity, id2relation, rel, triplets_mr, polarity_mr = process_files_decagon(raw_data_paths, triple_file, included_relations)

@@ -3,15 +3,16 @@ import numpy as np
 from sklearn import svm
 from sklearn.metrics import accuracy_score
 from sklearn.metrics import f1_score
+from sklearn.metrics import roc_auc_score
 import argparse
 import os
 import xgboost as xgb
 from sklearn import svm
 from sklearn.ensemble import RandomForestClassifier
 import sys
-sys.path.append('../FeatureExtract')
+sys.path.append('../nodefeaturing')
 from generating_feature import generating_pro_feature, generating_drug_feature, concat_feature
-sys.path.remove('../FeatureExtract')
+sys.path.remove('../nodefeaturing')
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-td", "--train_dataset", type=str, required=True, help="path to input train dataset")
@@ -57,14 +58,16 @@ def my_SVM(df_train , df_val , d_col, p_col, r_col):
     pred_rels_train = clf.predict(pd.concat([train_p_feat, train_d_feat], axis = 1))
     accuracy_train = accuracy_score(df_train[r_col], pred_rels_train)
     f1score_train = f1_score(df_train[r_col], pred_rels_train)
-    
+    auc_train = roc_auc_score(df_train[r_col], pred_rels_train)
+
     pred_rels_val = clf.predict(pd.concat([val_p_feat, val_d_feat], axis = 1))
     accuracy_val = accuracy_score(df_val[r_col], pred_rels_val)
     f1score_val = f1_score(df_val[r_col], pred_rels_val)
+    auc_val = roc_auc_score(df_val[r_col], pred_rels_val)
     
-    print("Validation :","Accuracy:", accuracy_val, "F1-score", f1score_val)
+    print("Validation :","Accuracy:", accuracy_val, "F1-score", f1score_val, "auc:", auc_train)
     
-    print("Train :", "Accuracy:", accuracy_train, "F1-score", f1score_train)
+    print("Train :", "Accuracy:", accuracy_train, "F1-score", f1score_train, "auc", auc_val)
 
 
 def my_XGBoost(df_train, df_val, d_col, p_col, r_col):
