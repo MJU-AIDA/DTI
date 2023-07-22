@@ -65,9 +65,9 @@ def my_SVM(df_train , df_val , d_col, p_col, r_col):
     f1score_val = f1_score(df_val[r_col], pred_rels_val)
     auc_val = roc_auc_score(df_val[r_col], pred_rels_val)
     
-    print("Validation :","Accuracy:", accuracy_val, "F1-score", f1score_val, "auc:", auc_train)
+    print("Validation :","Accuracy:", accuracy_val, "F1-score", f1score_val, "AUC:", auc_train)
     
-    print("Train :", "Accuracy:", accuracy_train, "F1-score", f1score_train, "auc", auc_val)
+    print("Train :", "Accuracy:", accuracy_train, "F1-score", f1score_train, "AUC", auc_val)
 
 
 def my_XGBoost(df_train, df_val, d_col, p_col, r_col):
@@ -99,13 +99,14 @@ def my_XGBoost(df_train, df_val, d_col, p_col, r_col):
         pred_binary = [1 if p >= 0.5 else 0 for p in pred]
         accuracy = accuracy_score(gt_rels, pred_binary)
         f1score = f1_score(gt_rels, pred_binary)
+        auc = roc_auc_score(gt_rels, pred_binary) 
         return accuracy, f1score
     
-    accuracy_train, f1score_train = evaluate(dtrain, df_train[r_col])
-    print("Train - Accuracy:", accuracy_train, "F1-score:", f1score_train)
+    accuracy_train, f1score_train, auc_train = evaluate(dtrain, df_train[r_col])
+    print("Train - Accuracy:", accuracy_train, "F1-score:", f1score_train, "AUC :", auc_train )
     
-    accuracy_val, f1score_val = evaluate(dval, df_val[r_col])
-    print("Validation - Accuracy:", accuracy_val, "F1-score:", f1score_val)
+    accuracy_val, f1score_val, auc_val = evaluate(dval, df_val[r_col])
+    print("Validation - Accuracy:", accuracy_val, "F1-score:", f1score_val, "AUC : ", auc_val)
 
 
 def my_RandomForest(df_train, df_val, d_col, p_col, r_col):
@@ -126,13 +127,14 @@ def my_RandomForest(df_train, df_val, d_col, p_col, r_col):
         pred = model.predict(X)
         accuracy = accuracy_score(y, pred)
         f1score = f1_score(y, pred)
-        return accuracy, f1score
+        auc = roc_auc_score(y, pred) 
+        return accuracy, f1score, auc
     
-    accuracy_train, f1score_train = evaluate(X_train, y_train)
-    print("Train - Accuracy:", accuracy_train, "F1-score:", f1score_train)
+    accuracy_train, f1score_train, auc_train = evaluate(X_train, y_train)
+    print("Train - Accuracy:", accuracy_train, "F1-score:", f1score_train, "AUC :", auc_trian)
     
-    accuracy_val, f1score_val = evaluate(X_val, y_val)
-    print("Validation - Accuracy:", accuracy_val, "F1-score:", f1score_val)
+    accuracy_val, f1score_val, auc_val = evaluate(X_val, y_val)
+    print("Validation - Accuracy:", accuracy_val, "F1-score:", f1score_val, "AUC:", auc_val)
 
 
 if model_name == 'SVM' :
