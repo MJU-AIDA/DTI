@@ -58,7 +58,8 @@ class Evaluator():
                 #     print(s, targets_pos)
                 #     score_pos = self.graph_classifier(data_pos)
                 #     s = score_pos.detach().cpu().numpy()
-        with open('Drugbank/results.txt', 'w') as f:
+        # with open(f'Drugbank/results.txt', 'w') as f:
+        with open(f'{self.params.dataset}/results.txt', 'w') as f:
             for (x,y,z) in zip(pos_argscores, pos_labels, pos_scores):
                 f.write('%d %d %d\n'%(x, y, z))
 
@@ -70,7 +71,7 @@ class Evaluator():
         neg_labels = []
         y_pred = []
         label_matrix = []
-        dataloader = DataLoader(self.data, batch_size=self.params.batch_size, shuffle=False, num_workers=self.params.num_workers, collate_fn=self.params.collate_fn)
+        dataloader = DataLoader(self.data, batch_size=len(self.data), shuffle=False, num_workers=self.params.num_workers, collate_fn=self.params.collate_fn)
 
         self.graph_classifier.eval()
         with torch.no_grad():
@@ -95,11 +96,39 @@ class Evaluator():
                 # y_pred.append(pred)
                 # label_matrix.append(label_mat)
 
-        # acc = metrics.accuracy_score(labels, preds)
+        acc = metrics.accuracy_score(pos_labels, pos_scores)
         auc = metrics.f1_score(pos_labels, pos_scores, average='macro')
         auc_pr = metrics.f1_score(pos_labels, pos_scores, average='micro')
         f1 = metrics.f1_score(pos_labels, pos_scores, average=None)
         kappa = metrics.cohen_kappa_score(pos_labels, pos_scores)
+        
+        # cm
+        def eval_res(y_true, y_pred, model):
+            from sklearn.metrics import confusion_matrix
+            import seaborn as sns
+            from sklearn.metrics import precision_score, recall_score, f1_score
+            cm = confusion_matrix(y_true, y_pred)
+            import matplotlib.pyplot as plt
+            import pandas as pd
+            cm_df = pd.DataFrame(cm, index=['Actual 0', 'Actual 1'], columns=['Predicted 0', 'Predicted 1'])
+            plt.figure(figsize=(6, 4))
+            sns.heatmap(cm_df, annot=True, fmt='d', cmap='Blues')
+            plt.title('Confusion Matrix')
+            plt.xlabel('Predicted Label')
+            plt.ylabel('Actual Label')
+            plt.show()
+            plt.savefig(f"cm_{model}.png")  
+            from sklearn.metrics import classification_report
+            print(classification_report(y_true, y_pred))
+        dataloader_cm = DataLoader(self.data, batch_size=self.params.batch_size, shuffle=False, num_workers=self.params.num_workers, collate_fn=self.params.collate_fn)
+        with torch.no_grad():
+            for b_idx, batch in enumerate(dataloader_cm):
+                data_pos, r_labels_pos, targets_pos = self.params.move_batch_to_device(batch, self.params.device)
+                score_pos = self.graph_classifier(data_pos)
+                label_ids = r_labels_pos.to('cpu').numpy()
+                pos_labels += label_ids.flatten().tolist()
+                pos_scores += torch.argmax(score_pos, dim=1).cpu().flatten().tolist()
+        eval_res(pos_labels, pos_scores,"sumgnn")
 
         # y_pred = np.vstack(y_pred)
         # label_matrix = np.vstack(label_matrix)
@@ -125,7 +154,8 @@ class Evaluator():
                 for ([s, r, o], score) in zip(neg_triplets, neg_scores):
                     f.write('\t'.join([s, r, o, str(score)]) + '\n')
 
-        return {'auc': auc, 'microf1': auc_pr, 'k':kappa}, {'f1': f1}
+        # return {'auc': auc, 'microf1': auc_pr, 'k':kappa}, {'f1': f1}
+        return {'acc':acc, 'f1': f1, 'auc': auc, 'microf1': auc_pr, 'k':kappa}, {'f1': f1}
 
 class Evaluator_ddi2():
     def __init__(self, params, graph_classifier, data):
