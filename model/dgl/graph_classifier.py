@@ -46,7 +46,7 @@ class GraphClassifier(nn.Module):
         self.profeat = emb
     def pro_ind(self, pind): # profeat 참조 인덱스
         self.proind = pind 
-    def drug_ind(self, dind) :
+    def drug_ind(self, dind):
         self.drugind = dind
 
     def forward(self, data):
@@ -70,7 +70,7 @@ class GraphClassifier(nn.Module):
         tail_embs = g.ndata['repr'][tail_ids]
 #        print(g.ndata['idx'][head_ids], g.ndata['idx'][tail_ids],  g.ndata['idx'][tail_ids].shape)
         #print(g.ndata['idx'][head_ids])
-        print(self.proind[g.ndata['idx'][head_ids]])
+        # print(self.proind[g.ndata['idx'][head_ids]])
         head_feat = self.profeat[self.proind[g.ndata['idx'][head_ids]]] # 교수님이 profeat 추가한부분
  #       head_feat = self.profeat[g.ndata['idx'][head_ids]] # 교수님이 profeat 추가한브븐
         tail_feat = self.drugfeat[self.drugind[g.ndata['idx'][tail_ids]]]
