@@ -6,6 +6,35 @@ from rdkit.Chem import AllChem
 
 
 
+device = torch.device('cuda:1' if torch.cuda.is_available() else 'cpu')
+
+def get_bert_embedding(
+    sequence : str,
+    len_seq_limit : int
+):
+    '''
+    Function to collect last hidden state embedding vector from pre-trained ProtBERT Model
+
+    INPUTS:
+    - sequence (str) : protein sequence (ex : AAABBB) from fasta file
+    - len_seq_limit (int) : maximum sequence lenght (i.e nb of letters) for truncation
+
+    OUTPUTS:
+    - output_hidden : last hidden state embedding vector for input sequence of length 1024
+    '''
+    sequence_w_spaces = ' '.join(list(sequence))
+    encoded_input = tokenizer(
+        sequence_w_spaces,
+        truncation=True,
+        max_length=len_seq_limit,
+        padding='max_length',
+        return_tensors='pt').to(device)
+    output = model(**encoded_input)
+    output_hidden = output['last_hidden_state'][:,0][0].detach().cpu().numpy()
+    assert len(output_hidden)==1024
+    return output_hidden
+
+
 
 
 def generating_pro_feature(dataset) :
@@ -14,19 +43,30 @@ def generating_pro_feature(dataset) :
     tokenizer = AutoTokenizer.from_pretrained("Rostlab/prot_bert_bfd", do_lower_case=False)
     model = AutoModel.from_pretrained("Rostlab/prot_bert_bfd")
 
-    def protein_sequence_to_embedding(sequence):
-        
-        # Tokenize the protein sequence
-        inputs = tokenizer(sequence, return_tensors="pt", truncation=True, padding=True)
+    def protein_sequence_to_embedding(sequence : str,
+        len_seq_limit =1024
+        ):
+        '''
+        Function to collect last hidden state embedding vector from pre-trained ProtBERT Model
 
-        # Generate the embedding vector
-        with torch.no_grad():
-            outputs = model(**inputs)
+        INPUTS:
+        - sequence (str) : protein sequence (ex : AAABBB) from fasta file
+        - len_seq_limit (int) : maximum sequence lenght (i.e nb of letters) for truncation
 
-        # Extract the embedding vector
-        embedding = outputs.last_hidden_state.squeeze(0).mean(dim=0).numpy()
-
-        return embedding
+        OUTPUTS:
+        - output_hidden : last hidden state embedding vector for input sequence of length 1024
+        '''
+        sequence_w_spaces = ' '.join(list(sequence))
+        encoded_input = tokenizer(
+            sequence_w_spaces,
+            truncation=True,
+            max_length=len_seq_limit,
+            padding='max_length',
+            return_tensors='pt').to(device)
+        output = model(**encoded_input)
+        output_hidden = output['last_hidden_state'][:,0][0].detach().cpu().numpy()
+        assert len(output_hidden)==1024
+        return output_hidden
 
     unique_values = dataset[['Target_ID', 'Target']].value_counts().index
 
