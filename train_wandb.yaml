@@ -1,0 +1,38 @@
+program: train_wandb.py
+project: sumgnn-dti
+entity: aida_dti
+name: 5gcn_4hop_230805
+method: grid
+metric:
+  name: val_auc
+  goal: maximize
+  target: 0.90
+parameters:
+  experiment_name:
+    value: 5gcn_4hop_230805
+  dataset:
+    value: vec
+  train_file:
+    value: train
+  valid_file:
+    value: dev
+  test_file:
+    value: test
+  num_bases:
+    value: 4
+  gpu:
+    value: 1
+  hop:
+    values: [4] # value: 2
+  batch_size:
+    value: 64  # values: [32, 64, 128]
+  num_epochs:
+    value: 100 # values: [50, 100]
+  lr:
+    value: 0.0001 # values: [0.1, 0.01, 0.001, 0.0001, 0.00001]
+  num_gcn_layers:
+    values: [5] # value: 3
+  feat_dim:
+    value: 1024
+  pfeat_dim:
+    value: 1024
