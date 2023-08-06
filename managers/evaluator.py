@@ -99,7 +99,7 @@ class Evaluator():
         acc = metrics.accuracy_score(pos_labels, pos_scores)
         auc = metrics.f1_score(pos_labels, pos_scores, average='macro')
         auc_pr = metrics.f1_score(pos_labels, pos_scores, average='micro')
-        f1 = metrics.f1_score(pos_labels, pos_scores, average=None)
+        f1 = np.mean(metrics.f1_score(pos_labels, pos_scores, average=None))
         kappa = metrics.cohen_kappa_score(pos_labels, pos_scores)
         
         # cm
@@ -117,18 +117,23 @@ class Evaluator():
             plt.xlabel('Predicted Label')
             plt.ylabel('Actual Label')
             plt.show()
-            plt.savefig(f"cm_{model}.png")  
+            plt.savefig(f"cm_{self.params.experiment_name}_{model}.png")  
             from sklearn.metrics import classification_report
-            print(classification_report(y_true, y_pred))
-        dataloader_cm = DataLoader(self.data, batch_size=self.params.batch_size, shuffle=False, num_workers=self.params.num_workers, collate_fn=self.params.collate_fn)
-        with torch.no_grad():
-            for b_idx, batch in enumerate(dataloader_cm):
-                data_pos, r_labels_pos, targets_pos = self.params.move_batch_to_device(batch, self.params.device)
-                score_pos = self.graph_classifier(data_pos)
-                label_ids = r_labels_pos.to('cpu').numpy()
-                pos_labels += label_ids.flatten().tolist()
-                pos_scores += torch.argmax(score_pos, dim=1).cpu().flatten().tolist()
-        eval_res(pos_labels, pos_scores,"sumgnn")
+            # print(classification_report(y_true, y_pred))
+
+        # only val set
+        if self.data.file_name == 'dev':
+            dataloader_cm = DataLoader(self.data, batch_size=self.params.batch_size, shuffle=False, num_workers=self.params.num_workers, collate_fn=self.params.collate_fn)
+            pos_labels, pos_scores = [], []
+            with torch.no_grad():
+                for b_idx, batch in enumerate(dataloader_cm):
+                    data_pos, r_labels_pos, targets_pos = self.params.move_batch_to_device(batch, self.params.device)
+                    score_pos = self.graph_classifier(data_pos)
+                    label_ids = r_labels_pos.to('cpu').numpy()
+                    pos_labels += label_ids.flatten().tolist()
+                    pos_scores += torch.argmax(score_pos, dim=1).cpu().flatten().tolist()
+            print(f"Create cm for {self.data.file_name}")
+            eval_res(pos_labels, pos_scores,"sumgnn")
 
         # y_pred = np.vstack(y_pred)
         # label_matrix = np.vstack(label_matrix)
