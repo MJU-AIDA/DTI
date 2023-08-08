@@ -1,4 +1,6 @@
-from transformers import AutoTokenizer, AutoModel
+from transformers import AutoTokenizer, AutoModel          # ProtBERT
+from transformers import T5Tokenizer, T5EncoderModel       # ProtT5
+
 import torch
 import pandas as pd
 from rdkit import Chem
@@ -8,40 +10,11 @@ from rdkit.Chem import AllChem
 
 device = torch.device('cuda:1' if torch.cuda.is_available() else 'cpu')
 
-def get_bert_embedding(
-    sequence : str,
-    len_seq_limit : int
-):
-    '''
-    Function to collect last hidden state embedding vector from pre-trained ProtBERT Model
-
-    INPUTS:
-    - sequence (str) : protein sequence (ex : AAABBB) from fasta file
-    - len_seq_limit (int) : maximum sequence lenght (i.e nb of letters) for truncation
-
-    OUTPUTS:
-    - output_hidden : last hidden state embedding vector for input sequence of length 1024
-    '''
-    sequence_w_spaces = ' '.join(list(sequence))
-    encoded_input = tokenizer(
-        sequence_w_spaces,
-        truncation=True,
-        max_length=len_seq_limit,
-        padding='max_length',
-        return_tensors='pt').to(device)
-    output = model(**encoded_input)
-    output_hidden = output['last_hidden_state'][:,0][0].detach().cpu().numpy()
-    assert len(output_hidden)==1024
-    return output_hidden
-
-
-
-
 def generating_pro_feature(dataset) :
 
-    # Load ProtBERT tokenizer and model
+# Load ProtBERT tokenizer and model
     tokenizer = AutoTokenizer.from_pretrained("Rostlab/prot_bert_bfd", do_lower_case=False)
-    model = AutoModel.from_pretrained("Rostlab/prot_bert_bfd")
+    model = AutoModel.from_pretrained("Rostlab/prot_bert_bfd").to(device)
 
     def protein_sequence_to_embedding(sequence : str,
         len_seq_limit =1024
@@ -64,6 +37,9 @@ def generating_pro_feature(dataset) :
             padding='max_length',
             return_tensors='pt').to(device)
         output = model(**encoded_input)
+        print(output.last_hidden_state.shape)
+        print(output['last_hidden_state'][:,0][0])
+
         output_hidden = output['last_hidden_state'][:,0][0].detach().cpu().numpy()
         assert len(output_hidden)==1024
         return output_hidden
@@ -95,14 +71,12 @@ def generating_drug_feature(drug_dataset) :
 
     # smiles = "CC(=O)OC1=CC=CC=C1C(=O)O"
     # print(smiles_to_fingerprint(smiles))
-    # 'Drug' 열의 값에 대한 Morgan fingerprint 생성
+    # 'Drug' column의 값에 대한 Morgan fingerprint 생성
     d['Morgan_Features'] = d['Drug'].apply(smiles_to_fingerprint)
     # print(d['Morgan_Features'])
     # print(d.head())
     return d
 
-def concat_feature(drug_table, target_table) : 
-    
+def concat_feature(drug_table, target_table) :     
     result = pd.merge(drug_table, target_table, on='Target_ID', how='left')
-
     return result

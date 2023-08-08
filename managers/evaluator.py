@@ -7,7 +7,7 @@ import torch.nn.functional as F
 from torch.utils.data import DataLoader
 import torch
 import torch.nn as nn
-from sklearn.metrics import roc_auc_score, average_precision_score, f1_score
+from sklearn.metrics import roc_auc_score, auc, precision_recall_curve, average_precision_score, f1_score
 from sklearn.metrics import  cohen_kappa_score, accuracy_score
 from tqdm import tqdm
 class Evaluator():
@@ -97,8 +97,11 @@ class Evaluator():
                 # label_matrix.append(label_mat)
 
         acc = metrics.accuracy_score(pos_labels, pos_scores)
-        auc = metrics.f1_score(pos_labels, pos_scores, average='macro')
-        auc_pr = metrics.f1_score(pos_labels, pos_scores, average='micro')
+        roc_auc = roc_auc_score(pos_labels, pos_scores, average='macro')
+        precision, recall, _ = precision_recall_curve(pos_labels, pos_scores)
+        pr_auc = auc(recall, precision)
+
+        microf1 = metrics.f1_score(pos_labels, pos_scores, average='micro')
         f1 = np.mean(metrics.f1_score(pos_labels, pos_scores, average=None))
         kappa = metrics.cohen_kappa_score(pos_labels, pos_scores)
         
@@ -160,7 +163,7 @@ class Evaluator():
                     f.write('\t'.join([s, r, o, str(score)]) + '\n')
 
         # return {'auc': auc, 'microf1': auc_pr, 'k':kappa}, {'f1': f1}
-        return {'acc':acc, 'f1': f1, 'auc': auc, 'microf1': auc_pr, 'k':kappa}, {'f1': f1}
+        return {'acc':acc, 'pr_auc':pr_auc ,'f1': f1, 'auc': roc_auc, 'microf1': microf1, 'k':kappa}, {'f1': f1}
 
 class Evaluator_ddi2():
     def __init__(self, params, graph_classifier, data):

@@ -45,9 +45,9 @@ def main(params):
                             kge_model=params.kge_model, file_name=params.test_file,
                             ssp_graph = train.ssp_graph,
                             id2entity= train.id2entity, id2relation= train.id2relation, rel= train.num_rels,  graph = train.graph)
-    print("####train num rels")
-    print(train.num_rels)
-    print()
+    # print("####train num rels")
+    # print(train.num_rels)
+    # print()
     params.num_rels = train.num_rels
     params.aug_num_rels = train.aug_num_rels
     params.inp_dim = train.n_feat_dim
@@ -76,29 +76,21 @@ def main(params):
             for y in x['Morgan_Features']:
                 row_feat = to_float(y)
                 mfeat.append(row_feat)
-            params.feat_dim = 1024
-            
+            # params.feat_dim = 1024  # argparser로 받음
             for idx, y in enumerate(x["Drug_enco"]) : 
                 if 0 < y : 
                     dind[int(y)] = idx
-
-
             # target feature
             with open('data/{}/VEC_target_feats.pkl'.format(params.dataset), 'rb') as f:
                 x = pickle.load(f, encoding='utf-8')
             pfeat = []
-
             for y in x['ProtBERT_Features']:
                 pfeat.append(y)
-
             for idx, y in enumerate(x["Gene_enco"]) : 
                 if 0 < y : 
                     pind[int(y)] = idx
-            
-            params.pfeat_dim = 1024
-            
-            
-            
+            # params.pfeat_dim = 1024  # argparser로 받음
+
     if params.dataset == 'drugbank':
         if params.feat == 'morgan':
             import pickle
@@ -108,17 +100,6 @@ def main(params):
             for y in x['Morgan_Features']:
                 mfeat.append(y)
             params.feat_dim = 1024
-            
-        elif params.feat == 'mymorgan': 
-            # create integrated feature table
-            import pickle
-            with open('data/{}/DAVIS_drug_feats.pkl'.format(params.dataset), 'rb') as f:
-                x = pickle.load(f, encoding='utf-8')
-            mfeat =  []
-            for y in x['Morgan_Features']:
-                mfeat.append(y)
-            params.feat_dim = 1024
-            
         elif  params.feat == 'pca':
             mfeat = np.loadtxt('data/{}/PCA.txt'.format(params.dataset))
             params.feat_dim = 200
@@ -146,15 +127,13 @@ def main(params):
     #exit(0)
     graph_classifier.drug_feat(torch.FloatTensor(np.array(mfeat)).to(params.device))
     graph_classifier.pro_feat(torch.FloatTensor(np.array(pfeat)).to(params.device))
-    print(pind)
     graph_classifier.pro_ind(torch.LongTensor(np.array(pind)).to(params.device))
     graph_classifier.drug_ind(torch.LongTensor(np.array(dind)).to(params.device))
 
+    train_evaluator = Evaluator(params, graph_classifier, train) if params.dataset == 'drugbank' or params.dataset == 'vec'or params.dataset == 'davis'  else Evaluator_ddi2(params, graph_classifier, train)
     valid_evaluator = Evaluator(params, graph_classifier, valid) if params.dataset == 'drugbank' or params.dataset == 'vec' or params.dataset == 'davis' else Evaluator_ddi2(params, graph_classifier, valid)
-    
     test_evaluator = Evaluator(params, graph_classifier, test) if params.dataset == 'drugbank' or params.dataset == 'vec' or params.dataset == 'davis' else Evaluator_ddi2(params, graph_classifier, test)
-    train_evaluator = Evaluator(params, graph_classifier, train) if params.dataset == 'drugbank' or params.dataset == 'davis' or params.dataset == 'vec' else Evaluator_ddi2(params, graph_classifier, valid)
-
+    
     trainer = Trainer(params, graph_classifier, train, train_evaluator, valid_evaluator,test_evaluator)
 
     logging.info('Starting training with full batch...')

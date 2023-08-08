@@ -13,7 +13,7 @@ from model.dgl.graph_classifier import GraphClassifier as dgl_model
 # from managers.trainer import Trainer
 ''' wandb'''
 from managers.evaluator import Evaluator, Evaluator_ddi2
-from managers.wandb_trainer import Trainer
+from managers.trainer_wandb import Trainer
 import numpy as np
 from warnings import simplefilter
 os.environ['CUDA_LAUNCH_BLOCKING'] = "1"
@@ -76,7 +76,7 @@ def main(params):
             dind = np.zeros(1710)
             pind = np.zeros(34123)
             import pickle
-            with open('data/{}/VEC_drug_feats.pkl'.format(params.dataset), 'rb') as f:
+            with open(f'data/{params.dataset}/VEC_drug_feats.pkl', 'rb') as f:
                 x = pickle.load(f, encoding='utf-8')
             mfeat =  []
             for y in x['Morgan_Features']:
@@ -87,7 +87,7 @@ def main(params):
                 if 0 < y : 
                     dind[int(y)] = idx
             # target feature
-            with open('data/{}/VEC_target_feats.pkl'.format(params.dataset), 'rb') as f:
+            with open(f'data/{params.dataset}/VEC_target_feats_{params.protein_feat_type}.pkl', 'rb') as f:
                 x = pickle.load(f, encoding='utf-8')
             pfeat = []
             for y in x['ProtBERT_Features']:
@@ -214,6 +214,9 @@ if __name__ == '__main__':
                         help='whether to append adj matrix list with symmetric relations')
     parser.add_argument('--enclosing_sub_graph', '-en', type=bool, default=True,
                         help='whether to only consider enclosing subgraph')
+    parser.add_argument('--protein_feat_type', '-pfeatt', type=str, 
+                        choices=['prot_t5_xl_bfd', 'prot_t5_xl_uniref50', 'prot_bert_bfd','prot_bert'], default='best',
+                        help='what protein embedding to use') # 디폴트 수정
 
     # Model params
     parser.add_argument("--rel_emb_dim", "-r_dim", type=int, default=16,
