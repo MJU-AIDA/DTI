@@ -1,0 +1,40 @@
+program: train_wandb.py
+project: sumgnn_dti_proteinembedding
+entity: aida_dti
+name: protein_embedding_230808
+method: grid
+metric:
+  name: val_auc
+  goal: maximize
+  target: 0.90
+parameters:
+  experiment_name:
+    value: protein_embedding_230808
+  dataset:
+    value: vec
+  train_file:
+    value: train
+  valid_file:
+    value: dev
+  test_file:
+    value: test
+  protein_feat_type:
+    values: ['prot_t5_xl_uniref50', 'prot_bert_bfd'] # 'prot_t5_xl_bfd',,'prot_bert'
+  num_bases:
+    value: 4
+  gpu:
+    value: 3
+  hop:
+    values: [4] # value: 2
+  batch_size:
+    value: 64  # values: [32, 64, 128]
+  num_epochs:
+    value: 100 # values: [50, 100]
+  lr:
+    value: 0.0001 # values: [0.1, 0.01, 0.001, 0.0001, 0.00001]
+  num_gcn_layers:
+    values: [1] # value: 3
+  feat_dim:
+    value: 1024
+  pfeat_dim:
+    value: 1024

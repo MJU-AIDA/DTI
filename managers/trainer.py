@@ -125,7 +125,6 @@ class Trainer():
         if self.params.dataset != 'BioSNAP':
             auc = metrics.f1_score(all_labels, all_scores, average='macro')
             auc_pr = metrics.f1_score(all_labels, all_scores, average='micro')
-
             return total_loss/b_idx, auc, auc_pr, weight_norm
         else:
             return total_loss/b_idx, 0, 0, weight_norm
