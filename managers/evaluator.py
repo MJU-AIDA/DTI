@@ -163,7 +163,7 @@ class Evaluator():
                     f.write('\t'.join([s, r, o, str(score)]) + '\n')
 
         # return {'auc': auc, 'microf1': auc_pr, 'k':kappa}, {'f1': f1}
-        return {'acc':acc, 'pr_auc':pr_auc ,'f1': f1, 'auc': roc_auc, 'microf1': microf1, 'k':kappa}, {'f1': f1}
+        return {'acc':acc, 'pr_auc':pr_auc ,'f1': f1, 'roc_auc': roc_auc, 'microf1': microf1, 'k':kappa}, {'f1': f1}
 
 class Evaluator_ddi2():
     def __init__(self, params, graph_classifier, data):
