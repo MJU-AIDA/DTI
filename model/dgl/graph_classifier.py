@@ -51,11 +51,13 @@ class GraphClassifier(nn.Module):
 
     def forward(self, data):
         g = data
-        g.ndata['h'] = self.gnn(g)
-        #print(data)
-        #print('repr:',g.ndata['repr'], g.ndata['repr'].shape)
-        #print(data)
-        #exit(0)
+        # print(type(g)) # dgl.graph.DGLGraph
+        # print(g) # 그래프 요약
+        g.ndata['h'] = self.gnn(g) # Get feature dictionary of all nodes
+        # print(len(g.ndata['h']))  # node 개수
+        # print(data)
+        # print('repr:',g.ndata['repr'], g.ndata['repr'].shape)
+        # exit(0)
         #assert 0
         g_out = mean_nodes(g, 'repr')
         #print('g_out', g_out.shape)

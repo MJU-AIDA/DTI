@@ -1,0 +1,48 @@
+program: train_wandb.py
+project: optimal_dt_embeddings_230821
+entity: aida_dti
+name: morgan_optimal_dt_embeddings_230821
+method: grid
+metric:
+  name: val_auc
+  goal: maximize
+  target: 0.95
+parameters:
+  experiment_name:
+    value: morgan_optimal_dt_embeddings_230821
+  dataset:
+    value: vec
+  train_file:
+    value: train
+  valid_file:
+    value: dev
+  test_file:
+    value: test
+  protein_embedding_method:
+    values: ['prot_t5_xl_bfd', 'prot_t5_xl_uniref50', 'prot_bert_bfd','prot_bert', 'prostt5'] # ['prot_t5_xl_uniref50']
+  drug_embedding_method:
+    values: ['morgan'] # ['map4', 'morgan']
+  # edge_dropout:
+  #   values: [0.2, 0.4, 0.6, 0.8]
+  # num_bases:
+  #   values: [2, 4, 16, 256]
+  # dropout:
+  #   values: [0.3, 0.5, 0.7]
+  protein_embedding_replace:
+    value: True
+  gpu:
+    value: 3
+  hop:
+    values: [4] # values: [2, 4]
+  batch_size:
+    value: 128  # values: [32, 64, 128]
+  num_epochs:
+    value: 1500 # values: [50, 100]
+  lr:
+    value: 0.000005 # values: [0.1, 0.01, 0.001, 0.0001, 0.00001]
+  num_gcn_layers:
+    values: [3] # [3, 5] 
+  feat_dim:
+    value: 1024
+  pfeat_dim:
+    value: 1024

@@ -224,7 +224,7 @@ def process_files_decagon(files, triple_file, saved_relation2id=None, keeptraino
         assert rel == 1
     #print(rel)
     triplet_kg = np.loadtxt(triple_file)
-    print(np.max(triplet_kg[:, -1]))
+    #print(np.max(triplet_kg[:, -1]))
     for (h, t, r) in triplet_kg:
         h, t, r = int(h), int(t), int(r)
         if h not in entity2id:

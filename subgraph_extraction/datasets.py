@@ -71,7 +71,7 @@ class SubgraphDataset(Dataset):
         self.db_neg = self.main_env.open_db(db_name_neg.encode())
         self.node_features, self.kge_entity2id = get_kge_embeddings(dataset, kge_model) if use_kge_embeddings else (None, None)
         self.num_neg_samples_per_link = num_neg_samples_per_link
-        self.file_name = file_name
+        self.file_name = file_name         # print(self.file_name) # dev.txt -> dev
         triple_file = 'data/{}/relations_2hop.txt'.format(dataset)
         self.entity_type = np.loadtxt('data/{}/entity.txt'.format(dataset))
 
