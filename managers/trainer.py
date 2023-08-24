@@ -16,6 +16,10 @@ from sklearn import metrics
 import json
 from torch.nn.utils import clip_grad_norm_
 
+from sklearn.metrics import accuracy_score
+from sklearn.metrics import f1_score
+from sklearn.metrics import roc_auc_score
+
 
 class Trainer():
     def __init__(self, params, graph_classifier, train, train_evaluator = None, valid_evaluator=None, test_evaluator = None):
@@ -31,7 +35,7 @@ class Trainer():
         logging.info('Total number of parameters: %d' % sum(map(lambda x: x.numel(), model_params)))
 
         if params.optimizer == "SGD":
-            self.optimizer = optim.SGD(model_params, lr=params.lr, momentum=params.momentum, weight_decay=self.params.l2)
+            self.optimizer = optim.SGD(model_params, lr=params.lr, momentum=0.9, weight_decay=self.params.l2)
         if params.optimizer == "Adam":
             self.optimizer = optim.Adam(model_params, lr=params.lr, weight_decay=self.params.l2)
 
@@ -50,7 +54,7 @@ class Trainer():
     def load_model(self):
         self.graph_classifier.load_state_dict(torch.load("my_resnet.pth"))
 
-    def train_epoch(self):
+    def train_epoch(self, end):
         total_loss = 0
         all_preds = []
         all_labels = []
@@ -101,20 +105,22 @@ class Trainer():
                     all_scores += torch.argmax(score_pos, dim=1).cpu().flatten().tolist()
             if self.valid_evaluator and self.params.eval_every_iter and self.updates_counter % self.params.eval_every_iter == 0:
                 tic = time.time()
+                #test_result, save_test_data = self.test_evaluator.eval()
                 result, save_dev_data = self.valid_evaluator.eval()
-                test_result, save_test_data = self.test_evaluator.eval()
+
+
                 logging.info('\033[95m Eval Performance:' + str(result) + 'in ' + str(time.time() - tic)+'\033[0m')
-                logging.info('\033[93m Test Performance:' + str(test_result) + 'in ' + str(time.time() - tic)+'\033[0m')
+                #logging.info('\033[93m Test Performance:' + str(test_result) + 'in ' + str(time.time() - tic)+'\033[0m')
                 if result['auc'] >= self.best_metric:
                     self.save_classifier()
                     self.best_metric = result['auc']
                     self.not_improved_count = 0
-                    if self.params.dataset != 'BioSNAP':
-                        logging.info('\033[93m Test Performance Per Class:' + str(save_test_data) + 'in ' + str(time.time() - tic)+'\033[0m')
-                    else:
-                        with open('experiments/%s/result.json'%(self.params.experiment_name), 'a') as f:
-                            f.write(json.dumps(save_test_data))
-                            f.write('\n')
+                    #if self.params.dataset != 'BioSNAP':
+                        #logging.info('\033[93m Test Performance Per Class:' + str(save_test_data) + 'in ' + str(time.time() - tic)+'\033[0m')
+                    #else:
+                    #    with open('experiments/%s/result.json'%(self.params.experiment_name), 'a') as f:
+                    #        f.write(json.dumps(save_test_data))
+                    #        f.write('\n')
                 else:
                     self.not_improved_count += 1
                     if self.not_improved_count > self.params.early_stop:
@@ -122,11 +128,18 @@ class Trainer():
                         break
                 self.last_metric = result['auc']
         weight_norm = sum(map(lambda x: torch.norm(x), model_params))
+        if self.params.num_epochs == end :
+            result, save_dev_data = self.valid_evaluator.eval()
+            print(f"Val     ->   Accuracy: {result['acc']} F1-score: {result['f1']} AUC: {result['auc']}")
+
         if self.params.dataset != 'BioSNAP':
             auc = metrics.f1_score(all_labels, all_scores, average='macro')
             auc_pr = metrics.f1_score(all_labels, all_scores, average='micro')
-
-            return total_loss/b_idx, auc, auc_pr, weight_norm
+            
+            accuracy_train = accuracy_score(all_labels, all_scores)
+            f1score_train = f1_score(all_labels, all_scores)
+            auc_train = roc_auc_score(all_labels, all_scores)
+            return total_loss/b_idx, auc, auc_pr, weight_norm, accuracy_train, f1score_train, auc_train 
         else:
             return total_loss/b_idx, 0, 0, weight_norm
 
@@ -136,11 +149,13 @@ class Trainer():
         for epoch in range(1, self.params.num_epochs + 1):
             time_start = time.time()
 
-            loss, auc, auc_pr, weight_norm = self.train_epoch()
+            loss, auc, auc_pr, weight_norm, accuracy_train, f1score_train, auc_train = self.train_epoch(epoch)
 
             time_elapsed = time.time() - time_start
             logging.info(f'Epoch {epoch} with loss: {loss}, training auc: {auc}, training auc_pr: {auc_pr}, best validation AUC: {self.best_metric}, weight_norm: {weight_norm} in {time_elapsed}')
-
+            
+            if epoch >= self.params.num_epochs :
+                print(f"Train   ->   Accuracy: {accuracy_train} F1-score: {f1score_train} AUC: {auc_train}")
             # if self.valid_evaluator and epoch % self.params.eval_every == 0:
             #     result = self.valid_evaluator.eval()
             #     logging.info('\nPerformance:' + str(result))

@@ -111,6 +111,7 @@ class Evaluator():
             import matplotlib.pyplot as plt
             import pandas as pd
             cm_df = pd.DataFrame(cm, index=['Actual 0', 'Actual 1'], columns=['Predicted 0', 'Predicted 1'])
+            
             plt.figure(figsize=(6, 4))
             sns.heatmap(cm_df, annot=True, fmt='d', cmap='Blues')
             plt.title('Confusion Matrix')
@@ -120,6 +121,12 @@ class Evaluator():
             plt.savefig(f"cm_{model}.png")  
             from sklearn.metrics import classification_report
             print(classification_report(y_true, y_pred))
+        pos_scores = []
+        pos_labels = []
+        neg_scores = []
+        neg_labels = []
+        y_pred = []
+        label_matrix = []
         dataloader_cm = DataLoader(self.data, batch_size=self.params.batch_size, shuffle=False, num_workers=self.params.num_workers, collate_fn=self.params.collate_fn)
         with torch.no_grad():
             for b_idx, batch in enumerate(dataloader_cm):
@@ -128,7 +135,8 @@ class Evaluator():
                 label_ids = r_labels_pos.to('cpu').numpy()
                 pos_labels += label_ids.flatten().tolist()
                 pos_scores += torch.argmax(score_pos, dim=1).cpu().flatten().tolist()
-        eval_res(pos_labels, pos_scores,"sumgnn")
+        if self.data.file_name == "dev" :
+            eval_res(pos_labels, pos_scores,"sumgnn")
 
         # y_pred = np.vstack(y_pred)
         # label_matrix = np.vstack(label_matrix)
