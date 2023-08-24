@@ -65,10 +65,12 @@ def main(params):
         return [float(x) for x in arr]
 
     if params.dataset == 'davis'or params.dataset == "vec":
-        if params.feat =='morganprotbert': # using Drug Morgan feature made by rdkit.Chem and Protein feature by ProtBERT
+        if params.feat =='morganprotbert' or params.feat == "MAP4" : # using Drug Morgan feature made by rdkit.Chem and Protein feature by ProtBERT
             # drug feature
             dind = np.zeros(1710)
+            dind[:] = np.nan
             pind = np.zeros(34123)
+            pind[:] = np.nan
             import pickle
             with open('data/{}/VEC_drug_feats.pkl'.format(params.dataset), 'rb') as f:
                 x = pickle.load(f, encoding='utf-8')
@@ -153,9 +155,9 @@ def main(params):
     valid_evaluator = Evaluator(params, graph_classifier, valid) if params.dataset == 'drugbank' or params.dataset == 'vec' or params.dataset == 'davis' else Evaluator_ddi2(params, graph_classifier, valid)
     
     test_evaluator = Evaluator(params, graph_classifier, test) if params.dataset == 'drugbank' or params.dataset == 'vec' or params.dataset == 'davis' else Evaluator_ddi2(params, graph_classifier, test)
-    train_evaluator = Evaluator(params, graph_classifier, train) if params.dataset == 'drugbank' or params.dataset == 'davis' or params.dataset == 'vec' else Evaluator_ddi2(params, graph_classifier, valid)
+    train_evaluator = Evaluator(params, graph_classifier, train) if params.dataset == 'drugbank' or params.dataset == 'davis' or params.dataset == 'vec' else Evaluator_ddi2(params, graph_classifier, train)
 
-    trainer = Trainer(params, graph_classifier, train, train_evaluator, valid_evaluator,test_evaluator)
+    trainer = Trainer(params, graph_classifier, train, train_evaluator, valid_evaluator, test_evaluator)
 
     logging.info('Starting training with full batch...')
     trainer.train()
