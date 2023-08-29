@@ -10,38 +10,9 @@ import xgboost as xgb
 from sklearn import svm
 from sklearn.ensemble import RandomForestClassifier
 import sys
-current_dir = os.path.dirname(os.path.abspath(__file__))
-nodefeaturing_dir = os.path.join(current_dir, '../nodefeaturing')
-sys.path.insert(0, nodefeaturing_dir)
-from generating_feature import generating_pro_feature, generating_drug_feature, concat_feature
 
-parser = argparse.ArgumentParser()
-parser.add_argument("-td", "--train_dataset", type=str, required=True, help="path to input train dataset")
-parser.add_argument("-vd", "--validation_dataset", type=str, required=True, help="path to input validation dataset")
-parser.add_argument("-m", "--model", type=str, required=True, help="model to run")
-
-args = parser.parse_args()
-if True:
-    train_table = pd.read_csv(args.train_dataset)
-    val_table = pd.read_csv(args.validation_dataset)
-    model_name = args.model
-else:
-    train_table = pd.read_csv(args.train_dataset, sep=" ", header=None)
-    print(train_table)
-    val_table = pd.read_csv(args.validation_dataset, sep=" ", header=None)
-    model_name = args.model
-
-train_pro_table = generating_pro_feature(train_table)
-
-train_drug_table = generating_drug_feature(train_table)
-
-train_merge_on = concat_feature(train_drug_table, train_pro_table)
-
-val_pro_table = generating_pro_feature(val_table)
-
-val_drug_table = generating_drug_feature(val_table)
-
-val_merge_on = concat_feature(val_drug_table,val_pro_table)
+sys.path.append("/home/wjdtjr980/my_project/mydti/nodefeaturing")
+from generate_entity_embedding import generating_pro_feature, generating_drug_feature, concat_feature
 
 def eval_res(y_true, y_pred, model):
     from sklearn.metrics import confusion_matrix
@@ -72,6 +43,7 @@ def my_SVM(df_train , df_val , d_col, p_col, r_col):
     
     #print(pd.concat([p_feat, d_feat], axis = 1))
     clf = svm.SVC(kernel='rbf')
+    print("Training SVM")
     clf.fit(pd.concat([train_p_feat, train_d_feat], axis = 1), df_train[r_col])
     
     # Evaluation
@@ -114,6 +86,7 @@ def my_XGBoost(df_train, df_val, d_col, p_col, r_col):
         'learning_rate': 0.1
     }
     
+    print("Training XGB")
     model = xgb.train(params, dtrain)
     
     def evaluate(dmatrix, gt_rels):
@@ -143,6 +116,7 @@ def my_RandomForest(df_train, df_val, d_col, p_col, r_col):
     X_val, y_val = prepare_data(df_val)
 
     model = RandomForestClassifier()
+    print("Training RF")
     model.fit(X_train, y_train)
     
     def evaluate(X, y):
@@ -159,15 +133,47 @@ def my_RandomForest(df_train, df_val, d_col, p_col, r_col):
     print(f"Train   ->   Accuracy: {accuracy_train:<15.5f} F1-score: {f1score_train:<15.5f} AUC: {auc_train:<15.5f}")
     print(f"Val     ->   Accuracy: {accuracy_val:<15.5f} F1-score: {f1score_val:<15.5f} AUC: {auc_val:<15.5f}")
 
+parser = argparse.ArgumentParser()
+parser.add_argument("-td", "--train_dataset", type=str, required=True, help="path to input train dataset")
+parser.add_argument("-vd", "--validation_dataset", type=str, required=True, help="path to input validation dataset")
+parser.add_argument("-m", "--model", type=str, required=True, help="model to run")
+
+args = parser.parse_args()
+if True:
+    train_table = pd.read_csv(args.train_dataset)
+    val_table = pd.read_csv(args.validation_dataset)
+    model_name = args.model
+else:
+    train_table = pd.read_csv(args.train_dataset, sep=" ", header=None)
+    val_table = pd.read_csv(args.validation_dataset, sep=" ", header=None)
+    model_name = args.model
+
+args.gpu = 3
+args.protein_embedding_method = "prot_bert_bfd"
+args.drug_embedding_method = "morgan"
+args.protein_embedding_replace = True
+
+train_pro_table = generating_pro_feature(train_table, args)
+
+train_drug_table = generating_drug_feature(train_table, args)
+
+train_merge_on = concat_feature(train_drug_table, train_pro_table)
+
+val_pro_table = generating_pro_feature(val_table, args)
+
+val_drug_table = generating_drug_feature(val_table, args)
+
+val_merge_on = concat_feature(val_drug_table,val_pro_table)
+
 
 if model_name == 'SVM' :
-    my_SVM(train_merge_on, val_merge_on,'Morgan_Features', 'ProtBERT_Features', "Y")
+    my_SVM(train_merge_on, val_merge_on,f"{args.protein_embedding_method.upper()}_Features", f"{args.protein_embedding_method.upper()}_Features", "Y")
 
 elif model_name == 'XGBoost' :
-    my_XGBoost(train_merge_on, val_merge_on,'Morgan_Features', 'ProtBERT_Features', "Y")
+    my_XGBoost(train_merge_on, val_merge_on,f"{args.protein_embedding_method.upper()}_Features", f"{args.protein_embedding_method.upper()}_Features", "Y")
 
 elif model_name == "RandomForest" :
-    my_RandomForest(train_merge_on, val_merge_on,'Morgan_Features', 'ProtBERT_Features', "Y")
+    my_RandomForest(train_merge_on, val_merge_on,f"{args.protein_embedding_method.upper()}_Features", f"{args.protein_embedding_method.upper()}_Features", "Y")
 
 else :
     print("we don't have the model, available model : SVM, XGBoost, RandomForest")
