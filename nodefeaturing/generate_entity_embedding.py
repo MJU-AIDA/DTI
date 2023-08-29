@@ -18,7 +18,7 @@ def generating_pro_feature(dataset, params):
     # tokenizer = T5Tokenizer.from_pretrained("Rostlab/prot_t5_xl_uniref50", do_lower_case=False)
     # model = T5EncoderModel.from_pretrained("Rostlab/prot_t5_xl_uniref50").to(device)
     device = torch.device(f"cuda:{params.gpu}" if torch.cuda.is_available() else "cpu")
-    if params.protein_embedding_method == "prot_bert":
+    if params.protein_embedding_method in ["prot_bert", "prot_bert_average"]:
         tokenizer = BertTokenizer.from_pretrained("Rostlab/prot_bert", do_lower_case=False)
         model = BertModel.from_pretrained("Rostlab/prot_bert").to(device)
     elif params.protein_embedding_method == "prot_bert_bfd":
@@ -39,19 +39,21 @@ def generating_pro_feature(dataset, params):
         if params.protein_embedding_replace:
             sequence = " ".join(list(re.sub(r"[UZOB]", "X", sequence)))
         else:
-            sequence = ' '.join(list(sequence))
+            sequence = " ".join(list(sequence))
         if True: 
             encoded_input = tokenizer(sequence,truncation=True,max_length=len_seq_limit,
                                       padding='max_length',return_tensors='pt').to(device)
             with torch.no_grad():
                 output = model(**encoded_input)
-                # output_hidden = output['last_hidden_state'][:, 0][0].detach().cpu().numpy() # row 0
-                # print(output['last_hidden_state'][:, 0][0].detach().cpu().numpy().shape) # (1024,)
-                # print(type(output_hidden)) # <class 'numpy.ndarray'>
-                output_hidden = np.diagonal(output['last_hidden_state'][0].detach().cpu().numpy()) # diagonal
-                # print(output['last_hidden_state'][:, 0][0].detach().cpu().numpy().shape) # (1024,)
-                # print(type(output_hidden)) # <class 'numpy.ndarray'>
-                # print(output_hidden.shape) # (1024,)
+                if params.protein_embedding_method == "prot_bert":
+                    output_hidden = output['last_hidden_state'][:, 0][0].detach().cpu().numpy() # 지금까지 방식 : row 0
+                    # print(output['last_hidden_state'][:, 0][0].detach().cpu().numpy().shape) # (1024,)
+                    # print(type(output_hidden)) # <class 'numpy.ndarray'>
+                    # output_hidden = np.diagonal(output['last_hidden_state'][0].detach().cpu().numpy()) # diagonal
+                elif params.protein_embedding_method == "prot_bert_average":
+                    output_hidden = torch.mean(output['last_hidden_state'][0].float(), dim=1).detach().cpu().numpy() # average
+                else:
+                    output_hidden = output['last_hidden_state'][:, 0][0].detach().cpu().numpy() # 지금까지 방식 : row 0
             assert len(output_hidden) == 1024
         else: # 
             id = tokenizer.batch_encode_plus(sequence, add_special_tokens=True, padding=True)
