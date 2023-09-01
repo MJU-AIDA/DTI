@@ -22,10 +22,12 @@ logging.set_verbosity_error()
 
 # def generating_pro_feature(dataset):
 def generating_pro_feature(dataset, params):
+    
     gc.collect()
     # device = torch.device("cuda:2" if torch.cuda.is_available() else "cpu")
     # tokenizer = T5Tokenizer.from_pretrained("Rostlab/prot_t5_xl_uniref50", do_lower_case=False)
     # model = T5EncoderModel.from_pretrained("Rostlab/prot_t5_xl_uniref50").to(device)
+
     device = torch.device(f"cuda:{params.gpu}" if torch.cuda.is_available() else "cpu")
     if params.protein_embedding_method == "prot_bert":
         tokenizer = BertTokenizer.from_pretrained("Rostlab/prot_bert", do_lower_case=False)
@@ -79,6 +81,7 @@ def generating_pro_feature(dataset, params):
     for i in unique_values:
         my_id.append(i[0])
         my_protein.append(i[1])
+
     protein = pd.concat([pd.DataFrame({"Target": my_protein}), (pd.DataFrame({"Target_ID": my_id}))], axis=1)
     # protein['PROT_T5_XL_UNIREF50_Features'] = protein['Target'].apply(protein_sequence_to_embedding)
     protein[f'{params.protein_embedding_method.upper()}_Features'] = protein['Target'].apply(protein_sequence_to_embedding)
@@ -102,6 +105,7 @@ def generating_drug_feature(drug_dataset, params) :
         ### generate embedding value of Col 'Drug'
         # d['MORGAN_Features'] = d['Drug'].apply(smiles_to_fingerprint)
         d[f'{params.drug_embedding_method.upper()}_Features'] = d['Drug'].apply(smiles_to_fingerprint)
+    
     elif params.drug_embedding_method.upper() == "MAP4" :
         d = drug_dataset
         l = []

@@ -98,13 +98,13 @@ def generate_drug_feature(params):
     unique_drugs_df = generating_drug_feature(unique_drugs_df, params)
     # print(len(unique_drugs_df))
     # print(unique_drugs_df)
-    tmp = unique_drugs_df[['Drug_ID', 'Drug','MORGAN_Features']]
+    tmp = unique_drugs_df[['Drug_ID', 'Drug',f'{params.drug_embedding_method.upper()}_Features']]
     drug_id_array = tmp['Drug_ID'].values
     drug_array = tmp['Drug'].values
-    drug_feat = tmp['MORGAN_Features']
+    drug_feat = tmp[f'{params.drug_embedding_method.upper()}_Features']
     drug_enco = temp
 
-    drug_feat = {'Drug_ID': drug_id_array, 'Drug': drug_array, 'MORGAN_Features': drug_feat, "Drug_enco" : drug_enco}
-    with open(f"data/{params.dataset}/VEC_drug_feats_MORGAN.pkl", 'wb') as f:
+    drug_feat = {'Drug_ID': drug_id_array, 'Drug': drug_array, f'{params.drug_embedding_method.upper()}_Features': drug_feat, "Drug_enco" : drug_enco}
+    with open(f"data/{params.dataset}/VEC_drug_feats_{params.drug_embedding_method.upper()}.pkl", 'wb') as f:
         pickle.dump(drug_feat, f)
     print(f"Dictionary saved as pickle file")
