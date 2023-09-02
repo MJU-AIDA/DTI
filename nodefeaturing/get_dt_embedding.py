@@ -72,10 +72,9 @@ def generate_protein_feature(params):
 
 def generate_drug_feature(params):
     ''' drugbankid2smiles '''
+    print("Generating drug feature")
     file_path = f"data/{params.dataset}/dti2vec_drugbankid2smiles"
     df = pd.read_csv(file_path, header=None, delimiter="\t")  # Assuming the file has no header row
-    print(len(df))
-    print(df.iloc[[0,1,300,600,1000]])
     df.columns = ["Drug_ID", "Drug"]
 
     ''' Load json file for mapping encoding & Drug ID '''
@@ -107,4 +106,4 @@ def generate_drug_feature(params):
     drug_feat = {'Drug_ID': drug_id_array, 'Drug': drug_array, f'{params.drug_embedding_method.upper()}_Features': drug_feat, "Drug_enco" : drug_enco}
     with open(f"data/{params.dataset}/VEC_drug_feats_{params.drug_embedding_method.upper()}.pkl", 'wb') as f:
         pickle.dump(drug_feat, f)
-    print(f"Dictionary saved as pickle file")
+    print(f"Dictionary saved as VEC_drug_feats_{params.drug_embedding_method}.pkl")
