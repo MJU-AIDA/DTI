@@ -9,16 +9,27 @@ from transformers import logging
 from rdkit import Chem
 from rdkit.Chem import AllChem
 
+import argparse
+import itertools
+from collections import defaultdict
+
+import tmap as tm
+from map4 import MAP4Calculator
+from sklearn.preprocessing import MinMaxScaler
+
+
 logging.set_verbosity_error()
 
 # def generating_pro_feature(dataset):
 def generating_pro_feature(dataset, params):
+    
     gc.collect()
     # device = torch.device("cuda:2" if torch.cuda.is_available() else "cpu")
     # tokenizer = T5Tokenizer.from_pretrained("Rostlab/prot_t5_xl_uniref50", do_lower_case=False)
     # model = T5EncoderModel.from_pretrained("Rostlab/prot_t5_xl_uniref50").to(device)
+
     device = torch.device(f"cuda:{params.gpu}" if torch.cuda.is_available() else "cpu")
-    if params.protein_embedding_method in ["prot_bert", "prot_bert_average"]:
+    if params.protein_embedding_method == "prot_bert":
         tokenizer = BertTokenizer.from_pretrained("Rostlab/prot_bert", do_lower_case=False)
         model = BertModel.from_pretrained("Rostlab/prot_bert").to(device)
     elif params.protein_embedding_method == "prot_bert_bfd":
@@ -39,21 +50,19 @@ def generating_pro_feature(dataset, params):
         if params.protein_embedding_replace:
             sequence = " ".join(list(re.sub(r"[UZOB]", "X", sequence)))
         else:
-            sequence = " ".join(list(sequence))
+            sequence = ' '.join(list(sequence))
         if True: 
             encoded_input = tokenizer(sequence,truncation=True,max_length=len_seq_limit,
                                       padding='max_length',return_tensors='pt').to(device)
             with torch.no_grad():
                 output = model(**encoded_input)
-                if params.protein_embedding_method == "prot_bert":
-                    output_hidden = output['last_hidden_state'][:, 0][0].detach().cpu().numpy() # 지금까지 방식 : row 0
-                    # print(output['last_hidden_state'][:, 0][0].detach().cpu().numpy().shape) # (1024,)
-                    # print(type(output_hidden)) # <class 'numpy.ndarray'>
-                    # output_hidden = np.diagonal(output['last_hidden_state'][0].detach().cpu().numpy()) # diagonal
-                elif params.protein_embedding_method == "prot_bert_average":
-                    output_hidden = torch.mean(output['last_hidden_state'][0].float(), dim=1).detach().cpu().numpy() # average
-                else:
-                    output_hidden = output['last_hidden_state'][:, 0][0].detach().cpu().numpy() # 지금까지 방식 : row 0
+                # output_hidden = output['last_hidden_state'][:, 0][0].detach().cpu().numpy() # row 0
+                # print(output['last_hidden_state'][:, 0][0].detach().cpu().numpy().shape) # (1024,)
+                # print(type(output_hidden)) # <class 'numpy.ndarray'>
+                output_hidden = np.diagonal(output['last_hidden_state'][0].detach().cpu().numpy()) # diagonal
+                # print(output['last_hidden_state'][:, 0][0].detach().cpu().numpy().shape) # (1024,)
+                # print(type(output_hidden)) # <class 'numpy.ndarray'>
+                # print(output_hidden.shape) # (1024,)
             assert len(output_hidden) == 1024
         else: # 
             id = tokenizer.batch_encode_plus(sequence, add_special_tokens=True, padding=True)
@@ -72,6 +81,7 @@ def generating_pro_feature(dataset, params):
     for i in unique_values:
         my_id.append(i[0])
         my_protein.append(i[1])
+
     protein = pd.concat([pd.DataFrame({"Target": my_protein}), (pd.DataFrame({"Target_ID": my_id}))], axis=1)
     # protein['PROT_T5_XL_UNIREF50_Features'] = protein['Target'].apply(protein_sequence_to_embedding)
     protein[f'{params.protein_embedding_method.upper()}_Features'] = protein['Target'].apply(protein_sequence_to_embedding)
@@ -80,20 +90,39 @@ def generating_pro_feature(dataset, params):
 
 # def generating_drug_feature(drug_dataset) :
 def generating_drug_feature(drug_dataset, params) :
-    d = drug_dataset
-    l =[]
-    def smiles_to_fingerprint(smiles):
-        molecule = Chem.MolFromSmiles(smiles)
-        # Generate 1024-dim Morgan fingerprint
-        fingerprint = AllChem.GetMorganFingerprintAsBitVect(molecule, 2, nBits=1024)
-        # Convert fingerprint to a binary vector
-        fingerprint_vector = fingerprint.ToBitString()
-        fingerprint_vector = np.array(fingerprint_vector)
-        return fingerprint_vector
+    if params.drug_embedding_method.upper() == "MORGAN" :
+        d = drug_dataset
+        l =[]
+        def smiles_to_fingerprint(smiles):
+            molecule = Chem.MolFromSmiles(smiles)
+            # Generate 1024-dim Morgan fingerprint
+            fingerprint = AllChem.GetMorganFingerprintAsBitVect(molecule, 2, nBits=1024)
+            # Convert fingerprint to a binary vector
+            fingerprint_vector = fingerprint.ToBitString()
+            fingerprint_vector = np.array(fingerprint_vector)
+            return fingerprint_vector
 
-    ### generate embedding value of Col 'Drug'
-    # d['MORGAN_Features'] = d['Drug'].apply(smiles_to_fingerprint)
-    d[f'{params.drug_embedding_method.upper()}_Features'] = d['Drug'].apply(smiles_to_fingerprint)
+        ### generate embedding value of Col 'Drug'
+        # d['MORGAN_Features'] = d['Drug'].apply(smiles_to_fingerprint)
+        d[f'{params.drug_embedding_method.upper()}_Features'] = d['Drug'].apply(smiles_to_fingerprint)
+    
+    elif params.drug_embedding_method.upper() == "MAP4" :
+        d = drug_dataset
+        l = []
+        MAP4 = MAP4Calculator(dimensions=1024)
+        ENC = tm.Minhash(1024)
+        scaler = MinMaxScaler()
+
+        def smiles_to_fingerprint(smiles):
+            molecule = Chem.MolFromSmiles(smiles)
+            map4_val = MAP4.calculate(molecule)
+            scaled_data = scaler.fit_transform(np.array(map4_val).reshape(-1,1))
+            result = scaled_data.reshape(1,-1)[0]
+            return result
+
+        d[f'{params.drug_embedding_method.upper()}_Features'] = d['Drug'].apply(smiles_to_fingerprint)
+    
+    d[f'{params.drug_embedding_method.upper()}_Features'] = d[f'{params.drug_embedding_method.upper()}_Features'].apply(lambda x : [float(y) for y in x])
     return d
 
 def concat_feature(drug_table, target_table) :     

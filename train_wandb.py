@@ -15,6 +15,7 @@ from nodefeaturing.get_dt_embedding import generate_protein_feature, generate_dr
 ''' wandb'''
 from managers.evaluator import Evaluator, Evaluator_ddi2
 from managers.trainer_wandb import Trainer
+# from managers.trainer import Trainer
 import numpy as np
 # os.environ['WANDB_DIR'] = os.getcwd()
 # os.environ['WANDB_CACHE_DIR'] = os.getcwd() + "/.cache/"
@@ -74,8 +75,8 @@ def main(params):
         dind = np.zeros(1710)
         pind = np.zeros(34123)
         ### drug feature
-        if not os.path.exists(f'data/{params.dataset}/VEC_drug_feats_{params.drug_embedding_method}.pkl'): # drug 생성과정은 generate_drug_feature를 수정해야함
-            generate_drug_feature(params) ### add module to generate drug feature
+        if not os.path.exists(f'data/{params.dataset}/VEC_drug_feats_{params.drug_embedding_method}.pkl'):
+            generate_drug_feature(params) ### module to generate drug feature
         import pickle
         with open(f'data/{params.dataset}/VEC_drug_feats_{params.drug_embedding_method}.pkl', 'rb') as f:
             x = pickle.load(f, encoding='utf-8')
@@ -217,10 +218,10 @@ if __name__ == '__main__':
     parser.add_argument('--enclosing_sub_graph', '-en', type=bool, default=True,
                         help='whether to only consider enclosing subgraph')
     parser.add_argument('--protein_embedding_method', '-pem', type=str, 
-                        choices=['prot_t5_xl_bfd', 'prot_t5_xl_uniref50', 'prot_bert_bfd','prot_bert', 'prostt5'], default='prot_t5_xl_uniref50',
+                        choices=['prot_t5_xl_bfd', 'prot_t5_xl_uniref50', 'prot_bert_bfd','prot_bert', 'prot_bert_average', 'prostt5'], default='prot_bert',
                         help='what protein embedding to use')
     parser.add_argument('--drug_embedding_method', '-dem', type=str, 
-                        choices=['morgan', 'map4'], default='map4',
+                        choices=['morgan', 'map4'], default='morgan',
                         help='what drug embedding to use')
     parser.add_argument('--protein_embedding_replace', '-per', type=bool, default=True,
                         help='whether to replace U, Z, O, B with X in protein sequence')

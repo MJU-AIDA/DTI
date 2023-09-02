@@ -2,18 +2,20 @@ import os
 import argparse
 import logging
 import torch
+import pickle
 from scipy.sparse import SparseEfficiencyWarning
 
 from subgraph_extraction.datasets import SubgraphDataset, generate_subgraph_datasets
 from utils.initialization_utils import initialize_experiment, initialize_model
 from utils.graph_utils import collate_dgl, move_batch_to_device_dgl, move_batch_to_device_dgl_ddi2
-
 from model.dgl.graph_classifier import GraphClassifier as dgl_model
+from warnings import simplefilter
+from nodefeaturing.get_dt_embedding import generate_protein_feature, generate_drug_feature
 
 from managers.evaluator import Evaluator, Evaluator_ddi2
 from managers.trainer import Trainer
 import numpy as np
-from warnings import simplefilter
+
 os.environ['CUDA_LAUNCH_BLOCKING'] = "1"
 
 def main(params):
@@ -24,7 +26,7 @@ def main(params):
 
     if not os.path.isdir(params.db_path):
         generate_subgraph_datasets(params)
-
+    
     train = SubgraphDataset(params.db_path, 'train_pos', 'train_neg', params.file_paths,
                             add_traspose_rels=params.add_traspose_rels,
                             num_neg_samples_per_link=params.num_neg_samples_per_link,
@@ -64,32 +66,36 @@ def main(params):
     def to_float(arr):
         return [float(x) for x in arr]
 
-    if params.dataset == 'davis'or params.dataset == "vec":
-        if params.feat =='morganprotbert': # using Drug Morgan feature made by rdkit.Chem and Protein feature by ProtBERT
-            # drug feature
-            dind = np.zeros(1710)
-            pind = np.zeros(34123)
-            import pickle
-            with open('data/{}/VEC_drug_feats.pkl'.format(params.dataset), 'rb') as f:
-                x = pickle.load(f, encoding='utf-8')
-            mfeat =  []
-            for y in x['Morgan_Features']:
-                row_feat = to_float(y)
-                mfeat.append(row_feat)
-            # params.feat_dim = 1024  # argparser로 받음
-            for idx, y in enumerate(x["Drug_enco"]) : 
-                if 0 < y : 
-                    dind[int(y)] = idx
-            # target feature
-            with open('data/{}/VEC_target_feats.pkl'.format(params.dataset), 'rb') as f:
-                x = pickle.load(f, encoding='utf-8')
-            pfeat = []
-            for y in x['ProtBERT_Features']:
-                pfeat.append(y)
-            for idx, y in enumerate(x["Gene_enco"]) : 
-                if 0 < y : 
-                    pind[int(y)] = idx
-            # params.pfeat_dim = 1024  # argparser로 받음
+    if params.dataset in ['vec', 'mydrugbank', 'davis'] and params.feat == 'morganprotbert': ### may rename params.feat
+        ### create sparse index matrix
+        dind = np.zeros(1710)
+        pind = np.zeros(34123)
+        ### drug feature
+        if not os.path.exists(f'data/{params.dataset}/VEC_drug_feats_{params.drug_embedding_method}.pkl'): # drug 생성과정은 generate_drug_feature를 수정해야함
+            print(f"Generating drug feature using {params.drug_embedding_method}")
+            generate_drug_feature(params) ### add module to generate drug feature
+        import pickle
+        with open(f'data/{params.dataset}/VEC_drug_feats_{params.drug_embedding_method}.pkl', 'rb') as f:
+            x = pickle.load(f, encoding='utf-8')
+        mfeat = []
+        for y in x[f'{params.drug_embedding_method.upper()}_Features']:
+            row_feat = to_float(y)
+            mfeat.append(row_feat)
+        for idx, y in enumerate(x["Drug_enco"]) :
+            if 0 < y :
+                dind[int(y)] = idx
+        ### protein feature
+        if not os.path.exists(f'data/{params.dataset}/VEC_target_feats_{params.protein_embedding_method}.pkl'):
+            print(f"Generating protein feature using {params.protein_embedding_method}")
+            generate_protein_feature(params) ### module to generate protein feature
+        with open(f'data/{params.dataset}/VEC_target_feats_{params.protein_embedding_method}.pkl', 'rb') as f:
+            x = pickle.load(f, encoding='utf-8')
+        pfeat = []
+        for y in x[f'{params.protein_embedding_method.upper()}_Features']:
+            pfeat.append(y)
+        for idx, y in enumerate(x["Gene_enco"]) : 
+            if 0 < y : 
+                pind[int(y)] = idx
 
     if params.dataset == 'drugbank':
         if params.feat == 'morgan':
@@ -106,7 +112,6 @@ def main(params):
         elif  params.feat == 'pretrained':
             mfeat = np.loadtxt('data/{}/pretrained.txt'.format(params.dataset))
             params.feat_dim = 200
-        
         # pfeat = np.loadtxt('data/{}/protein_emb_np.txt'.format(params.dataset))
         # params.pfeat_dim = 1024
         #np.loadtxt('data/{}/protein_index.txt'.format(params.dataset))
@@ -209,6 +214,15 @@ if __name__ == '__main__':
                         help='whether to append adj matrix list with symmetric relations')
     parser.add_argument('--enclosing_sub_graph', '-en', type=bool, default=True,
                         help='whether to only consider enclosing subgraph')
+    parser.add_argument('--protein_embedding_method', '-pem', type=str, 
+                        choices=['prot_t5_xl_bfd', 'prot_t5_xl_uniref50', 'prot_bert_bfd','prot_bert', 'prot_bert_average', 'prostt5'], default='prot_bert',
+                        help='what protein embedding to use')
+    parser.add_argument('--drug_embedding_method', '-dem', type=str, 
+                        choices=['morgan', 'map4'], default='morgan',
+                        help='what drug embedding to use')
+    parser.add_argument('--protein_embedding_replace', '-per', type=bool, default=True,
+                        help='whether to replace U, Z, O, B with X in protein sequence')
+    
 
     # Model params
     parser.add_argument("--rel_emb_dim", "-r_dim", type=int, default=16,
@@ -268,5 +282,5 @@ if __name__ == '__main__':
     params.collate_fn = collate_dgl
     #minsik
     params.move_batch_to_device = move_batch_to_device_dgl if params.dataset == 'drugbank' or params.dataset == 'davis' or params.dataset == 'vec' else move_batch_to_device_dgl_ddi2
-
+    
     main(params)

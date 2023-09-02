@@ -84,7 +84,7 @@ class Trainer():
             clip_grad_norm_(self.graph_classifier.parameters(), max_norm=10, norm_type=2)
             self.optimizer.step()
             self.updates_counter += 1
-            bar.set_description('epoch: ' + str(b_idx+1) + '/ loss_train: ' + str(loss.cpu().detach().numpy()))
+            bar.set_description('epoch: ' + str(b_idx+1) + ' / loss_train: ' + str(loss.cpu().detach().numpy()))
 
             # except RuntimeError:
             #     print(data_pos, r_labels_pos, targets_pos)
@@ -101,13 +101,15 @@ class Trainer():
                     all_scores += torch.argmax(score_pos, dim=1).cpu().flatten().tolist()
             if self.valid_evaluator and self.params.eval_every_iter and self.updates_counter % self.params.eval_every_iter == 0:
                 tic = time.time()
+                train_result, save_train_data = self.train_evaluator.eval()
                 result, save_dev_data = self.valid_evaluator.eval()
                 test_result, save_test_data = self.test_evaluator.eval()
+
                 logging.info('\033[95m Eval Performance:' + str(result) + 'in ' + str(time.time() - tic)+'\033[0m')
                 logging.info('\033[93m Test Performance:' + str(test_result) + 'in ' + str(time.time() - tic)+'\033[0m')
-                if result['auc'] >= self.best_metric:
+                if result['roc_auc'] >= self.best_metric:
                     self.save_classifier()
-                    self.best_metric = result['auc']
+                    self.best_metric = result['roc_auc']
                     self.not_improved_count = 0
                     if self.params.dataset != 'BioSNAP':
                         logging.info('\033[93m Test Performance Per Class:' + str(save_test_data) + 'in ' + str(time.time() - tic)+'\033[0m')
@@ -120,33 +122,34 @@ class Trainer():
                     if self.not_improved_count > self.params.early_stop:
                         logging.info(f"Validation performance didn\'t improve for {self.params.early_stop} epochs. Training stops.")
                         break
-                self.last_metric = result['auc']
+                self.last_metric = result['roc_auc']
         weight_norm = sum(map(lambda x: torch.norm(x), model_params))
         if self.params.dataset != 'BioSNAP':
-            auc = metrics.f1_score(all_labels, all_scores, average='macro')
-            auc_pr = metrics.f1_score(all_labels, all_scores, average='micro')
-            return total_loss/b_idx, auc, auc_pr, weight_norm
+            roc_auc = metrics.roc_auc_score(all_labels, all_scores, average='macro')
+            precision, recall, _ = metrics.precision_recall_curve(all_labels, all_scores)
+            pr_auc = metrics.auc(recall, precision)
+            return total_loss/b_idx, roc_auc, pr_auc, weight_norm
         else:
             return total_loss/b_idx, 0, 0, weight_norm
 
     def train(self):
         self.reset_training_state()
-
+        
         for epoch in range(1, self.params.num_epochs + 1):
             time_start = time.time()
 
-            loss, auc, auc_pr, weight_norm = self.train_epoch()
+            loss, roc_auc, pr_auc, weight_norm = self.train_epoch()
 
             time_elapsed = time.time() - time_start
-            logging.info(f'Epoch {epoch} with loss: {loss}, training auc: {auc}, training auc_pr: {auc_pr}, best validation AUC: {self.best_metric}, weight_norm: {weight_norm} in {time_elapsed}')
+            logging.info(f'Epoch {epoch} with loss: {loss}, training roc_auc: {roc_auc}, training auc_pr: {pr_auc}, best validation AUC: {self.best_metric}, weight_norm: {weight_norm} in {time_elapsed}')
 
             # if self.valid_evaluator and epoch % self.params.eval_every == 0:
             #     result = self.valid_evaluator.eval()
             #     logging.info('\nPerformance:' + str(result))
 
-            #     if result['auc'] >= self.best_metric:
+            #     if result['roc_auc'] >= self.best_metric:
             #         self.save_classifier()
-            #         self.best_metric = result['auc']
+            #         self.best_metric = result['roc_auc']
             #         self.not_improved_count = 0
 
             #     else:
@@ -154,7 +157,7 @@ class Trainer():
             #         if self.not_improved_count > self.params.early_stop:
             #             logging.info(f"Validation performance didn\'t improve for {self.params.early_stop} epochs. Training stops.")
             #             break
-            #     self.last_metric = result['auc']
+            #     self.last_metric = result['roc_auc']
 
             if epoch % self.params.save_every == 0:
                 torch.save(self.graph_classifier, os.path.join(self.params.exp_dir, 'graph_classifier_chk.pth'))
