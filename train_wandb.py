@@ -76,13 +76,13 @@ def main(params):
         dind = np.zeros(1710)
         pind = np.zeros(34123)
         ### drug feature
-        if not os.path.exists(f'data/{params.dataset}/VEC_drug_feats_{params.drug_embedding_method.upper()}.pkl'):
+        if not os.path.exists(f'data/{params.dataset}/VEC_drug_feats_{params.drug_embedding_method}.pkl'):
             generate_drug_feature(params) ### module to generate drug feature
-            if not os.path.exists(f'data/{params.dataset}/VEC_drug_feats_{params.drug_embedding_method.upper()}.pkl'):
+            if not os.path.exists(f'data/{params.dataset}/VEC_drug_feats_{params.drug_embedding_method}.pkl'):
                 raise FileNotFoundError("Feature file have not created yet")
                 sys.exit()
         import pickle
-        with open(f'data/{params.dataset}/VEC_drug_feats_{params.drug_embedding_method.upper()}.pkl', 'rb') as f:
+        with open(f'data/{params.dataset}/VEC_drug_feats_{params.drug_embedding_method}.pkl', 'rb') as f:
             x = pickle.load(f, encoding='utf-8')
         mfeat = []
         for y in x[f'{params.drug_embedding_method.upper()}_Features']:
@@ -97,7 +97,7 @@ def main(params):
         with open(f'data/{params.dataset}/VEC_target_feats_{params.protein_embedding_method}.pkl', 'rb') as f:
             x = pickle.load(f, encoding='utf-8')
         pfeat = []
-        for y in x[f'{params.protein_embedding_method}_Features']:
+        for y in x[f'{params.protein_embedding_method.upper()}_Features']:
         # for y in x['ProtBERT_Features']:
             pfeat.append(y)
         for idx, y in enumerate(x["Gene_enco"]) : 
