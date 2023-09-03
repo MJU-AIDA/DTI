@@ -104,6 +104,6 @@ def generate_drug_feature(params):
     drug_enco = temp
 
     drug_feat = {'Drug_ID': drug_id_array, 'Drug': drug_array, f'{params.drug_embedding_method.upper()}_Features': drug_feat, "Drug_enco" : drug_enco}
-    with open(f"data/{params.dataset}/VEC_drug_feats_{params.drug_embedding_method.upper()}.pkl", 'wb') as f:
+    with open(f"data/{params.dataset}/VEC_drug_feats_{params.drug_embedding_method}.pkl", 'wb') as f:
         pickle.dump(drug_feat, f)
     print(f"Dictionary saved as VEC_drug_feats_{params.drug_embedding_method}.pkl")
