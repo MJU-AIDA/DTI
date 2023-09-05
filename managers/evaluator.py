@@ -1,6 +1,7 @@
 import os
 import numpy as np
 import torch
+import torch.nn as nn
 import pdb
 from sklearn import metrics
 import torch.nn.functional as F
@@ -15,6 +16,7 @@ class Evaluator():
         self.params = params
         self.graph_classifier = graph_classifier
         self.data = data
+        self.criterion = nn.CrossEntropyLoss()
 
     def print_attn_weight(self):
         dataloader = DataLoader(self.data, batch_size=self.params.batch_size, shuffle=False, num_workers=self.params.num_workers, collate_fn=self.params.collate_fn)
@@ -65,6 +67,7 @@ class Evaluator():
 
 
     def eval(self, save=False):
+        total_loss = 0
         pos_scores = []
         pos_labels = []
         neg_scores = []
@@ -72,15 +75,16 @@ class Evaluator():
         y_pred = []
         label_matrix = []
         dataloader = DataLoader(self.data, batch_size=len(self.data), shuffle=False, num_workers=self.params.num_workers, collate_fn=self.params.collate_fn)
-
         self.graph_classifier.eval()
         with torch.no_grad():
-            for b_idx, batch in enumerate(dataloader):
-
+            bar = tqdm(enumerate(dataloader))
+            for b_idx, batch in bar:
                 data_pos, r_labels_pos, targets_pos = self.params.move_batch_to_device(batch, self.params.device)
                 # print([self.data.id2relation[r.item()] for r in data_pos[1]])
                 # pdb.set_trace()
                 score_pos = self.graph_classifier(data_pos)
+                loss = self.criterion(score_pos, r_labels_pos)
+                total_loss += loss.item()
                 #score_neg = self.graph_classifier(data_neg)
 
                 # preds += torch.argmax(logits.detach().cpu(), dim=1).tolist()
@@ -95,7 +99,8 @@ class Evaluator():
                 # label_mat[np.arange(label_mat.shape[0]), label_ids] = 1
                 # y_pred.append(pred)
                 # label_matrix.append(label_mat)
-
+            eval_loss = total_loss/(b_idx+1)
+        
         acc = metrics.accuracy_score(pos_labels, pos_scores)
         roc_auc = roc_auc_score(pos_labels, pos_scores, average='macro')
         precision, recall, _ = precision_recall_curve(pos_labels, pos_scores)
@@ -163,7 +168,7 @@ class Evaluator():
                     f.write('\t'.join([s, r, o, str(score)]) + '\n')
 
         # return {'auc': auc, 'microf1': auc_pr, 'k':kappa}, {'f1': f1}
-        return {'acc':acc, 'pr_auc':pr_auc ,'f1': f1, 'roc_auc': roc_auc, 'microf1': microf1, 'k':kappa}, {'f1': f1}
+        return {'loss':eval_loss, 'acc':acc, 'pr_auc':pr_auc, 'roc_auc': roc_auc, 'precision':precision,'recall':recall ,'f1': f1, 'microf1': microf1, 'k':kappa}, {'f1': f1}
 
 class Evaluator_ddi2():
     def __init__(self, params, graph_classifier, data):
@@ -256,4 +261,3 @@ class Evaluator_ddi2():
                     f.write('\t'.join([s, r, o, str(score)]) + '\n')
 
         return {'auc': np.mean(roc_auc), 'auc_pr': np.mean(prc_auc), 'f1': np.mean(ap)}, {"auc_all":roc_auc,"aupr_all":prc_auc, "f1_all":ap}
-

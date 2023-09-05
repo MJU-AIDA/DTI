@@ -19,12 +19,14 @@ from torch.nn.utils import clip_grad_norm_
 
 
 class Trainer():
-    def __init__(self, params, graph_classifier, train, train_evaluator = None, valid_evaluator=None, test_evaluator = None):
-        self.graph_classifier = graph_classifier
-        self.train_evaluator=train_evaluator
-        self.valid_evaluator = valid_evaluator
+    def __init__(self, params, graph_classifier, train, valid, test, train_evaluator=None, valid_evaluator=None, test_evaluator=None):
         self.params = params
         self.train_data = train
+        self.valid_data = valid
+        self.test_data = test
+        self.graph_classifier = graph_classifier
+        self.train_evaluator = train_evaluator
+        self.valid_evaluator = valid_evaluator
         self.test_evaluator = test_evaluator
         self.updates_counter = 0
 
@@ -40,8 +42,7 @@ class Trainer():
             self.optimizer = optim.SGD(model_params, lr=params.lr, momentum=params.momentum, weight_decay=self.params.l2)
         if params.optimizer == "Adam":
             self.optimizer = optim.Adam(model_params, lr=params.lr, weight_decay=self.params.l2)
-
-        if params.dataset == 'drugbank' or params.dataset == 'davis' or params.dataset == 'vec':
+        if params.dataset in ['drugbank', 'davis', 'vec']:
             self.criterion = nn.CrossEntropyLoss()
             #self.criterion = nn.BCELoss(reduce=False)
         elif params.dataset == 'BioSNAP':
@@ -90,7 +91,7 @@ class Trainer():
             clip_grad_norm_(self.graph_classifier.parameters(), max_norm=10, norm_type=2)
             self.optimizer.step()
             self.updates_counter += 1
-            bar.set_description('epoch: ' + str(b_idx+1) + ' / loss_train: ' + str(loss.cpu().detach().numpy()))
+            bar.set_description('batch: ' + str(b_idx+1) + ' / loss_train: ' + str(loss.cpu().detach().numpy()))
 
             # except RuntimeError:
             #     print(data_pos, r_labels_pos, targets_pos)
@@ -105,20 +106,23 @@ class Trainer():
                     #y_pred = y_pred + F.softmax(output, dim = -1)[:, -1].cpu().flatten().tolist()
                     #outputs = np.asarray([1 if i else 0 for i in (np.asarray(y_pred) >= 0.5)])
                     all_scores += torch.argmax(score_pos, dim=1).cpu().flatten().tolist()
-            if self.valid_evaluator and self.params.eval_every_iter and self.updates_counter % self.params.eval_every_iter == 0:
+            if self.valid_evaluator and self.params.eval_every_iter and self.updates_counter % self.params.eval_every_iter == 0: # 
                 tic = time.time()
                 train_result, save_train_data = self.train_evaluator.eval()
                 result, save_dev_data = self.valid_evaluator.eval()
                 test_result, save_test_data = self.test_evaluator.eval()
                 ''' wandb '''
                 wandb.log({
-                    'val_auc': result['roc_auc'], 
-                    'val_acc': result['acc'], 
-                    'val_f1': result['f1'], # list타입 wandb logging 불가
-                    'train_auc': train_result['roc_auc'],
+                    'train_loss': train_result['loss'],
+                    'train_auroc': train_result['roc_auc'],
+                    'train_auprc': train_result['pr_auc'],
                     'train_acc': train_result['acc'],
-                    'train_f1': train_result['f1']
-
+                    'train_f1': train_result['f1'],
+                    'val_loss': result['loss'],
+                    'val_auroc': result['roc_auc'], 
+                    'val_auprc': result['pr_auc'],
+                    'val_acc': result['acc'],
+                    'val_f1': result['f1'],
                     })
                 logging.info('\033[95m Eval Performance:' + str(result) + 'in ' + str(time.time() - tic)+'\033[0m')
                 logging.info('\033[93m Test Performance:' + str(test_result) + 'in ' + str(time.time() - tic)+'\033[0m')
@@ -139,6 +143,27 @@ class Trainer():
                         break
                 self.last_metric = result['roc_auc']
         weight_norm = sum(map(lambda x: torch.norm(x), model_params))
+
+        # # evaluating val loss
+        # self.graph_classifier.eval()
+        # total_loss_val = 0
+        # bar_val = tqdm(enumerate(valid_dataloader))
+        # for b_idx_val, batch_val in bar_val:
+        #     data_pos_val, r_labels_pos_val, targets_pos_val = self.params.move_batch_to_device(batch_val, self.params.device)
+        #     score_pos_val = self.graph_classifier(data_pos_val)
+        #     if self.params.dataset == 'drugbank' :
+        #         loss_val = self.criterion(score_pos_val, r_labels_pos_val)
+        #     elif self.params.dataset in ['vec', 'davis']:
+        #         loss_val = self.criterion(score_pos_val, r_labels_pos_val)
+        #     with torch.no_grad():
+        #             total_loss_val += loss_val.item()
+        # # logging train loss, val loss
+        # ''' wandb '''
+        # wandb.log({
+        #     'train_loss': total_loss/b_idx,
+        #     'val_loss': total_loss_val/b_idx_val,
+        # })
+        
         if self.params.dataset != 'BioSNAP':
             roc_auc = metrics.roc_auc_score(all_labels, all_scores, average='macro')
             precision, recall, _ = metrics.precision_recall_curve(all_labels, all_scores)
