@@ -142,11 +142,11 @@ def main(params):
     graph_classifier.pro_ind(torch.LongTensor(np.array(pind)).to(params.device))
     graph_classifier.drug_ind(torch.LongTensor(np.array(dind)).to(params.device))
 
-    train_evaluator = Evaluator(params, graph_classifier, train) if params.dataset == 'drugbank' or params.dataset == 'vec'or params.dataset == 'davis'  else Evaluator_ddi2(params, graph_classifier, train)
-    valid_evaluator = Evaluator(params, graph_classifier, valid) if params.dataset == 'drugbank' or params.dataset == 'vec' or params.dataset == 'davis' else Evaluator_ddi2(params, graph_classifier, valid)
-    test_evaluator = Evaluator(params, graph_classifier, test) if params.dataset == 'drugbank' or params.dataset == 'vec' or params.dataset == 'davis' else Evaluator_ddi2(params, graph_classifier, test)
+    train_evaluator = Evaluator(params, graph_classifier, train) if params.dataset in ['drugbank', 'vec', 'davis'] else Evaluator_ddi2(params, graph_classifier, train)
+    valid_evaluator = Evaluator(params, graph_classifier, valid) if params.dataset in ['drugbank', 'vec', 'davis'] else Evaluator_ddi2(params, graph_classifier, valid)
+    test_evaluator  = Evaluator(params, graph_classifier, test)  if params.dataset in ['drugbank', 'vec', 'davis'] else Evaluator_ddi2(params, graph_classifier, test)
     
-    trainer = Trainer(params, graph_classifier, train, train_evaluator, valid_evaluator,test_evaluator)
+    trainer = Trainer(params, graph_classifier, train, valid, test, train_evaluator, valid_evaluator,test_evaluator)
 
     logging.info('Starting training with full batch...')
     trainer.train()
@@ -179,9 +179,9 @@ if __name__ == '__main__':
     # Training regime params
     parser.add_argument("--num_epochs", "-ne", type=int, default=50,
                         help="Learning rate of the optimizer")
-    parser.add_argument("--eval_every", type=int, default=3,
+    parser.add_argument("--eval_every", type=int, default=1,
                         help="Interval of epochs to evaluate the model?")
-    parser.add_argument("--eval_every_iter", type=int, default=526,
+    parser.add_argument("--eval_every_iter", type=int, default=97, # len(train) / batch_size : 12331 / 128
                         help="Interval of iterations to evaluate the model?")
     parser.add_argument("--save_every", type=int, default=10,
                         help="Interval of epochs to save a checkpoint of the model?")
@@ -215,7 +215,7 @@ if __name__ == '__main__':
                         help="Batch size")
     parser.add_argument("--num_neg_samples_per_link", '-neg', type=int, default=0,
                         help="Number of negative examples to sample per positive link")
-    parser.add_argument("--num_workers", type=int, default=10,
+    parser.add_argument("--num_workers", type=int, default=30,
                         help="Number of dataloading processes")
     parser.add_argument('--add_traspose_rels', '-tr', type=bool, default=False,
                         help='whether to append adj matrix list with symmetric relations')

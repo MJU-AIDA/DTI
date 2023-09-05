@@ -1,27 +1,27 @@
 program: train_wandb.py
-project: Exp4-gcn_bases_lr_230828
+project: Exp5-gcn_bases
 entity: aida_dti
-name: test
+name: lower_gcn_bases
 method: grid
 metric:
   name: val_auc
   goal: maximize
   target: 0.95
 parameters:
-  experiment_name:
-    value: test
+  experiment_name: 
+    value: last_epoch_test
   gpu:
-    value: 2
+    value: 1
   num_gcn_layers:
-    values: [3] #[3, 5]  # [3,5,11]
+    values: [1, 2, 3,] #[3, 5]  # [3,5,11]
   num_bases:
-    values: [4] # [4, 16] # [4,16,256]
+    values: [2, 3, 4, 5, 6] # [4, 16] # [4,16,256]
   rel_emb_dim:
-    values: [16] # [4,8,32] # 16은 기존 값
+    values: [8] # [4,8,32] # 16은 기존 값
   attn_rel_emb_dim:
-    values: [16] # [4,8,32]
+    values: [8] # [4,8,32]
   emb_dim:
-    values: [16] # [4,8,32]
+    values: [8] # [4,8,32]
   lr:
     values: [2e-5] #[1e-5, 2e-5] # values: 
   hop:
@@ -33,7 +33,7 @@ parameters:
   edge_dropout:
     values: [0.2] # [0.2, 0.4, 0.6, 0.8]
   num_epochs:
-    value: 5 # values: [500]
+    value: 500 # values: [500]
   
   dataset:
     value: vec
@@ -48,7 +48,7 @@ parameters:
   protein_embedding_method:
     values: ['prot_bert'] # ['prot_t5_xl_bfd', 'prot_bert_bfd', 'prot_t5_xl_uniref50', 'prostt5', 'prot_bert', 'prot_bert_average'] 
   drug_embedding_method:
-    values: ['map4', 'morgan'] # ['map4', 'morgan']
+    values: ['morgan'] # ['map4', 'morgan']
   feat_dim:
     value: 1024
   pfeat_dim:
