@@ -1,9 +1,7 @@
 import pandas as pd
 import numpy as np
 from sklearn import svm
-from sklearn.metrics import accuracy_score
-from sklearn.metrics import f1_score
-from sklearn.metrics import roc_auc_score
+from sklearn.metrics import f1_score, accuracy_score, roc_auc_score,precision_recall_curve, auc
 import argparse
 import os
 import xgboost as xgb
@@ -17,7 +15,6 @@ from generate_entity_embedding import generating_pro_feature, generating_drug_fe
 def eval_res(y_true, y_pred, model):
     from sklearn.metrics import confusion_matrix
     import seaborn as sns
-    from sklearn.metrics import precision_score, recall_score, f1_score
     cm = confusion_matrix(y_true, y_pred)
     import matplotlib.pyplot as plt
     cm_df = pd.DataFrame(cm, index=['Actual 0', 'Actual 1'], columns=['Predicted 0', 'Predicted 1'])
@@ -50,15 +47,20 @@ def my_SVM(df_train , df_val , d_col, p_col, r_col):
     pred_rels_train = clf.predict(pd.concat([train_p_feat, train_d_feat], axis = 1))
     accuracy_train = accuracy_score(df_train[r_col], pred_rels_train)
     f1score_train = f1_score(df_train[r_col], pred_rels_train)
-    auc_train = roc_auc_score(df_train[r_col], pred_rels_train)
+    auroc_train = roc_auc_score(df_train[r_col], pred_rels_train)
+    precision, recall, _ = precision_recall_curve(df_train[r_col], pred_rels_train)
+    auprc_train = auc(recall, precision)
 
     pred_rels_val = clf.predict(pd.concat([val_p_feat, val_d_feat], axis = 1))
     accuracy_val = accuracy_score(df_val[r_col], pred_rels_val)
     f1score_val = f1_score(df_val[r_col], pred_rels_val)
-    auc_val = roc_auc_score(df_val[r_col], pred_rels_val)
+    auroc_val = roc_auc_score(df_val[r_col], pred_rels_val)
+    precision, recall, _ = precision_recall_curve(df_val[r_col], pred_rels_val)
+    auprc_val = auc(recall, precision)
+
     eval_res(df_val[r_col], pred_rels_val, "SVM") 
-    print(f"Train   ->   Accuracy: {accuracy_train:<15.5f} F1-score: {f1score_train:<15.5f} AUC: {auc_train:<15.5f}")
-    print(f"Val     ->   Accuracy: {accuracy_val:<15.5f} F1-score: {f1score_val:<15.5f} AUC: {auc_val:<15.5f}")
+    print(f"Train   ->   Accuracy: {accuracy_train:<15.5f} F1-score: {f1score_train:<15.5f} auROC: {auroc_train:<15.5f} auPRC: {auprc_train:<15.5f}")
+    print(f"Val     ->   Accuracy: {accuracy_val:<15.5f} F1-score: {f1score_val:<15.5f} auROC: {auroc_val:<15.5f} auPRC: {auprc_val:<15.5f}")
 
     
 
@@ -94,14 +96,16 @@ def my_XGBoost(df_train, df_val, d_col, p_col, r_col):
         pred_binary = [1 if p >= 0.5 else 0 for p in pred]
         accuracy = accuracy_score(gt_rels, pred_binary)
         f1score = f1_score(gt_rels, pred_binary)
-        auc = roc_auc_score(gt_rels, pred_binary)
+        auroc = roc_auc_score(gt_rels, pred_binary)
+        precision, recall, _ = precision_recall_curve(gt_rels, pred_binary)
+        auprc = auc(recall, precision)
         eval_res(gt_rels, pred_binary, "XGB") 
-        return accuracy, f1score, auc
+        return accuracy, f1score, auroc, auprc
     
-    accuracy_train, f1score_train, auc_train = evaluate(dtrain, df_train[r_col])
-    accuracy_val, f1score_val, auc_val = evaluate(dval, df_val[r_col])
-    print(f"Train   ->   Accuracy: {accuracy_train:<15.5f} F1-score: {f1score_train:<15.5f} AUC: {auc_train:<15.5f}")
-    print(f"Val     ->   Accuracy: {accuracy_val:<15.5f} F1-score: {f1score_val:<15.5f} AUC: {auc_val:<15.5f}")
+    accuracy_train, f1score_train, auroc_train, auprc_train = evaluate(dtrain, df_train[r_col])
+    accuracy_val, f1score_val, auroc_val, auprc_val = evaluate(dval, df_val[r_col])
+    print(f"Train   ->   Accuracy: {accuracy_train:<15.5f} F1-score: {f1score_train:<15.5f} auROC: {auroc_train:<15.5f} auPRC: {auprc_train:<15.5f}")
+    print(f"Val     ->   Accuracy: {accuracy_val:<15.5f} F1-score: {f1score_val:<15.5f} auROC: {auroc_val:<15.5f} auPRC: {auprc_val:<15.5f}")
 
 
 def my_RandomForest(df_train, df_val, d_col, p_col, r_col):
@@ -123,15 +127,16 @@ def my_RandomForest(df_train, df_val, d_col, p_col, r_col):
         pred = model.predict(X)
         accuracy = accuracy_score(y, pred)
         f1score = f1_score(y, pred)
-        auc = roc_auc_score(y, pred) 
+        auroc = roc_auc_score(y, pred)
+        precision, recall, _ = precision_recall_curve(y, pred)
+        pr_auc = auc(recall, precision)
         eval_res(y, pred, "RF") 
-        return accuracy, f1score, auc
+        return accuracy, f1score, auroc, pr_auc
     
-    accuracy_train, f1score_train, auc_train = evaluate(X_train, y_train)
-    accuracy_val, f1score_val, auc_val = evaluate(X_val, y_val)
-
-    print(f"Train   ->   Accuracy: {accuracy_train:<15.5f} F1-score: {f1score_train:<15.5f} AUC: {auc_train:<15.5f}")
-    print(f"Val     ->   Accuracy: {accuracy_val:<15.5f} F1-score: {f1score_val:<15.5f} AUC: {auc_val:<15.5f}")
+    accuracy_train, f1score_train, auroc_train, auprc_train = evaluate(X_train, y_train)
+    accuracy_val, f1score_val, auroc_val, auprc_val = evaluate(X_val, y_val)
+    print(f"Train   ->   Accuracy: {accuracy_train:<15.5f} F1-score: {f1score_train:<15.5f} auROC: {auroc_train:<15.5f} auPRC: {auprc_train:<15.5f}")
+    print(f"Val     ->   Accuracy: {accuracy_val:<15.5f} F1-score: {f1score_val:<15.5f} auROC: {auroc_val:<15.5f} auPRC: {auprc_val:<15.5f}")
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-td", "--train_dataset", type=str, required=True, help="path to input train dataset")
@@ -149,9 +154,13 @@ else:
     model_name = args.model
 
 args.gpu = 3
-args.protein_embedding_method = "prot_bert_bfd"
+args.protein_embedding_method = "prot_bert"
 args.drug_embedding_method = "morgan"
 args.protein_embedding_replace = True
+if model_name not in ['SVM', 'XGBoost','RandomForest']:
+    print("we don't have the model, available model : SVM, XGBoost, RandomForest")
+    exit(0)
+
 
 train_pro_table = generating_pro_feature(train_table, args)
 
@@ -174,6 +183,3 @@ elif model_name == 'XGBoost' :
 
 elif model_name == "RandomForest" :
     my_RandomForest(train_merge_on, val_merge_on,f"{args.protein_embedding_method.upper()}_Features", f"{args.protein_embedding_method.upper()}_Features", "Y")
-
-else :
-    print("we don't have the model, available model : SVM, XGBoost, RandomForest")
