@@ -147,7 +147,9 @@ def main(params):
     test_evaluator  = Evaluator(params, graph_classifier, test)  if params.dataset in ['drugbank', 'vec', 'davis'] else Evaluator_ddi2(params, graph_classifier, test)
     
     trainer = Trainer(params, graph_classifier, train, valid, test, train_evaluator, valid_evaluator,test_evaluator)
-
+    # from torchsummary import summary
+    # summary(graph_classifier, [(128, 128)]) # 서브그래프가 연결안되서 KeyError: 'h' 발생
+    # exit(0)
     logging.info('Starting training with full batch...')
     trainer.train()
 
@@ -191,6 +193,8 @@ if __name__ == '__main__':
                         help="Which optimizer to use?")
     parser.add_argument("--lr", type=float, default=5e-3,
                         help="Learning rate of the optimizer")
+    parser.add_argument("--lr_scheduling", type=bool, default=False,
+                        help="Whether to use CosineLRScheduler")
     parser.add_argument("--clip", type=int, default=500,
                         help="Maximum gradient norm allowed")
     parser.add_argument("--l2", type=float, default=1e-5,
@@ -215,7 +219,7 @@ if __name__ == '__main__':
                         help="Batch size")
     parser.add_argument("--num_neg_samples_per_link", '-neg', type=int, default=0,
                         help="Number of negative examples to sample per positive link")
-    parser.add_argument("--num_workers", type=int, default=30,
+    parser.add_argument("--num_workers", type=int, default=16,
                         help="Number of dataloading processes")
     parser.add_argument('--add_traspose_rels', '-tr', type=bool, default=False,
                         help='whether to append adj matrix list with symmetric relations')
@@ -269,7 +273,6 @@ if __name__ == '__main__':
                         help='whether to have knowledge graph embedding in model or not')
     parser.add_argument('--add_pfeat_emb', '-pfeat', type=bool, default=True,
                         help='whether to protein feature embedding in model or not')
-
     parser.add_argument('--gamma', type=float, default=0.2,
                         help='The threshold for attention')
     params = parser.parse_args()

@@ -12,6 +12,7 @@ import torch.nn as nn
 import torch.optim as optim
 import torch.nn.functional as F
 from torch.utils.data import DataLoader
+from utils.scheduler import CosineWarmupLR
 from tqdm import tqdm
 from sklearn import metrics
 import json
@@ -41,12 +42,17 @@ class Trainer():
         if params.optimizer == "SGD":
             self.optimizer = optim.SGD(model_params, lr=params.lr, momentum=params.momentum, weight_decay=self.params.l2)
         if params.optimizer == "Adam":
-            self.optimizer = optim.Adam(model_params, lr=params.lr, weight_decay=self.params.l2)
+            self.optimizer = optim.Adam(model_params, lr=params.lr, weight_decay=self.params.l2, eps = 1e-8)
+        if params.optimizer == "AdamW":
+            self.optimizer = optim.AdamW(model_params, lr=params.lr, weight_decay=self.params.l2, eps = 1e-8)
         if params.dataset in ['drugbank', 'davis', 'vec']:
             self.criterion = nn.CrossEntropyLoss()
             #self.criterion = nn.BCELoss(reduce=False)
         elif params.dataset == 'BioSNAP':
             self.criterion = nn.BCELoss(reduce=False)
+        if params.lr_scheduling:
+            self.lr_scheduler = CosineWarmupLR(optimizer=self.optimizer,epochs=params.num_epochs, warmup_epochs=int(params.num_epochs*0.05),)
+
         self.reset_training_state()
 
     def reset_training_state(self):
@@ -123,6 +129,11 @@ class Trainer():
                     'val_auprc': result['pr_auc'],
                     'val_acc': result['acc'],
                     'val_f1': result['f1'],
+                    # 'test_loss': test_result['loss'],
+                    # 'test_auroc': test_result['roc_auc'], 
+                    # 'test_auprc': test_result['pr_auc'],
+                    # 'test_acc': test_result['acc'],
+                    # 'test_f1': test_result['f1'],
                     })
                 logging.info('\033[95m Eval Performance:' + str(result) + 'in ' + str(time.time() - tic)+'\033[0m')
                 logging.info('\033[93m Test Performance:' + str(test_result) + 'in ' + str(time.time() - tic)+'\033[0m')
@@ -142,27 +153,9 @@ class Trainer():
                         logging.info(f"Validation performance didn\'t improve for {self.params.early_stop} epochs. Training stops.")
                         break
                 self.last_metric = result['roc_auc']
+        if self.params.lr_scheduling:
+            self.lr_scheduler.step() ### lr scheduler
         weight_norm = sum(map(lambda x: torch.norm(x), model_params))
-
-        # # evaluating val loss
-        # self.graph_classifier.eval()
-        # total_loss_val = 0
-        # bar_val = tqdm(enumerate(valid_dataloader))
-        # for b_idx_val, batch_val in bar_val:
-        #     data_pos_val, r_labels_pos_val, targets_pos_val = self.params.move_batch_to_device(batch_val, self.params.device)
-        #     score_pos_val = self.graph_classifier(data_pos_val)
-        #     if self.params.dataset == 'drugbank' :
-        #         loss_val = self.criterion(score_pos_val, r_labels_pos_val)
-        #     elif self.params.dataset in ['vec', 'davis']:
-        #         loss_val = self.criterion(score_pos_val, r_labels_pos_val)
-        #     with torch.no_grad():
-        #             total_loss_val += loss_val.item()
-        # # logging train loss, val loss
-        # ''' wandb '''
-        # wandb.log({
-        #     'train_loss': total_loss/b_idx,
-        #     'val_loss': total_loss_val/b_idx_val,
-        # })
         
         if self.params.dataset != 'BioSNAP':
             roc_auc = metrics.roc_auc_score(all_labels, all_scores, average='macro')
@@ -174,8 +167,8 @@ class Trainer():
 
     def train(self):
         self.reset_training_state()
-        ''' wandb '''
-        wandb.init(project='sumgnn-dti', entity='aidi_dti', reinit=True)
+        # ''' wandb '''
+        # wandb.init(project='sumgnn-dti', entity='aidi_dti', reinit=True)
 
         for epoch in range(1, self.params.num_epochs + 1):
             time_start = time.time()
