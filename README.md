@@ -1,6 +1,7 @@
 
 SumGNN-DTI - Drug Target Interaction Prediction with Knowledge Graph
 ========================
+![모델아키텍쳐230913](https://github.com/MJU-AIDA/DTI/assets/91061904/53f622c1-96e7-4467-a87c-ae1a4f01ae6b)
 ----------------------------
 
 # External Knowledge Graph Dataset - Hetionet
