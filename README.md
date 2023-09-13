@@ -1,10 +1,14 @@
 
-SumGNN DTI Implementation
+SumGNN-DTI - Drug Target Interaction Prediction with Knowledge Graph
 ========================
-[논문명]<<http://example.com/>>
+![모델아키텍쳐230913](https://github.com/MJU-AIDA/DTI/assets/91061904/53f622c1-96e7-4467-a87c-ae1a4f01ae6b)
 ----------------------------
 
-
+# External Knowledge Graph Dataset - Hetionet
+[HETIONET](https://het.io/)
+> data/hetio/metaedge_encoding.json : Only the encoding value included in the original relations_2hop.txt exists
+> 
+# Dataset
 ## DRUGBANK
 > data/drugbank/train.txt  
 > data/drugbank/dev.txt  
@@ -14,10 +18,6 @@ SumGNN DTI Implementation
 ### Drug embedding - DDI
 SumGNN provided
 > data/drugbank/DB_molecular_feats.pkl
-
-## Hetionet
-> 
-> data/hetio/metaedge_encoding.json : Only the encoding value included in the original relations_2hop.txt exists
 
 ## DAVIS
 ### Original
@@ -48,11 +48,7 @@ data/davis/get_dt_pkl.ipynb (코드 리팩토링 중)
 > data/kiba/test.txt  
 > data/kiba/kiba.txt : input for hetio extractor
 
-
-## Hetionet
-
-
-## Baseline models
+# Baseline models
 ### ML Baseline - SVM, XGBoost, Randomforest
 BaselineModel/train_baseline_model.ipynb  
 
@@ -63,9 +59,10 @@ python baselinemodel.py
     -m SVM     #(SVM, XGBoost, RandomForest)  # Choose model to train and see the result. 
 ```
 
-### DL Baseline - 
+# DL Baseline
+## HyperAttentionDTI
 
-## Train
+# Train
 bash run.sh ->
 ```
 python train.py -d davis -e ddi_hop2 --gpu=2 --hop=2 --batch=128 -b=4 --num_epochs 500 --lr 0.00005 
