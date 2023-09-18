@@ -57,11 +57,8 @@ class GraphClassifier(nn.Module):
         # print(len(g.ndata['h']))  # node 개수
         # print(data)
         # print('repr:',g.ndata['repr'], g.ndata['repr'].shape)
-        # exit(0)
-        #assert 0
         g_out = mean_nodes(g, 'repr')
         #print('g_out', g_out.shape)
-        #assert 0
         # print(g_out.shape,g.ndata['h'].shape)
 
 
@@ -89,6 +86,7 @@ class GraphClassifier(nn.Module):
             fuse_feat = torch.cat([fuse_feat1, fuse_feat2], dim = 1)
         if self.params.add_ht_emb and self.params.add_sb_emb:
             if self.params.add_feat_emb and self.params.add_transe_emb:
+                # print(g_out.shape, head_embs.shape, tail_embs.shape, fuse_feat.shape)
                 g_rep = torch.cat([g_out.view(-1, (1+self.params.num_gcn_layers) * self.params.emb_dim),
                                    head_embs.view(-1, (1+self.params.num_gcn_layers) * self.params.emb_dim),
                                    tail_embs.view(-1, (1+self.params.num_gcn_layers) * self.params.emb_dim),
@@ -114,7 +112,12 @@ class GraphClassifier(nn.Module):
                                ], dim=1)
         else:
             g_rep = g_out.view(-1, self.params.num_gcn_layers * self.params.emb_dim)
+        # print(g_rep.shape) # torch.Size([{batch_size}, 128])
+        # exit(0)
         #print(g_rep.shape, self.params.add_ht_emb, self.params.add_sb_emb)
         output = self.fc_layer(F.dropout(g_rep, p =0.3))
+
+        # print(output.shape) # torch.Size([{batch_size}, {number of relations}])
+        # exit(0)
         # print(head_ids.detach().cpu().numpy(), tail_ids.detach().cpu().numpy())
         return output

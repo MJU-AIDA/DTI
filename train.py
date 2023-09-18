@@ -58,6 +58,7 @@ def main(params):
 
     # Log the max label value to save it in the model. This will be used to cap the labels generated on test set.
     params.max_label_value = train.max_n_label
+
     logging.info(f"Device: {params.device}")
     logging.info(f"Input dim : {params.inp_dim}, # Relations : {params.num_rels}, # Augmented relations : {params.aug_num_rels}")
 
@@ -140,6 +141,11 @@ def main(params):
     test_evaluator = Evaluator(params, graph_classifier, test) if params.dataset == 'drugbank' or params.dataset == 'vec' or params.dataset == 'davis' else Evaluator_ddi2(params, graph_classifier, test)
     
     trainer = Trainer(params, graph_classifier, train, train_evaluator, valid_evaluator,test_evaluator)
+
+    # torchsummary
+    from torchsummary import summary
+    # print(summary(graph_classifier, (1, )))
+    # exit(0)
 
     logging.info('Starting training with full batch...')
     trainer.train()

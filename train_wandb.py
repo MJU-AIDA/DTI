@@ -170,8 +170,9 @@ if __name__ == '__main__':
                         help="Which GPU to use?")
     parser.add_argument('--disable_cuda', action='store_true',
                         help='Disable CUDA')
-    parser.add_argument('--load_model', action='store_true',
+    parser.add_argument('--load_model', type=bool, default=False,
                         help='Load existing model?')
+
     parser.add_argument("--train_file", "-tf", type=str, default="train",
                         help="Name of file containing training triplets")
     parser.add_argument("--valid_file", "-vf", type=str, default="dev",
@@ -179,8 +180,8 @@ if __name__ == '__main__':
     parser.add_argument("--test_file", "-ttf", type=str, default="test",
                         help="Name of file containing test triplets")
     # Training regime params
-    parser.add_argument("--num_epochs", "-ne", type=int, default=50,
-                        help="Learning rate of the optimizer")
+    parser.add_argument("--num_epochs", "-ne", type=int, default=300,
+                        help="Number of epochs to train for")
     parser.add_argument("--eval_every", type=int, default=1,
                         help="Interval of epochs to evaluate the model?")
     parser.add_argument("--eval_every_iter", type=int, default=97, # len(train) / batch_size : 12331 / 128
@@ -191,7 +192,7 @@ if __name__ == '__main__':
                         help="Early stopping patience")
     parser.add_argument("--optimizer", type=str, default="Adam",
                         help="Which optimizer to use?")
-    parser.add_argument("--lr", type=float, default=5e-3,
+    parser.add_argument("--lr", type=float, default=1e-5,
                         help="Learning rate of the optimizer")
     parser.add_argument("--lr_scheduling", type=bool, default=False,
                         help="Whether to use CosineLRScheduler")
@@ -219,7 +220,7 @@ if __name__ == '__main__':
                         help="Batch size")
     parser.add_argument("--num_neg_samples_per_link", '-neg', type=int, default=0,
                         help="Number of negative examples to sample per positive link")
-    parser.add_argument("--num_workers", type=int, default=16,
+    parser.add_argument("--num_workers", type=int, default=18,
                         help="Number of dataloading processes")
     parser.add_argument('--add_traspose_rels', '-tr', type=bool, default=False,
                         help='whether to append adj matrix list with symmetric relations')
@@ -244,7 +245,7 @@ if __name__ == '__main__':
                         help="Entity embedding size")
     parser.add_argument("--num_gcn_layers", "-l", type=int, default=1,
                         help="Number of GCN layers")
-    parser.add_argument("--num_bases", "-b", type=int, default=2,
+    parser.add_argument("--num_bases", "-b", type=int, default=4,
                         help="Number of basis functions to use for GCN weights")
     parser.add_argument("--dropout", type=float, default=0.3,
                         help="Dropout rate in GNN layers")

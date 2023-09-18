@@ -192,7 +192,7 @@ class SubgraphDataset(Dataset):
         return subgraph
 
     def _prepare_features_new(self, subgraph, n_labels, n_feats=None):
-        # One hot encode the node label feature and concat to n_featsure
+        # One hot encode the node label feature and concat to n_feature
         n_nodes = subgraph.number_of_nodes()
         label_feats = np.zeros((n_nodes, self.max_n_label[0] + 1 + self.max_n_label[1] + 1))
         label_feats[np.arange(n_nodes), n_labels[:, 0]] = 1

@@ -1,1 +1,1 @@
-python train.py -d vec -e protein_average --protein_embedding_method prot_bert_average --gpu=3 --hop=2 --batch=128 -b=4 --num_epochs 500 --lr 0.00001 --num_gcn_layers 5 --feat_dim 1024 --pfeat_dim 1024
+python train_wandb.py -d vec -e dti_hop2 --gpu=1 --hop=2 --batch=128 -b=4 --num_epochs 100 --lr 0.00001 --feat_dim 1024 --pfeat_dim 1024 -l 1
