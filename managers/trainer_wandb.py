@@ -32,24 +32,28 @@ class Trainer():
         self.updates_counter = 0
 
         ''' wandb '''
-        wandb.init(project='sumgnn-dti', entity='aida_dti', name=params.experiment_name, reinit=True)
-        wandb.config.update(params)
+        # wandb.init(project='sumgnn-dti', entity='aida_dti', name=params.experiment_name, reinit=True)
+        # wandb.config.update(params)
+        # wandb.watch(self.graph_cflassifier)
 
-        wandb.watch(self.graph_classifier)
         model_params = list(self.graph_classifier.parameters())
         logging.info('Total number of parameters: %d' % sum(map(lambda x: x.numel(), model_params)))
 
         if params.optimizer == "SGD":
-            self.optimizer = optim.SGD(model_params, lr=params.lr, momentum=params.momentum, weight_decay=self.params.l2)
-        if params.optimizer == "Adam":
+            self.optimizer = optim.SGD(model_params, lr=params.lr, weight_decay=self.params.l2)
+        elif params.optimizer == "Adam":
             self.optimizer = optim.Adam(model_params, lr=params.lr, weight_decay=self.params.l2, eps = 1e-8)
-        if params.optimizer == "AdamW":
+        elif params.optimizer == "AdamW":
             self.optimizer = optim.AdamW(model_params, lr=params.lr, weight_decay=self.params.l2, eps = 1e-8)
+        elif params.optimizer == "Momentum":
+            self.optimizer = optim.SGD(model_params, lr=params.lr, momentum=0.3, weight_decay=self.params.l2)
+        
         if params.dataset in ['drugbank', 'davis', 'vec']:
             self.criterion = nn.CrossEntropyLoss()
             #self.criterion = nn.BCELoss(reduce=False)
         elif params.dataset == 'BioSNAP':
             self.criterion = nn.BCELoss(reduce=False)
+        
         if params.lr_scheduling:
             self.lr_scheduler = CosineWarmupLR(optimizer=self.optimizer,epochs=params.num_epochs, warmup_epochs=int(params.num_epochs*0.05),)
 
@@ -117,7 +121,7 @@ class Trainer():
                 train_result, save_train_data = self.train_evaluator.eval()
                 result, save_dev_data = self.valid_evaluator.eval()
                 test_result, save_test_data = self.test_evaluator.eval()
-                ''' wandb '''
+                ''' wandb : if you don't want to use wandb, comment this part '''
                 wandb.log({
                     'train_loss': train_result['loss'],
                     'train_auroc': train_result['roc_auc'],
@@ -167,8 +171,8 @@ class Trainer():
 
     def train(self):
         self.reset_training_state()
-        # ''' wandb '''
-        # wandb.init(project='sumgnn-dti', entity='aidi_dti', reinit=True)
+        ''' wandb '''
+        wandb.init(project='code_test', entity='aida_dti', reinit=True)
 
         for epoch in range(1, self.params.num_epochs + 1):
             time_start = time.time()

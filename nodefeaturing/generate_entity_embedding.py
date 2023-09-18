@@ -56,10 +56,10 @@ def generating_pro_feature(dataset, params):
                                       padding='max_length',return_tensors='pt').to(device)
             with torch.no_grad():
                 output = model(**encoded_input)
-                # output_hidden = output['last_hidden_state'][:, 0][0].detach().cpu().numpy() # row 0
+                output_hidden = output['last_hidden_state'][:, 0][0].detach().cpu().numpy() # row 0
                 # print(output['last_hidden_state'][:, 0][0].detach().cpu().numpy().shape) # (1024,)
                 # print(type(output_hidden)) # <class 'numpy.ndarray'>
-                output_hidden = np.diagonal(output['last_hidden_state'][0].detach().cpu().numpy()) # diagonal
+                # output_hidden = np.diagonal(output['last_hidden_state'][0].detach().cpu().numpy()) # diagonal
                 # print(output['last_hidden_state'][:, 0][0].detach().cpu().numpy().shape) # (1024,)
                 # print(type(output_hidden)) # <class 'numpy.ndarray'>
                 # print(output_hidden.shape) # (1024,)

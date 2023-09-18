@@ -124,9 +124,8 @@ def process_files_ddi(files, triple_file, saved_relation2id=None, keeptrainone =
         if i not in entity2id:
             entity2id[i] = i
     ####
-    # Construct the list of adjacency matrix each corresponding to eeach relation. Note that this is constructed only from the train data.
+    # Construct the list of adjacency matrix each corresponding to each relation. Note that this is constructed only from the train data.
     adj_list = []
-    #print("*************************",rel)
     #print(kg_triple)
     #for i in range(len(relation2id)):
     for i in range(rel):

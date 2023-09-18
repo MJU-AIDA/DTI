@@ -82,7 +82,7 @@ class Evaluator():
                 data_pos, r_labels_pos, targets_pos = self.params.move_batch_to_device(batch, self.params.device)
                 # print([self.data.id2relation[r.item()] for r in data_pos[1]])
                 # pdb.set_trace()
-                score_pos = self.graph_classifier(data_pos)
+                score_pos = self.graph_classifier(data_pos) # torch.Size([{데이터포인트 개수}, {클래스 개수}])
                 loss = self.criterion(score_pos, r_labels_pos)
                 total_loss += loss.item()
                 #score_neg = self.graph_classifier(data_neg)
@@ -100,10 +100,10 @@ class Evaluator():
                 # y_pred.append(pred)
                 # label_matrix.append(label_mat)
             eval_loss = total_loss/(b_idx+1)
-        
+        y_score = score_pos[:, 1].cpu() # positive class prob
         acc = metrics.accuracy_score(pos_labels, pos_scores)
-        roc_auc = roc_auc_score(pos_labels, pos_scores, average='macro')
-        precision, recall, _ = precision_recall_curve(pos_labels, pos_scores)
+        roc_auc = roc_auc_score(pos_labels, y_score, average='macro')
+        precision, recall, _ = precision_recall_curve(pos_labels, y_score)
         pr_auc = auc(recall, precision)
 
         microf1 = metrics.f1_score(pos_labels, pos_scores, average='micro')
@@ -168,7 +168,7 @@ class Evaluator():
                     f.write('\t'.join([s, r, o, str(score)]) + '\n')
 
         # return {'auc': auc, 'microf1': auc_pr, 'k':kappa}, {'f1': f1}
-        return {'loss':eval_loss, 'acc':acc, 'pr_auc':pr_auc, 'roc_auc': roc_auc, 'precision':precision,'recall':recall ,'f1': f1, 'microf1': microf1, 'k':kappa}, {'f1': f1}
+        return {'loss':eval_loss, 'acc':acc, 'pr_auc':pr_auc, 'roc_auc': roc_auc, 'f1': f1, 'microf1': microf1, 'k':kappa}, {'f1': f1}
 
 class Evaluator_ddi2():
     def __init__(self, params, graph_classifier, data):
