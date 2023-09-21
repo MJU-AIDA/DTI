@@ -32,9 +32,9 @@ class Trainer():
         self.updates_counter = 0
 
         ''' wandb '''
-        # wandb.init(project='sumgnn-dti', entity='aida_dti', name=params.experiment_name, reinit=True)
-        # wandb.config.update(params)
-        # wandb.watch(self.graph_cflassifier)
+        wandb.init(project='code_test', entity='aida_dti', name=params.experiment_name, reinit=True)
+        wandb.config.update(params)
+        wandb.watch(self.graph_classifier)
 
         model_params = list(self.graph_classifier.parameters())
         logging.info('Total number of parameters: %d' % sum(map(lambda x: x.numel(), model_params)))
